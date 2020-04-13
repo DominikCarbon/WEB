@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page de création de compte Client</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="LogNvClient.css"/>
+
+<style>
+    body{
+        background-color : white;}
+    input{
+        margin-bottom: 7px;}
+    #informations{
+        background-color: whitesmoke;
+        border:  1px groove grey;
+        border-radius: 10px;
+        margin-left: 100px;
+        margin-right: 100px;
+        padding-top: 0px;
+        padding-bottom: 20px;}
+    h1{
+        margin-bottom: 50px;
+    }
+    em
+    {color: red;}
+    
+</style>
+    
+</head>
+<body>
+    <center>
+    <h1>Complétez vos informations personnelles</h1>
+    <form action="LogNvClient.php" method="post" enctype="multipart/form-data">
+        <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
+        
+        <fieldset>
+        <legend>Coordonnées</legend>
+        <label>Nom <em>*</em></label>
+        <input type="text" name="Nom" placeholder="Entrez votre Nom" required><br/>
+        <label><b>Prénom </b><em>*</em></label>
+        <input type="text" name="Prenom" placeholder="Entrez votre Prénom" required><br/>
+        <label><b>Téléphone </b><em>*</em></label>
+        <input type="text" name="Telephone" placeholder="Entrez votre Numéro Tél." required><br/>
+        </fieldset>
+        <fieldset>
+        <legend>Adresse de Facturation / Livraison</legend>
+        <label><b>Adresse </b><em>*</em></label>
+        <input type="text" name="Adresse1" placeholder="Ligne d'adresse 1" required><br/>
+        <label><b>Adresse</b></label>
+        <input type="text" name="Adresse2" placeholder="Ligne d'adresse 2" required><br/>
+        <label><b>Ville </b><em>*</em></label>
+        <input type="text" name="Ville" placeholder="Entrez votre Ville" required><br/>
+        <label><b>Code Postal </b><em>*</em></label>
+        <input type="number" name="Code" placeholder="Entrez le code postal" required><br/>
+        <label><b>Pays </b><em>*</em></label>
+        <input type="text" name="Pays" placeholder="Entrez votre Pays" required><br/>
+        </fieldset>
+        <p><input type="submit" name="button" value="Valider"></p>
+        
+        <!--<center>
+        <div id=informations>
+        </center>-->
+
+    </form>
+        </center>
+
+<footer class="container-fluid text-center">
+    <hr/>
+  <p><small>
+		Conçu par: Dominik Carbon & Wachani Mehdi<br>
+		Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br/>
+		Copyright &copy; 2020
+	</small></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page de connexion Client</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!--<script>
+    var V = document.getElementById('button');
+    var Vn = document.getElementById('button2');
+    var login =document.getElementById('LoginC');
+    var mdp = document.getElementById('mdpC');
+    var nologin = document.getElementById('nologin');
+    var nopass = document.getElementById('nopass');
+    
+    V.addEventListener('click', validation);
+    function validation(event){
+        if(login.validity.valueMissing)
+        {
+            event.preventDefault();
+            nologin.textContent = 'Veuillez entrer votre login';
+        }
+        if(mdp.validity.valueMissing)
+        {
+            event.preventDefault();
+            nopass.textContent = 'Veuillez entre votre mot de passe';
+        }
+    }
+    
+</script>-->    
+    
+<style>
+    body{
+        background-color : white;}
+    input{
+        margin-bottom: 7px;}
+    #connexion{
+        background-color: whitesmoke;
+        border:  1px groove grey;
+        border-radius: 10px;
+        margin-left: 500px;
+        margin-right: 500px;
+        padding-top: 0px;
+        padding-bottom: 20px;}
+    
+</style>
+    
+</head>
+<body>
+    <form action="LogClient.php" method="post" enctype="multipart/form-data">
+        
+        <center><h1>Connexion Client</h1>
+        <div id=connexion>
+        <table>
+        <tr>
+        <td><label><b>Nom d'utilisateur (mail)</b></label></td>
+        </tr>
+        <tr>
+        <td><input type="text" name="LoginC" placeholder="Entrez votre mail" required></td><br/>
+        </tr>
+        <tr>
+        <td><label><b>Mot de passe</b></label></td>
+        </tr>
+        <tr>
+        <td><input type="password" name="mdpC" placeholder="mot de passe" required></td><br/>
+        </tr>
+        <!--<tr>
+        <td> &nbsp; </td>
+        </tr>-->
+        <tr>
+        <td colspan="2" align="center"><input type="submit" name="button" value="Valider"></td><br/>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td colspan="2"> Pas encore client chez nous?</td>
+        </tr>
+        <tr>
+        <td colspan="2" align="center"><input type="submit" name="button2" value="Créer mon compte" title="Cliquez ici pour vous créer un compte client !"></td>
+        </tr>
+        </table>
+        </div>
+        </center>
+
+    </form>
+
+<footer class="container-fluid text-center">
+    <hr/>
+  <p><small>
+		Conçu par: Dominik Carbon & Wachani Mehdi<br>
+		Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br/>
+		Copyright &copy; 2020
+	</small></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+ 
+fieldset {
+  margin-bottom: 15px;
+  padding: 10px;
+}
+ 
+legend {
+  padding: 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+ 
+label {
+  width: 110px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 6px;
+}
+ 
+em {
+  color: red;
+}
+ 
+input:focus {
+  background: #eaeaea;
+}
+ 
+input, textarea {
+  width: 249px;
+}
+ 
+textarea {
+  height: 100px;
+}
+ 
+select {
+  width: 254px;
+}
+ 
+input[type=submit] {
+  width: 100px;
+  padding: 10px;
+}
