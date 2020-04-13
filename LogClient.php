@@ -20,7 +20,7 @@ for ($i = 0; $i < count($serveur); $i++) {
 if ($connexion) {
     if (isset($_POST['button'])) {
         echo "Login successfull !";
-        header("Location: home.html");
+        header("Location: homeloged.html");
     }
     if (isset($_POST['button2']))
     {
