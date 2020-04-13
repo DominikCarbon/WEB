@@ -9,30 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!--<script>
-    var V = document.getElementById('button');
-    var Vn = document.getElementById('button2');
-    var login =document.getElementById('LoginC');
-    var mdp = document.getElementById('mdpC');
-    var nologin = document.getElementById('nologin');
-    var nopass = document.getElementById('nopass');
-    
-    V.addEventListener('click', validation);
-    function validation(event){
-        if(login.validity.valueMissing)
-        {
-            event.preventDefault();
-            nologin.textContent = 'Veuillez entrer votre login';
-        }
-        if(mdp.validity.valueMissing)
-        {
-            event.preventDefault();
-            nopass.textContent = 'Veuillez entre votre mot de passe';
-        }
-    }
-    
-</script>-->    
-    
 <style>
     body{
         background-color : white;}
@@ -54,7 +30,7 @@
     <form action="LogClient.php" method="post" enctype="multipart/form-data">
         
         <center><h1>Connexion Client</h1>
-            <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ?<br/> Cliquez pour le voir en grand !" width="200px" height="200px">
+        <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ? Cliquez pour le voir en grand !" width="200px" height="200px">
         <div id=connexion>
         <table>
         <tr>
@@ -82,7 +58,7 @@
         <td colspan="2"> Pas encore client chez nous?</td>
         </tr>
         <tr>
-        <td colspan="2" align="center"><input type="submit" name="button2" value="Créer mon compte" title="Cliquez ici pour vous créer un compte client !"></td>
+            <td colspan="2" align="center"> <a href="LogNvClient.html" alt="Créer mon compte" title="Cliquez ici pour vous créer un compte client !"> Je créé mon compte </a></td>
         </tr>
         </table>
         </div>

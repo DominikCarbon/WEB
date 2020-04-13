@@ -11,18 +11,16 @@
 <link rel="stylesheet" href="LogNvClient.css"/>
 
 <style>
+    #n
+    {
+        text-align: justify;
+        width:162px;
+    }
     body{
         background-color : white;}
     input{
         margin-bottom: 7px;}
-    #informations{
-        background-color: whitesmoke;
-        border:  1px groove grey;
-        border-radius: 10px;
-        margin-left: 100px;
-        margin-right: 100px;
-        padding-top: 0px;
-        padding-bottom: 20px;}
+
     h1{
         margin-bottom: 50px;
     }
@@ -34,38 +32,44 @@
 </head>
 <body>
     <center>
-        <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ?<br/> Cliquez pour le voir en grand !" width="200px" height="200px">
+        <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ? Cliquez pour le voir en grand !" width="200px" height="200px">
     <h1>Complétez vos informations personnelles</h1>
     <form action="LogNvClient.php" method="post" enctype="multipart/form-data">
         <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
         
         <fieldset>
+        <legend>Identifiants</legend>
+            <label id="n">Nom d'utilisateur(mail) <em>*</em></label>
+            <input type="text" name="mail" placeholder="Entrez votre nom d'utilisateur" reaquired><br/>
+            <label>Mot de passe <em>*</em></label>
+            <input type="password" name="mdp" placeholder="Entrez votre mot de passe" reaquired><br/>
+            <label>Mot de passe <em>*</em></label>
+            <input type="password" name="mdpC" placeholder="Confirmez votre mot de passe" reaquired><br/>
+        </fieldset>
+            <fieldset>
         <legend>Coordonnées</legend>
         <label>Nom <em>*</em></label>
         <input type="text" name="Nom" placeholder="Entrez votre Nom" required><br/>
-        <label><b>Prénom</b><em>*</em></label>
+        <label>Prénom <em>*</em></label>
         <input type="text" name="Prenom" placeholder="Entrez votre Prénom" required><br/>
-        <label><b>Téléphone</b><em>*</em></label>
+        <label>Téléphone <em>*</em></label>
         <input type="text" name="Telephone" placeholder="Entrez votre Numéro Tél." required><br/>
         </fieldset>
         <fieldset>
         <legend>Adresse de Facturation / Livraison</legend>
-        <label><b>Adresse</b></label>
+        <label>Adresse <em>*</em></label>
         <input type="text" name="Adresse1" placeholder="Ligne d'adresse 1" required><br/>
-        <label><b>Adresse</b></label>
-        <input type="text" name="Adresse2" placeholder="Ligne d'adresse 2" required><br/>
-        <label><b>Ville</b></label>
+        <label>Adresse </label>
+        <input type="text" name="Adresse2" placeholder="Ligne d'adresse 2"><br/>
+        <label>Ville <em>*</em></label>
         <input type="text" name="Ville" placeholder="Entrez votre Ville" required><br/>
-        <label><b>Code Postal</b></label>
+        <label> Code Postal <em>*</em></label>
         <input type="number" name="Code" placeholder="Entrez le code postal" required><br/>
-        <label><b>Pays</b></label>
+        <label>Pays <em>*</em></label>
         <input type="text" name="Pays" placeholder="Entrez votre Pays" required><br/>
         </fieldset>
         <p><input type="submit" name="button" value="Valider"></p>
         
-        <!--<center>
-        <div id=informations>
-        </center>-->
 
     </form>
         </center>
