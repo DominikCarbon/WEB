@@ -7,60 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-/*-- Footer --*/
-.page-footer {
- background-color: #222;
- color: #ccc;
- padding: 60px 0 30px;
-}
-.footer-copyright {
- color: #666;
- padding: 40px 0;
-}
-
-@media (max-width: 575.98px) {
- .description {
- left: 0;
- padding: 0 15px;
- position: absolute;
- top: 10%;
- transform: none;
- text-align: center;
- }
-
- .description h1 {
- font-size: 2em;
- }
-
- .description p {
- font-size: 1.2rem;
- }
-
- .features {
- margin: 0;
- }
-}
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      max-height:400px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-    }
-  }
-  </style>
+<link rel="stylesheet" type="text/css" href="home.css">
 </head>
 <body>
 
@@ -74,16 +21,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                      
       </button>
-      <a class="navbar-brand" href="logo.png"><small>Logo</small></a>
+      <a class="navbar-brand" id="Logo" href="home.html"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Categorie<span class="icon-bar"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Catégorie<span class="icon-bar"></span></a>
           <ul class="dropdown-menu">
-          <li><a href="categorie.html">Feraille</a></li>
-          <li><a href="categorie.html">Musee</a></li>
-          <li><a href="categorie.html">VIP</a></li> 
+          <li id="F"><a href="categorie.html" id="Fer">Feraille ou Trésor</a></li>
+          <li id="M"><a href="categorie.html" id="Mus">Bon pour le Musée</a></li>
+          <li id="V"><a href="categorie.html" id="Vip">Accessoire VIP</a></li> 
           </ul>
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
@@ -94,12 +41,11 @@
           </ul>
       </li>
         
-        <li><a href="vendre.html">Vendre</a></li>
-        <li><a href="LogClient.html">Votre Compte</a></li>
-        <li><a href="LogAdmin.html">Admin</a></li>
+        <li><a class="B" href="vendre.html">Vendre</a></li>
+        <li><a class="B" href="LogClient.html">Votre Compte</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="LogClient.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
         <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
       </ul>
     </div>
