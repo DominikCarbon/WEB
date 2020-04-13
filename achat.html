@@ -1,12 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Achat</title>
-	<meta charset="utf-8">
+  <title>Achat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0px;
+      height: 200px;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
 </head>
 <body>
-	<h1>Page Achat</h1>
-	Cliquer <a href="home.html">ici</a> pour aller à la page principale
+
+<div class="jumbotron" >
+  <div class="container text-center" >
+    <h1 >Boutique en ligne</h1>      
+    <p>Vente & Enchere d'Art</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                      
+      </button>
+      <a class="navbar-brand" href="logo.png"><small>Logo</small></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Categorie<span class="icon-bar"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="categorie.html">Feraille</a></li>
+          <li><a href="categorie.html">Musee</a></li>
+          <li><a href="categorie.html">VIP</a></li> 
+          </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="achat.html">Encheres</a></li>
+          <li><a href="achat.html">Achetez-le Maintenant</a></li>
+          <li><a href="achat.html">Meilleure offre</a></li> 
+          </ul>
+      </li>
+        
+        <li><a href="vendre.html">Vendre</a></li>
+        <li><a href="LogClient.html">Votre Compte</a></li>
+        <li><a href="LogAdmin.html">Admin</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="LogClient.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      
+      <div class="panel panel-danger">
+        <div class="panel-heading">Feraille</div>
+        <div class="panel-body"><img src="euro.jpg" class="img-responsive" style=" height:180px; width:100%" alt="200euro"></div>
+        <div class="panel-footer" style="height: 100px;">Piece de 200€<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">Feraille</div>
+        <div class="panel-body"><img src="coin.png" class="img-responsive" style=" height:180px; width:100%" alt="uscoin"></div>
+        <div class="panel-footer" style="height: 100px;">US coin<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">Feraille</div>
+        <div class="panel-body"><img src="OIP.jpg" class="img-responsive" style=" height:180px; width:100%" alt="napoleon3"></div>
+        <div class="panel-footer" style="height: 100px;">Piece en Or Napoleon III<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+    </div>
+        
+
+     
+    
+  
+
+
+      
+    
+    <div class="col-sm-4"> 
+      
+      <div class="panel panel-warning">
+        <div class="panel-heading">Musee</div>
+        <div class="panel-body"><img src="mickey.jpg" class="img-responsive" style=" height:180px; width:100%" alt="mickey"></div>
+        <div class="panel-footer" style="height: 100px;">Mickey Tableau<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">Musee</div>
+        <div class="panel-body"><img src="cubisme.jpg" class="img-responsive" style=" height:180px; width:100%" alt="cubisme"></div>
+        <div class="panel-footer" style="height: 100px;">Picasso Cubisme<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">Musee</div>
+        <div class="panel-body"><img src="impressioniste.jpg" class="img-responsive" style=" height:180px; width:100%" alt="impressionisme"></div>
+        <div class="panel-footer" style="height: 100px;">Tableau Impressioniste<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-info">
+        <div class="panel-heading">VIP</div>
+        <div class="panel-body"><img src="pinceau.jpg" class="img-responsive" style=" height:180px; width:100%" alt="pinceau"></div>
+        <div class="panel-footer" style="height: 100px;">Pinceau de Pablo Picassp<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+      <div class="panel panel-info">
+        <div class="panel-heading">VIP</div>
+        <div class="panel-body"><img src="chevaliere.jpg" class="img-responsive" style=" height:180px; width:100%" alt="chevaliere"></div>
+        <div class="panel-footer" style="height: 100px;">Chevaliere Napoleon<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+      <div class="panel panel-info">
+        <div class="panel-heading">VIP</div>
+        <div class="panel-body"><img src="zizou.jpg" class="img-responsive" style=" height:180px; width:100%" alt="zizou"></div>
+        <div class="panel-footer" style="height: 100px;">Maillot de Zidane 1998 dedicassé<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
+      </div>
+
+    </div>
+  </div>
+</div><br>
+
+<footer class="page-footer">
+    <div class="container">
+     <div class="row">
+     <div class="col-lg-8 col-md-8 col-sm-12">
+     <h6 class="text-uppercase font-weight-bold">Information additionnelle</h6>
+
+     <p>
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu.
+     Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
+     </p>
+     </div>
+     <div class="col-lg-4 col-md-4 col-sm-12">
+     <h6 class="text-uppercase font-weight-bold">Conçu par</h6>
+     <p>
+     Dominik Carbon & Wachani Mehdi<br>
+     Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br>
+     Contact :<a href="mailto:mehdi.wachani@edu.ece.fr"> mehdi.wachani@edu.ece.fr</a><br>
+     +33 6 47 28 02 76
+     </p>
+     </div>
+     </div>
+     <div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE</div>
+        </div>
+</footer>
 
 </body>
 </html>
