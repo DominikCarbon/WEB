@@ -2,58 +2,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page de création de compte Vendeur</title>
+<title>Page de connexion Client</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="LogNvClient.css"/>
 
 <style>
     body{
         background-color : white;}
     input{
         margin-bottom: 7px;}
-    #informations{
+    #connexion{
         background-color: whitesmoke;
         border:  1px groove grey;
         border-radius: 10px;
-        margin-left: 100px;
-        margin-right: 100px;
+        margin-left: 500px;
+        margin-right: 500px;
         padding-top: 0px;
         padding-bottom: 20px;}
-    h1{
-        margin-bottom: 50px;
-    }
-    em
-    {color: red;}
     
 </style>
     
 </head>
 <body>
-    <center>
-        <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ?<br/> Cliquez pour le voir en grand !" width="200px" height="200px">
-    <h1>Complétez vos informations personnelles</h1>
-    <form action=".php" method="post" enctype="multipart/form-data">
-        <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
+    <form action="LogVendeur.php" method="post" enctype="multipart/form-data">
         
-        <fieldset>
-        <legend>Coordonnées</legend>
-        <label>Nom <em>*</em></label>
-        <input type="text" name="Nom" placeholder="Entrez votre Nom" required><br/>
-        <label><b>Prénom</b><em>*</em></label>
-        <input type="text" name="Prenom" placeholder="Entrez votre Prénom" required><br/>
-        <label><b>Mail</b><em>*</em></label>
-        <input type="text" name="Mail" placeholder="Entrez votre Mail" required><br/>
-        <label><b>Pseudo</b><em>*</em></label>
-        <input type="text" name="Pseudo" placeholder="Entrez un Pseudo" required="">
-        <p><input type="submit" name="button" value="Valider"></p>
-        </fieldset>
-     
-    </form>
+        <center><h1>Connexion Vendeur</h1>
+        <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ? Cliquez pour le voir en grand !" width="200px" height="200px">
+        <div id=connexion>
+        <table>
+        <tr>
+        <td><label><b>Nom d'utilisateur (mail)</b></label></td>
+        </tr>
+        <tr>
+        <td><input type="text" name="LoginC" placeholder="Entrez votre mail" required></td><br/>
+        </tr>
+        <tr>
+        <td><label><b>Mot de passe</b></label></td>
+        </tr>
+        <tr>
+        <td><input type="password" name="mdpC" placeholder="mot de passe" required></td><br/>
+        </tr>
+        <!--<tr>
+        <td> &nbsp; </td>
+        </tr>-->
+        <tr>
+        <td colspan="2" align="center"><input type="submit" name="button" value="Valider"></td><br/>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td colspan="2"> Pas encore vendeur chez nous?</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"> <a href="LogNvVendeur.html" alt="Créer mon compte" title="Cliquez ici pour vous créer un compte client !"> Je créé mon compte </a></td>
+        </tr>
+        </table>
+        </div>
         </center>
+
+    </form>
 
 <footer class="container-fluid text-center">
     <hr/>

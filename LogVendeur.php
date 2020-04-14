@@ -20,12 +20,12 @@ for ($i = 0; $i < count($serveur); $i++) {
 if ($connexion) {
     if (isset($_POST['button'])) {
         echo "Login successfull !";
-        header("Location: home.html");
+        header("Location: Vendeur.html");
     }
     if (isset($_POST['button2']))
     {
         echo "Login NOUVEAU successfull !";
-        header("Location: vendeur.html");
+        header("Location: LogNvVendeur.html");
     }
 }
 else
