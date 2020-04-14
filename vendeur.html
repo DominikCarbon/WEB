@@ -1,67 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page de création de compte Vendeur</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="LogNvClient.css"/>
+  <title>Vendeur</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="Vendeur.css">
 
-<style>
-    body{
-        background-color : white;}
-    input{
-        margin-bottom: 7px;}
-    #informations{
-        background-color: whitesmoke;
-        border:  1px groove grey;
-        border-radius: 10px;
-        margin-left: 100px;
-        margin-right: 100px;
-        padding-top: 0px;
-        padding-bottom: 20px;}
-    h1{
-        margin-bottom: 50px;
-    }
-    em
-    {color: red;}
-    
-</style>
-    
 </head>
 <body>
-    <center>
-        <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ?<br/> Cliquez pour le voir en grand !" width="200px" height="200px">
-    <h1>Complétez vos informations personnelles</h1>
-    <form action=".php" method="post" enctype="multipart/form-data">
-        <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
-        
-        <fieldset>
-        <legend>Coordonnées</legend>
-        <label>Nom <em>*</em></label>
-        <input type="text" name="Nom" placeholder="Entrez votre Nom" required><br/>
-        <label><b>Prénom</b><em>*</em></label>
-        <input type="text" name="Prenom" placeholder="Entrez votre Prénom" required><br/>
-        <label><b>Mail</b><em>*</em></label>
-        <input type="text" name="Mail" placeholder="Entrez votre Mail" required><br/>
-        <label><b>Pseudo</b><em>*</em></label>
-        <input type="text" name="Pseudo" placeholder="Entrez un Pseudo" required="">
-        <p><input type="submit" name="button" value="Valider"></p>
-        </fieldset>
-     
-    </form>
-        </center>
 
-<footer class="container-fluid text-center">
-    <hr/>
-  <p><small>
-		Conçu par: Dominik Carbon & Wachani Mehdi<br>
-		Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br/>
-		Copyright &copy; 2020
-	</small></p>
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid" id="navigation">
+    <div class="navbar-header">
+
+    <a class="navbar-brand" id="Logo" href="home.html"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a class="B" href="LogClient.html">Mon Profil</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
+        <li><a href="#"> Mes items en vente </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <img src="Vendeur.png" class="img-responsive img-circle margin" style="display:inline" alt="Votre photo de profil !" width="350" height="350">
+    <p>Antoine Cardin</p>
+    <a href="#" class="btn btn-default btn active" role="button" title="Cliquez pour ajouter une photo de profil !" > Modifier la photo de Profil</a>
+</div>
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin">Mon Profil</h3>
+  <p> Vous pouvez maintenant personnaliser votre profil avec une image de fond </p>
+  <p><a href="#" class="btn btn-default btn active" role="button" title="Cliquez pour ajouter une photo de couverture !" > Modifier la photo de couverture</a></p>
+
+</div>
+
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  <h3 class="margin">Mes items en vente</h3><br>
+     <a href="#" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-search"></span> Search
+  </a>
+  <div class="row">
+    <div class="col-sm-4">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p> 
 </footer>
 
 </body>

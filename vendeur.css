@@ -1,52 +1,57 @@
-p {
-  margin-top: 0px;
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0px;
+      border-radius: 0;
+    }
+.navbar-brand
+{   background-image: url(PETIT_LogoEEBlanc.png);
+    align-items: center;
 }
- 
-fieldset {
-  margin-bottom: 15px;
-  padding: 10px;
+
+
+    
+/*-- Footer 
+.page-footer {
+ background-color: #222;
+ color: #ccc;
+ padding: 30px 0 10px;
 }
- 
-legend {
-  padding: 0px 3px;
-  font-weight: bold;
-  font-variant: small-caps;
-}
- 
-label {
-  width: 110px;
-  display: inline-block;
-  vertical-align: top;
-  margin: 6px;
-}
- 
-em {
-  font-weight: bold;
-  font-style: normal;
-  color: #f00;
-}
- 
-input:focus {
-  background: #eaeaea;
-}
- 
-input, textarea {
-  width: 249px;
-}
- 
-textarea {
-  height: 100px;
-}
- 
-select {
-  width: 254px;
-}
- 
-input[type=checkbox] {
-  width: 10px;
-}
- 
-input[type=submit] {
-  width: 150px;
-  padding: 10px;
-}
+.footer-copyright {
+ color: #666;
+ padding: 40px 0;
+}--*/
+
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color: cadetblue; /* Green */
+    color: #ffffff;
+    padding-bottom: 20px;
+    padding-top:100px;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+
+
+
+#Logo
+{
+    margin-right:10px;
+    margin-left:10px;
+    width:42px;
+height:53px;}
