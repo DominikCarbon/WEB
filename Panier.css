@@ -1,12 +1,4 @@
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-.navbar-brand
-{   background-image: url(PETIT_LogoEEBlanc.png);
-    align-items: center;
-}
+
 
 .jumbotron { 
       margin-bottom: 10px;
@@ -33,16 +25,6 @@
   border-top: 1px dotted black;
 }
    
- /*-- Footer --*/
-.page-footer {
- background-color: #222;
- color: #ccc;
- padding: 30px 0 10px;
-}
-.footer-copyright {
- color: #666;
- padding: 40px 0;
-}
 
 .selcls { 
     padding: 9px; 
@@ -56,3 +38,106 @@
 
     } 
    
+
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+.navbar-brand
+{   background-image: url(PETIT_LogoEEBlanc.png);
+    align-items: center;
+}
+
+    
+/*-- Footer --*/
+.page-footer {
+ background-color: #222;
+ color: #ccc;
+ padding: 30px 0 10px;
+}
+.footer-copyright {
+ color: #666;
+ padding: 40px 0;
+}
+
+@media (max-width: 575.98px) {
+ .description {
+ left: 0;
+ padding: 0 15px;
+ position: absolute;
+ top: 10%;
+ transform: none;
+ text-align: center;
+ }
+
+ .description h1 {
+ font-size: 2em;
+ }
+
+ .description p {
+ font-size: 1.2rem;
+ }
+
+ .features {
+ margin: 0;
+ }
+}
+#myCarousel
+{
+    height:600px;
+}
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      max-height:600px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+ 
+#F
+{   
+    background-image: url(F.jfif);
+}
+#M
+{
+    background-image: url(M.jpg);
+}
+#V
+{
+    background-image: url(Petit_exclusive.png);
+}
+
+#F, #M, #V
+{
+}
+
+#Fer,#Mus,#Vip
+{
+    color:white;
+    font-size: 20px;
+    filter:blur(0);
+}
+#Fer:hover,#Mus:hover,#Vip:hover{
+    color:black;
+    font-style:italic;
+}
+#Logo
+{
+    margin-right:10px;
+    margin-left:10px;
+    width:42px;
+height:53px;}
+
+.dropdown-toggle, .B
+{
+    width:120px;
+    height: 53px;
+    text-align: center;
+}
