@@ -1,0 +1,58 @@
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+.navbar-brand
+{   background-image: url(PETIT_LogoEEBlanc.png);
+    align-items: center;
+}
+
+.jumbotron { 
+      margin-bottom: 10px;
+      height: 220px;
+      background-image:  url(panier.png);
+      background-size: 15% ;
+      background-repeat: no-repeat;
+      background-position: 800px 20px;
+
+    }
+      #Titre
+    {color: black;
+
+    }
+    #containeur
+    {margin-right:20px; 
+     margin-left: 20px;}
+
+     #trash
+     {color: black;
+      font-size: 150%;
+      }
+.hr{
+  border-top: 1px dotted black;
+}
+   
+ /*-- Footer --*/
+.page-footer {
+ background-color: #222;
+ color: #ccc;
+ padding: 30px 0 10px;
+}
+.footer-copyright {
+ color: #666;
+ padding: 40px 0;
+}
+
+.selcls { 
+    padding: 9px; 
+    border: solid 1px #517B97; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CAD9E3), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #CAD9E3 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+
+    } 
+   
