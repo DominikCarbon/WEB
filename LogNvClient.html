@@ -8,32 +8,112 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="LogNvClient.css"/>
 
+
+    
 <style>
-    #n
-    {
-        text-align: justify;
-        width:162px;
-    }
-    body{
-        background-color : white;}
-    input{
-        margin-bottom: 7px;}
+input[type=number] {
+  width: 200px;
+  padding: 2px;
+}     
+
+input[type=password] {
+  width: 200px;
+  padding: 2px;
+}     
+
+input[type=email] {
+  width: 200px;
+  padding: 2px;
+} 
+    
+input[type=text] {
+  width: 200px;
+  padding: 2px;
+}    
+    
+fieldset {
+  margin-bottom: 15px;
+  padding: 10px;
+}
+ 
+legend {
+  padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+ 
+label {
+  width: 110px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 6px;
+}
+ 
+em {
+  font-weight: bold;
+  font-style: normal;
+  color: #f00;
+}
+
+input:hover{
+    color:white;
+    background-color: darkgray;
+}
+ 
+input:focus {
+  background: #eaeaea;
+}
+ 
+input[type=submit] {
+  width: 150px;
+  padding: 10px;
+}
+
+input[type=submit]:hover {
+    color:white;
+    background-color: darkgray;
+}
+
+#n
+{
+    text-align: justify;
+    width:170px;
+}
+    
+input{
+    margin-bottom: 7px;
+    border-radius: 10px 10px;}
+    
 
     h1{
         margin-bottom: 50px;
     }
     em
     {color: red;}
+
+    .container-fluid
+    {
+        padding-top:50px;
+        background-color:lightgrey;
+    }
     
-</style>
-    
+    #logo
+    {
+        background-color:lightgrey;
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+    }
+    </style> 
 </head>
 <body>
+    <div id="logo">
     <center>
         <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ? Cliquez pour le voir en grand !" width="200px" height="200px">
     <h1>Complétez vos informations personnelles</h1>
+    </center>    
+    </div>
+    <center>
     <form action="LogNvClient.php" method="post" enctype="multipart/form-data">
         <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
         
@@ -72,13 +152,14 @@
         
 
     </form>
-        </center>
-
-<footer class="container-fluid text-center">
+    </center>
     <hr/>
+<footer class="container-fluid text-center">
+
   <p><small>
 		Conçu par: Dominik Carbon & Wachani Mehdi<br>
 		Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br/>
+      Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> mehdi.wachani@edu.ece.fr</a><br/>
 		Copyright &copy; 2020
 	</small></p>
 </footer>
