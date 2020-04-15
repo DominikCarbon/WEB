@@ -44,8 +44,13 @@
 <div class="container-fluid bg-2 text-center">
   <h3 class="margin">Mon Profil</h3>
   <p> Vous pouvez maintenant personnaliser votre profil avec une image de fond </p>
-  <p><a href="#" class="btn btn-default btn active" role="button" title="Cliquez pour ajouter une photo de couverture !" > Modifier la photo de couverture</a></p>
+    <form method="post" enctype="multipart/form-data">
 
+  <p><label for="fond" >Sélectionner l'image à afficher: </label></p>
+    <center><p>&nbsp; &nbsp; <input type="file" accept="image/*,.pdf" name="fond"></p>
+        <p><button id="fond">Envoyer l'image</button></p>
+        </center>
+</form>
 </div>
 
 <!-- Third Container (Grid) -->
