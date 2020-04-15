@@ -24,7 +24,7 @@ else   //SI AUCUNE ERREUR
 			
 			if ($mysqli->query($query) === TRUE) {
 					echo "Added successfully";
-                header('Location:home.html');
+                header('Location:LogVendeur.html');
 				} 
 				else {
 					echo "Error: " . $query . "<br>";
