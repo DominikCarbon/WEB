@@ -1,36 +1,41 @@
 <?php
-//recuperer les données venant de la page HTML Connexion
-$login = isset($_POST["LoginC"])? $_POST["LoginC"] : "";
-$mdp = isset($_POST["mdpC"])? $_POST["mdpC"] : "";
+session_start();
 
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-$serveur = array(
-    "dodo" => "12345",
-    "mehdi" => "6789",
-);
-
-$connexion = false;
-for ($i = 0; $i < count($serveur); $i++) {
-    if ($serveur[$login] == $mdp){
-    $connexion = true;
-    break;}
-}
-
-
-if ($connexion) {
-    if (isset($_POST['button'])) {
-        echo "Login successfull !";
-        header("Location: Vendeur.html");
-    }
-    if (isset($_POST['button2']))
-    {
-        echo "Login NOUVEAU successfull !";
-        header("Location: LogNvVendeur.html");
-    }
-}
-else
-{
-    echo "Vous n'etes pas dans le serveur";
-}
-
+    if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
+        {echo "ok";
+        $mail = htmlspecialchars($_POST['LoginC']);
+        $mdp = sha1($_POST['mdpC']);
+         
+        $maillength = strlen($mail); //Taille du pseudo
+         
+         if($maillength <= 255)   //Si elle correspond 
+         {
+                 $recherche = $bdd->prepare("SELECT * FROM vendeur WHERE mail = ? AND mdp = ?");
+                 $recherche->execute(array($mail,$mdp));
+                 $vendeurexiste = $recherche->rowCount();
+                 if($vendeurexiste==1)
+                 {
+                     $infovendeur = $recherche->fetch();
+                     $_SESSION['id']=$infovendeur['id'];
+                     $_SESSION['mail']=$infovendeur['mail'];
+                     $_SESSION['mdp']=$infovendeur['mdp'];
+                     $_SESSION['nom']=$infovendeur['nom'];
+                     $_SESSION['prenom']=$infovendeur['prenom'];
+                     
+                     header('Location:Vendeur.php?id='.$_SESSION['id']); // On redirige l'e client vers la page, mais dans sa propre session
+                 }
+                 else
+                 {
+                     echo "Mauvais identifiant ou mot de passe";
+                 }
+         }
+         else    // Si elle est trop grande
+         {
+             echo "pseudo trop long";
+         }
+        }
+		
+		echo "<hr>";
 ?>

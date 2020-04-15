@@ -4,39 +4,39 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 if (isset($_SESSION['id']))
 {
-    $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');
+    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');
     $recherche->execute(array($_SESSION['id']));
-    $infoclient = $recherche->fetch();
+    $infovendeur = $recherche->fetch();
 
 
-    if(isset($_POST['boutonp']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
+    if(isset($_FILES['photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
     {
       $extension = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));  // ON MET L4EXTENSION AU FORMAT
-      $chemin= "client/photos/".$_SESSION['id'].".".$extension;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
+      $chemin= "vendeur/photos/".$_SESSION['id'].".".$extension;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
       $deplacement=move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
       if($deplacement)    // SI LE DEPLACEMENT FONCTIONNE
       {
-          $updatephoto=$bdd->prepare('UPDATE client SET photo =:photo WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
+          $updatephoto=$bdd->prepare('UPDATE vendeur SET photo =:photo WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
           $updatephoto->execute(array('photo' => $_SESSION['id'].".".$extension, 'id' => $_SESSION['id'] ));
 
-          header('Location:Client2.php?id='.$_SESSION['id']);
+          header('Location:Vendeur.php?id='.$_SESSION['id']);
       }
       else
       {
         echo "erreur deplacement";
       }
     }
-    if(isset($_POST['boutonf']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
+    if(isset($_FILES['fond']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
     {
       $extension = strtolower(substr(strrchr($_FILES['fond']['name'], '.'), 1));  // ON MET L4EXTENSION AU FORMAT
-      $chemin= "client/fonds/".$_SESSION['id'].".".$extension;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
+      $chemin= "vendeur/fonds/".$_SESSION['id'].".".$extension;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
       $deplacement=move_uploaded_file($_FILES['fond']['tmp_name'], $chemin);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
       if($deplacement)    // SI LE DEPLACEMENT FONCTIONNE
       {
-          $updatephoto=$bdd->prepare('UPDATE client SET fond =:fond WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
+          $updatephoto=$bdd->prepare('UPDATE vendeur SET fond =:fond WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
           $updatephoto->execute(array('fond' => $_SESSION['id'].".".$extension, 'id' => $_SESSION['id'] ));
-
-          header('Location:Client2.php?id='.$_SESSION['id']);
+          
+          header('Location:Vendeur.php?id='.$_SESSION['id'] );
       }
       else
       {
@@ -46,7 +46,7 @@ if (isset($_SESSION['id']))
 ?>
 <html>
 <head>
-  <title>Client</title>
+  <title>Vendeur</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -99,12 +99,12 @@ if (isset($_SESSION['id']))
     }
         
     <?php
-    if(!empty($infoclient['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
+    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
     {
     ?>
     .bg-1 
     { 
-        background-image: url(client/fonds/<?php echo $infoclient['fond'];?>);
+        background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -119,7 +119,7 @@ if (isset($_SESSION['id']))
     .bg-1
     { 
         background-color: cadetblue; /* Green */
-        background-image: url(client/fonds/5.jpg);
+        background-image: url(vendeur/fonds/5.jpg);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -178,11 +178,11 @@ if (isset($_SESSION['id']))
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <?php
-        if(isset($_SESSION['id']))
+            <?php
+            if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Client2.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+            <li><?php echo '<a href="Vendeur.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
             <?php
             }
             else
@@ -195,7 +195,7 @@ if (isset($_SESSION['id']))
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <?php
-    if(isset($_SESSION['id']) AND $infoclient['id']==$_SESSION['id'])
+    if(isset($_SESSION['id']) AND $infovendeur['id']==$_SESSION['id'])
     {
     ?>
     <li><a href="Deco.php"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
@@ -203,7 +203,7 @@ if (isset($_SESSION['id']))
     }
         ?>
         <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
-        <li><a href="#"> Mes items dans le panier </a></li>
+        <li><a href="#"> Mes items en vente </a></li>
       </ul>
     </div>
   </div>
@@ -211,11 +211,11 @@ if (isset($_SESSION['id']))
 
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center">
-   <?php
-    if(!empty($infoclient['photo']))  // Si photo profil et fond
+ <?php
+    if(!empty($infovendeur['photo']))  // Si photo profil et fond
     {
     ?>
-    <img src="client/photos/<?php echo $infoclient['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
+    <img src="vendeur/photos/<?php echo $infovendeur['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
     <?php
     }
     else{      // SI AUCUNE PHOTO
@@ -224,27 +224,25 @@ if (isset($_SESSION['id']))
     <?php
     }
     ?>
-    <h2>Profil de <?php echo $infoclient['nom']; ?> </h2>
+    <h3>Profil de <?php echo $infovendeur['nom']; ?> </h3>
 </div>
 
 <!-- Second Container -->
 <div class="container-fluid bg-2 text-center">
-    <h2 class="margin">Mon profil</h2>
-    <center>
-    <p id="profil">Profil de <?php echo $infoclient['prenom'] ." ". $infoclient['nom']; ?> </p>
-    </center>
-    <p> Vous pouvez maintenant personnaliser votre profil </p><br/>
+    <h3 class="margin">Mon profil</h3>
+    <p id="profil">Profil de <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </p>
+    <p> Vous pouvez maintenant personnaliser votre profil </p>
     <form method="post" enctype="multipart/form-data">
         <center>
         <b>Choisir une photo de profil</b>
-        <p><input type="file" accept="image/*" name="photo"></p>
-        <input type="submit" class="MonBouton" name ="boutonp" value="envoyer">
+        <p><input type="file" accept="image/*" name="photo"> </p>
+        <input type="submit" class=MonBouton name ="photo" value="envoyer">
         </center>
-        <br/>
+        
         <center>
         <b>Choisir une photo de couverture</b>
         <p><input type="file" accept="image/*" name="fond"></p>
-        <input type="submit" class="MonBouton" name ="boutonf" value="envoyer">
+        <input type="submit" class="MonBouton" name ="fond" value="envoyer">
         </center>      
     </form>
 </div>

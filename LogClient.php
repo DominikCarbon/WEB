@@ -11,7 +11,7 @@ else   //SI AUCUNE ERREUR
 
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-    if(isset($_POST['button']));  //ON VALIDE TOUTES SES INFOS
+    if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
         {echo "ok";
         $mail = htmlspecialchars($_POST['LoginC']);
         $mdpC = sha1($_POST['mdpC']);
