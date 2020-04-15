@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paiement</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="paiment.css">
+	
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" id="Logo" href="home.html"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Catégorie<span class="icon-bar"></span></a>
+            <ul class="dropdown-menu">
+                <li id="F"><a href="categorie.html" id="Fer"><strong>Feraille ou Trésor</strong></a></li>
+                <li id="M"><a href="categorie.html" id="Mus"><strong>Bon pour le Musée</strong></a></li>
+                <li id="V"><a href="categorie.html" id="Vip"><strong>Accessoire VIP</strong></a></li> 
+            </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="achat.html">Encheres</a></li>
+                <li><a href="achat.html">Achetez-le Maintenant</a></li>
+                <li><a href="achat.html">Meilleure offre</a></li> 
+            </ul>
+            </li>
+            <li><a class="B" href="LogVendeur.html">Vendre</a></li>
+            <li><a class="B" href="LogClient.html">Votre Compte</a></li>
+      </ul>
+            
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
+            <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+<br><br><br><br>
+<div class="container">
+	<div class="row">
+		<div class="paymentCont">
+						<div class="headingWrap">
+								<h3 class="headingTop text-center">Selectionner Votre Moyen de Paiement</h3>	
+								
+						</div>
+						<div class="paymentWrap">
+							<div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons">
+					            <label class="btn paymentMethod active">
+					            	<div class="method visa"></div>
+					                <input type="radio" name="options" checked> 
+					            </label>
+					            <label class="btn paymentMethod">
+					            	<div class="method master-card"></div>
+					                <input type="radio" name="options"> 
+					            </label>
+					            <label class="btn paymentMethod">
+				            		<div class="method amex"></div>
+					                <input type="radio" name="options">
+					            </label>
+					             <label class="btn paymentMethod">
+				             		<div class="method vishwa"></div>
+					                <input type="radio" name="options"> 
+					            </label>
+					            <label class="btn paymentMethod">
+				            		<div class="method ez-cash"></div>
+					                <input type="radio" name="options"> 
+					            </label>
+					         
+					        </div>        
+						</div>
+						<div class="footerNavWrap clearfix">
+							<div class="btn btn-success pull-left btn-fyi"><span class="glyphicon glyphicon-chevron-left"></span> RETOUR </div>
+							<div class="btn btn-success pull-right btn-fyi">VALIDER<span class="glyphicon glyphicon-chevron-right"></span></div>
+						</div>
+					</div>
+		
+	</div>
+</div>
+<footer class="page-footer">
+<div class="container">
+    <div class="row">
+    <div class="col-lg-5 col-md-5 col-sm-12">
+    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+    <p>Les meilleurs, déjà. En plus on t'aide à te faire des thunes<br/>Ouais tu peux nous remercier ouais <br/>maintenant khalass</p>
+    <p>Tié la famille</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+    <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
+    <p>&nbsp; &nbsp;<img src="insta.png" alt="" title="C'est notre instagram !" width="50px" height="50px">&nbsp; &nbsp;<img src="fb.png" alt="" title=" C'est notre Facebook !" width="50px" height="50px">&nbsp; &nbsp;<img src="twitter.png" alt="" title=" C'est notre Twitter !" width="48px" height="48px"></p>
+    </div>
+    
+    <div class="col-lg-3 col-md-3 col-sm-12">
+    <h5 class="text-uppercase font-weight-bold">Conçu par</h5><br/>
+    <p>Dominik Carbon & Wachani Mehdi<br>
+     Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br>
+     Contact :<a href="mailto:mehdi.wachani@edu.ece.fr"> mehdi.wachani@edu.ece.fr</a><br>
+     +33 6 47 28 02 76
+    </p>
+    </div>
+    </div>
+    <div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE<br/>
+    <img src="PETIT_LogoEBAYECE.png" alt="Notre logo !"/></div>
+</div>
+</footer>
+
+</body>
+</html>
