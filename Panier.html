@@ -12,12 +12,27 @@
  
   
   <script type="text/javascript">  
-  	function addition() {   
+  	function totalimmediat() {   
   		num1 = document.getElementById("prix1").value;
-     	num2 = document.getElementById("prix2").value;
+     	//num2 = document.getElementById("prix2").value;
      	qt1  = document.getElementById("QTT1").value;
-     	qt2  = document.getElementById("QTT2").value;          
-     	document.getElementById("total").innerHTML = Number(num1)*Number(qt1) + Number(num2)*Number(qt2);  }
+     	//qt2  = document.getElementById("QTT2").value;          
+     	document.getElementById("total-immediat").innerHTML = Number(num1)*Number(qt1); //+ Number(num2)*Number(qt2);  
+     }
+     function totalenchere() {   
+  		num2 = document.getElementById("prix2").value;
+     	//num2 = document.getElementById("prix2").value;
+     	qt2  = document.getElementById("QTT2").value;
+     	//qt2  = document.getElementById("QTT2").value;          
+     	document.getElementById("total-enchere").innerHTML = Number(num1)*Number(qt1); //+ Number(num2)*Number(qt2);  
+     }
+     function totalmoffre() {   
+  		num3 = document.getElementById("prix3").value;
+     	//num2 = document.getElementById("prix2").value;
+     	qt3  = document.getElementById("QTT3").value;
+     	//qt2  = document.getElementById("QTT2").value;          
+     	document.getElementById("total-moffre").innerHTML = Number(num1)*Number(qt1); //+ Number(num2)*Number(qt2);  
+     }
   </script>
 </head>
 <body>
@@ -61,110 +76,196 @@
 
     
 <div class="container" id="container" >
+
+	<div class="container" id="Achat-Immediat">
+	<h1><b>Categorie Achat Immediat</b></h1>
+	<br>
 	<div class="row">
-		<div class="col-sm-6"><b>Article</b></div>
-		<div class="col-sm-2"><b>Prix</b></div>
+		<div class="col-sm-6">
+
+		<div class="col-sm-3"><b>Article</b></div>
+		<div class="col-sm-3"><b>Description</b></div>
+		<div class="col-md-3"></div>
+		<div class="col-md-3"><b>Temps Restant</b></div>
+		</div>
+			
+		<div class="col-sm-2"><b>Prix (€)</b></div>
 		<div class="col-sm-2"><b>Quantité</b></div>
+		<div class="col-sm-2"><b>Suppr.</b></div>
         <hr class="hr"></hr>
 	</div>
 
 	<div class="row" id="rang1">
-
+        <div class="col-sm-6" id="descriptif">
+        
 		<div class="col-sm-3"><img src="euro.jpg" height="100" width="100"></div>
-		<div class="col-sm-3"><p id="descritption">Descritption...</p></div>
+		<div class="col-sm-3"><p>200€ Piece en Or</p></div>
+		<div class="col-sm-3"></small></div>
+		<div class="col-sm-3"><small><b>Aucun</b></small></div>
+		</div>
+
 		<div class="col-sm-2">
 
-			<div class="form-group" >
-				<label for="Mode" ></label>
-			<div>
-			<select class="form-control selcls" id="Mode" >
 			
-			<option>Acheter</option>
-			<option>Negotier</option>
-			<option>Encherir</option>
-
-			</select>
-			</div>
-			<input type="number" class="form-control"   min="100" id="prix1">
-			</div> 
+			<input type="number" class="form-control"   value="100" disabled="disabled" id="prix1">
+			
 			
 				
 		</div>
 
 		
 		<div class="col-sm-2">
-		<div class="input-group" >
-			<div class="input-group-btn">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Qt<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">6</a></li>
-			<li><a href="#">7</a></li>
-			<li><a href="#">8</a></li>
-			<li><a href="#">9</a></li>
-			</ul>
-			</div>
-			<input size="20" type="number" class="form-control"   min="1" id="QTT1">
-			
-		</div>
-		</div>
+
+		<select  class="form-control" id="QTT1" >
+  		<option value="1" >1</option>
+  		<option value="2" >2</option>
+  		<option value="3" >3</option>
+  		<option value="4" >4</option>
+		</select>
+  			
+		</div> 
+		
 		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
         </div>
-		
-	
-
-	<div class="row" id="rang2">
-		<hr class="hr"></hr>	
-		<div class="col-sm-3"><img src="coin.png" height="100" width="100"></div>
-		<div class="col-sm-3"><p id="descritption">Descritption...</p></div>
-		<div class="col-sm-2">
-			<div class="input-group" >
-			<div class="input-group-btn">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-			<ul class="dropdown-menu">
-			<li><a href="#">Enchere</a></li>
-			<li><a href="#">Meilleure Offre</a></li>
-			<li><a href="#">Achat Immediat</a></li>
-			</ul>
-			</div>
-			<input type="number" class="form-control"   min="100" id="prix2">
-			</div> 
-		</div>
-
-		
-		<div class="col-sm-2">
-		<div class="input-group" >
-			<div class="input-group-btn">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Qt<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">6</a></li>
-			<li><a href="#">7</a></li>
-			<li><a href="#">8</a></li>
-			<li><a href="#">9</a></li>
-			</ul>
-			</div>
-			<input size="20" type="number" class="form-control"  min="1" id="QTT2">
-			
-		</div>
-		</div>
-		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
-        </div>
-	<div class="row">
+        <div class="row">
 		
 			
 		<div align="right">
-		<p >Sous total : <span class="subtotal" ></span><span id="total"></span>€</p>
-		<button  id="confirm-command" onclick="addition()">Passer la commande</button>
+		<p >Sous total : 100 <span class="subtotal" ></span><span ></span>€</p>
+		<button id="total-immediat"   class="sumbmit" onclick="totalimmediat()">Passer la commande </button>
 		</div>
+	</div>
+    </div>
+	
+		
+	
+
+
+    <div class="container" id="Meilleure-Offre">
+    <h1><b>Categorie Meilleure-Offre</b></h1>
+    <br>
+	<div class="row" id="rang2">
+	<div class="row">
+		<div class="col-sm-6">
+
+		<div class="col-sm-3"><b>Article</b></div>
+		<div class="col-sm-3"><b>Description</b></div>
+		<div class="col-md-3"></div>
+		<div class="col-md-3"><b>Temps Restant</b></div>
+		</div>
+			
+		<div class="col-sm-2"><b>Negocier</b></div>
+		<div class="col-sm-2"><b>Quantité</b></div>
+		<div class="col-sm-2"><b>Suppr.</b></div>
+        <hr class="hr"></hr>
+	</div>
+
+	<div class="row" id="rang1">
+        <div class="col-sm-6" id="descriptif">
+        
+		<div class="col-sm-3"><img src="coin.png" height="100" width="100"></div>
+		<div class="col-sm-3"><p>US COIN</p></div>
+		<div class="col-sm-3"></small></div>
+		<div class="col-sm-3"><small><b>Indetermine</b></small></div>
+		</div>
+
+		<div class="col-sm-2">
+
+			
+			<input type="number" class="form-control"  value="300" min="value" id="prix2">
+			
+			
+				
+		</div>
+
+		
+		<div class="col-sm-2">
+
+		<select  class="form-control" id="QTT2" >
+  		<option value="1" >1</option>
+  		<option value="2" >2</option>
+  		<option value="3" >3</option>
+  		<option value="4" >4</option>
+		</select>
+  			
+		</div> 
+		
+		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
+        </div>
+        <div class="row">
+		
+			
+		<div align="right">
+		<p >Sous total : 300<span class="subtotal" ></span><span ></span>€</p>
+		<button id="total-moffre"  class="sumbmit" onclick="totalmoffre()"> Negocier </button>
+		</div>
+	</div>
+		
+	</div>
+	</div>
+
+	<div class="container" id="Enchere">
+	<h1><b>Categorie Enchere</b></h1>
+	<br>
+	<div class="row">
+		<div class="col-sm-6">
+
+		<div class="col-sm-3"><b>Article</b></div>
+		<div class="col-sm-3"><b>Description</b></div>
+		<div class="col-md-3"></div>
+		<div class="col-md-3"><b>Temps Restant</b></div>
+		</div>
+			
+		<div class="col-sm-2"><b>Encherir</b></div>
+		<div class="col-sm-2"><b>Quantité</b></div>
+		<div class="col-sm-2"><b>Suppr.</b></div>
+        <hr class="hr"></hr>
+	</div>
+
+	<div class="row" id="rang1">
+        <div class="col-sm-6" id="descriptif">
+        
+		<div class="col-sm-3"><img src="OIP.jpg" height="100" width="100"></div>
+		<div class="col-sm-3"><p>Piece Napoleon 3 en Or.</p></div>
+		<div class="col-sm-3"></small></div>
+		<div class="col-sm-3"><small><b>2 heures</b></small></div>
+		</div>
+
+		<div class="col-sm-2">
+
+			
+			<input type="number" class="form-control" min="800"   value="800"  id="prix3">
+			
+			
+				
+		</div>
+
+		
+		<div class="col-sm-2">
+
+		<select  class="form-control" id="QTT3" >
+  		<option value="1" >1</option>
+  		<option value="2" >2</option>
+  		<option value="3" >3</option>
+  		<option value="4" >4</option>
+		</select>
+  			
+		</div> 
+		
+		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
+        </div>
+        <div class="row">
+		
+			
+		<div align="right">
+		<p >Sous total : 800 <span class="subtotal" ></span><span ></span>€</p>
+		<button id="total-enchere"   class="sumbmit" onclick="totalenchere()">Encherir </button>
+		</div>
+	</div>
+	
+	</div>
+    
+
 		
 	</div>
 	
