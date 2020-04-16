@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Finalisation</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Payer.css">
+</head>
+<body>
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+	<div class="row-fluid">
+      <form class="form-horizontal">
+        <fieldset>
+          <div id="legend">
+            <legend class="">Recu</legend>
+          </div>
+      </fieldset>
+      <br>
+      <table class="table">
+      	<thead>
+      		<tr>
+      			<th>Produit</th>
+      			<th>Quantite</th>
+      			<th>Reduction</th>
+      			<th>Total(TTC)</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      		<tr>
+      			<td>Piece de 200€</td>
+      			<td>1</td>
+      			<td>Aucune</t>
+      			<td>200€</td>
+      		</tr>
+      		<tr>
+      				<td>Piece Napoleon III</td>	
+      				<td>1</td>
+      				<td>Aucune</td>
+      				<td>800€</td>
+      		</tr>
+      		<tr>
+      				<td>US coin</td>	
+      				<td>1</td>
+      				<td>Aucune</td>
+      				<td>400€</td>
+      		</tr>
+      	</tbody>
+      	<tfoot>
+      		<tr>
+      			<td></td>
+      			<td></td>
+      			<td></td>
+      			<td>1400€</td>
+      		</tr>
+      	</tfoot>
+
+      </table>
+  </form>
+</div>
+
+<div class="container">
+	<div class="row-fluid">
+      <form class="form-horizontal">
+        <fieldset>
+          <div id="legend">
+            <legend class="">Payment</legend>
+          </div>
+     
+          <!-- Name -->
+          <div class="control-group">
+            <label class="control-label"  for="username">Nom sur la Carte</label>
+            <div class="controls">
+              <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+            </div>
+          </div>
+     
+          <!-- Card Number -->
+          <div class="control-group">
+            <label class="control-label" for="email">Numero de Carte</label>
+            <div class="controls">
+              <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+            </div>
+          </div>
+     
+          <!-- Expiry-->
+          <div class="control-group">
+            <label class="control-label" for="password">Card Expiry Date</label>
+            <div class="controls">
+              <select class="span3" name="expiry_month" id="expiry_month">
+                <option></option>
+                <option value="01">Jan  (01)</option>
+                <option value="02">Fev  (02)</option>
+                <option value="03">Mar  (03)</option>
+                <option value="04">Avr  (04)</option>
+                <option value="05">Mai  (05)</option>
+                <option value="06">Juin (06)</option>
+                <option value="07">Juil (07)</option>
+                <option value="08">Aou  (08)</option>
+                <option value="09">Sep  (09)</option>
+                <option value="10">Oct  (10)</option>1
+                <option value="11">Nov  (11)</option>
+                <option value="12">Dec  (12)</option>
+              </select>
+              <select class="span2" name="expiry_year">
+                <option value="13">2020</option>
+                <option value="14">2021</option>
+                <option value="15">2022</option>
+                <option value="16">2023</option>
+              </select>
+            </div>
+          </div>
+     
+          <!-- CVV -->
+          <div class="control-group">
+            <label class="control-label"  for="password_confirm">CVV</label>
+            <div class="controls">
+              <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="span2">
+            </div>
+          </div>
+     
+          <!-- Save card -->
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox" for="save_card">
+                <input type="checkbox" id="save_card" value="option1">
+                Sauvegarder ma Carte?
+              </label>
+            </div>
+          </div>
+     
+          <!-- Submit -->
+          <div class="control-group">
+            <div class="controls">
+              <button class="btn btn-success">Payer Maintenant</button>
+            </div>
+          </div>
+     
+        </fieldset>
+      </form>
+    </div>
+</div>
+
+	<footer class="page-footer">
+<div class="container">
+    <div class="row">
+    <div class="col-lg-5 col-md-5 col-sm-12">
+    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+    <p>Les meilleurs, déjà. En plus on t'aide à te faire des thunes<br/>Ouais tu peux nous remercier ouais <br/>maintenant khalass</p>
+    <p>Tié la famille</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+    <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
+    <p>&nbsp; &nbsp;<img src="insta.png" alt="" title="C'est notre instagram !" width="50px" height="50px">&nbsp; &nbsp;<img src="fb.png" alt="" title=" C'est notre Facebook !" width="50px" height="50px">&nbsp; &nbsp;<img src="twitter.png" alt="" title=" C'est notre Twitter !" width="48px" height="48px"></p>
+    </div>
+    
+    <div class="col-lg-3 col-md-3 col-sm-12">
+    <h5 class="text-uppercase font-weight-bold">Conçu par</h5><br/>
+    <p>Dominik Carbon & Wachani Mehdi<br>
+     Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br>
+     Contact :<a href="mailto:mehdi.wachani@edu.ece.fr"> mehdi.wachani@edu.ece.fr</a><br>
+     +33 6 47 28 02 76
+    </p>
+    </div>
+    </div>
+    <div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE<br/>
+    <img src="PETIT_LogoEBAYECE.png" alt="Notre logo !"/></div>
+</div>
+</footer>
+
+</body>
+</html>
