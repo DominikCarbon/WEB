@@ -221,7 +221,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 	<div class="row">
         
 		<div align="center">
-		<?php echo '<a href="VendeurNvItem.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
+		<?php echo '<a href="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
 		</div>
     </div>
 </div>

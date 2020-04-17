@@ -26,41 +26,49 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }		//ERREUR DE CONNEXION 
         else   //SI AUCUNE ERREUR
         {
-            $query = "INSERT INTO `item`(`idV`, `nom`, `description`, `categorie`,`achat`,`prix`,`photo`) VALUES ('".$_SESSION['id']."', '". $nom ."', '". $desc ."', '". $cate ."', '". $achat ."','". $prix ."','"."');";
+            $requetesql = "INSERT INTO `item`(`idV`, `nom`, `description`, `categorie`, `achat`, `prix`, `photo`) VALUES ('".$_SESSION['id']."', '". $nom ."', '". $desc ."', '". $cate ."', '". $achat ."','". $prix ."','"."');";
 
-            if ($mysqli->query($query) === TRUE)
+            if (($mysqli->query($requetesql)) !== FALSE)
             {
-                echo "Added successfully";
-            }
-            $rechercheitem = $bdd->prepare('SELECT * FROM item WHERE idV = ? AND  nom= ?');
-            $rechercheitem->execute(array($_SESSION['id'],$nom));
-            $itemexiste = $rechercheitem->rowCount();
-            if($itemexiste==1)
-            {
-                $infoitem = $rechercheitem->fetch();
+                /*$bonnenouvelle= "Added successfully";*/
                 
-                
-                if(isset($_FILES['Photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
-                {
-                    $Max = 216758;
-                    if($_FILES['Photo']['size'] <= $Max)
+                $rechercheitem = $bdd->prepare('SELECT * FROM item WHERE idV = ? AND  nom= ? AND prix= ?');
+                $rechercheitem->execute(array($_SESSION['id'],$nom,$prix));
+                    $infoitem = $rechercheitem->fetch();
+
+
+                    if(isset($_FILES['Photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
                     {
-                        $extensionitem = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));  // ON MET L'EXTENSION AU FORMAT
-                        $cheminitem= "vendeur/items/".$_SESSION['id']."/".$infoitem['id'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
-                        $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
-                        if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
+                        $Max = 216758;
+                        if($_FILES['Photo']['size'] <= $Max)
                         {
-                            $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
-                            $updatephoto->execute(array('photo' => $infoitem['id'].".".$extensionitem, 'id' => $infoitem['id'] ));
+                            $extensionitem = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));  // ON MET L'EXTENSION AU FORMAT
+                            $cheminitem= "vendeur/items/".$_SESSION['id']."/".$infoitem['id'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
+                            $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
+                            if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
+                            {
+                                $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:idi');   // REQUETE EN SQL POUR INSERER LA PHOTO
+                                $updatephoto->execute(array('photo' => $infoitem['id'].".".$extensionitem, 'idi' => $infoitem['id'] ));
+                                //header('Location:VendeurItem.php?id='.$_SESSION['id'] );
+                                $bonnenouvelle="Votre requête a été prise en compte";
+                            }
+                            else
+                            {
+                                $erreur="Erreur déplacement";
+                            }
                         }
-                    }
-                    else echo"";
-                }
-            }
+                        else
+                        {
+                            $erreur="Image trop volumineuse";
+                        }
+                    } 
+            } 
+        
             else
             {
-                echo "Problème avec l'item";
-            }    
+                $erreur="query != TRUE";
+            }
+
         }
         //$ajout = "INSERT INTO `item`(`idV`, `nom`, `description`, `categorie`, `achat`, `prix`, `photo`) VALUES('". $_SESSION['id'] ."', '". $nom."', '". $desc."','".$cate ."', '". $achat. "', '". $prix ."', '"."')";
         //$ajout->execute(array($_SESSION['id'],$nom,$desc,$cate,$achat,$prix));
@@ -190,6 +198,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         textarea {
         padding: 2px;
             border-radius:10px 10px;
+            color:dimgray;
     } 
         
     input[type=number] {
@@ -258,12 +267,69 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
+        <h3 class="margin">Ajouter un item destiné à la vente</h3>
+    <center>
+        <hr/>
+        
+    <form method="post" action="" enctype="multipart/form-data"><!--< echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?>-->
+	<table>
+		<tr>
+			<td colspan="3" align="left"><b>Nom de l'item:</b></td>
+			<td colspan="3" align="left"><input type="text" name ="Nom" placeholder="Entrez le nom" required></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+			<td colspan="3" align="left"><b>Description(état):</b></td>
+            <td colspan="3" align="left"><textarea name="Desc" placeholder="Etat de l'item" required></textarea></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+            <td colspan="6" align="center"><b>Quelle est sa catégorie? :</b>&nbsp;</td>
+		</tr>
+        <tr>
+            <td colspan="2" align="left"><input type="radio" name="Cate" value="Feraille ou tresor" required>&nbsp;Feraille ou trésor</td>
+            <td colspan="2" align="center"><input type="radio" name="Cate" value="Bon pour le musee">&nbsp;Bon pour le musée</td>
+            <td colspan="2" align="right"><input type="radio" name="Cate" value="Accessoire VIP">&nbsp;Accessoire VIP</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+            <td colspan="6" align="center"><b>Comment comptez vous le vendre? :</b>&nbsp;</td>
+		</tr>
+        <tr>
+            <td colspan="2" align="left"><input type="radio" name="Achat" value="Enchere" required>&nbsp;Enchère</td>
+            <td colspan="2" align="center"><input type="radio" name="Achat" value="Achat immediat">&nbsp;Achat immédiat</td>
+            <td colspan="2" align="right"><input type="radio" name="Achat" value="Meilleure offre">&nbsp;Meilleure offre</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+        <td colspan="2" align="left"><b>Choisir une photo</b></td>
+        <td colspan="8" align="right"><input type="file" accept="image/*" name="Photo" required></td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td colspan="3" align="center"><b>Le prix:</b></td>
+            <td colspan="3"><input type="number" name ="Prix" placeholder="Prix" required></td>
+        </tr>
+            <tr><td>&nbsp;</td></tr>
+        <tr><td colspan="6" align="center"><input type="submit" class="MonBouton" name="bouton" value="Enregistrez ces données"></td></tr>
+
+	</table>
+</form>
+<?php
+    if(isset($erreur))
+    {
+        echo '<font color="red">'.$erreur."</font>";
+    }
+    if(isset($bonnenouvelle))
+    {
+        echo '<font color="blue">'.$bonnenouvelle."</font>";
+    }
+?>
+    
     <h3 class="margin">Vous avez fait le plus dur !</h3>
     <center>
         <p>l'item est mis en vente</p>
-        <form method="post" <?php echo 'action="VendeurItem.php?id='.$_SESSION['id'].';' ?> enctype="multipart/form-data">
-        <input type="submit" name="bt" value="Retourner voir mes items"/>
-        </form>
+        <?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><input type="submit" name="bt" value="Retourner voir mes items"/></a>'; ?>
 </center>
 
 </div>
