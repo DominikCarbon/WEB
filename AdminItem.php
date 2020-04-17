@@ -231,10 +231,10 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-        <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
-        <p>Les meilleurs, déjà.En plus on t'aide à te faire des thunes<br/>Ouais tu peux nous remercier ouais <br/>maintenant khalass</p>
-        <p>Tié la famille</p>
-        </div>
+    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+    <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
+    <p>Bon, du coup on te laisse, Enjoy !</p>
+    </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
             <center>

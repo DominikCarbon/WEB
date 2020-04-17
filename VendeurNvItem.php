@@ -1,13 +1,25 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N'AI PAS  REUSSI AVEC MYSQLI
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
     $infovendeur = $recherche->fetch();                                     // ON PREND SES INFOS
+    
+    if(isset($_POST['bouton']))      // SI JE VALIDE LES INFOS DE L'ITEM
+    {
+        $nom = htmlspecialchars($_POST['Nom']);
+        $desc = htmlspecialchars($_POST['Desc']);
+        $cate = htmlspecialchars($_POST['Cate']);
+        $achat = htmlspecialchars($_POST['Achat']);
+        $prix = htmlspecialchars($_POST['Prix']);
+        
+        $ajout = $bdd->prepare('INSERT INTO item(nom, description, categorie, achat, prix) VALUES5(?,?,?,?,?)');
+        $ajout->execute(array($nom,$desc,$cate,$achat,$prix));
+        header('Location:VendeurNvItemAjoute.php?id='.$_SESSION['id']);
 ?>
 
 
@@ -170,7 +182,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <h1> Items mis à la vente </h1>
+    <h1> Items à mettre en vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
 </div>
     
@@ -180,50 +192,49 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     <h3 class="margin">Ajouter un item destiné à la vente</h3>
     <center>
         <hr/>
-    <form>
+        
+    <form method="post" <?php echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?> enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td colspan="3" align="left"><b>Nom de l'item:</b></td>
-			<td colspan="3" align="left"><input type="text" name ="nom" placeholder="Entrez le nom"></td>
+			<td colspan="3" align="left"><input type="text" name ="Nom" placeholder="Entrez le nom" required></td>
 		</tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
 			<td colspan="3" align="left"><b>Description(état):</b></td>
-            <td colspan="3" align="left"><textarea name="desc" placeholder="Etat de l'item"></textarea></td>
+            <td colspan="3" align="left"><textarea name="Desc" placeholder="Etat de l'item" required></textarea></td>
 		</tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
             <td colspan="6" align="center"><b>Quelle est sa catégorie? :</b>&nbsp;</td>
 		</tr>
         <tr>
-            <td colspan="2" align="left"><input type="radio" "f">&nbsp;Feraille ou trésor</td>
-            <td colspan="2" align="center"><input type="radio" "mu">&nbsp;Bon pour le musée</td>
-            <td colspan="2" align="right"><input type="radio" "v">&nbsp;Accessoire VIP</td>
+            <td colspan="2" align="left"><input type="radio" name="Cate" value="Feraille ou tresor" required>&nbsp;Feraille ou trésor</td>
+            <td colspan="2" align="center"><input type="radio" name="Cate" value="Bon pour le musee">&nbsp;Bon pour le musée</td>
+            <td colspan="2" align="right"><input type="radio" name="Cate" value="Accessoire VIP">&nbsp;Accessoire VIP</td>
         </tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
             <td colspan="6" align="center"><b>Comment comptez vous le vendre? :</b>&nbsp;</td>
 		</tr>
         <tr>
-            <td colspan="2" align="left"><input type="radio" "e">&nbsp;Enchère</td>
-            <td colspan="2" align="center"><input type="radio" "a">&nbsp;Achat immédiat</td>
-            <td colspan="2" align="right"><input type="radio" "m">&nbsp;Meilleure offre</td>
+            <td colspan="2" align="left"><input type="radio" name="Achat" value="Enchere" required>&nbsp;Enchère</td>
+            <td colspan="2" align="center"><input type="radio" name="Achat" value="Achat immediat">&nbsp;Achat immédiat</td>
+            <td colspan="2" align="right"><input type="radio" name="Achat" value="Meilleure offre">&nbsp;Meilleure offre</td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
-        
         <td colspan="2" align="left"><b>Choisir une photo</b></td>
-        <td colspan="8" align="right"><input type="file" accept="image/*" name="photo"></td>
-        
+        <td colspan="8" align="right"><input type="file" accept="image/*" name="Photo" required></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td colspan="3" align="center"><b>Le prix:</b></td>
-            <td colspan="3"><input type="number" name ="prix" placeholder="Prix"></td></tr>
-        <tr>
-            <tr><td>&nbsp;</td></tr>
-        <td colspan="6" align="center"><input type="submit" class="MonBouton" value="Enregistrez ces données"></td>
+            <td colspan="3"><input type="number" name ="Prix" placeholder="Prix" required></td>
         </tr>
+            <tr><td>&nbsp;</td></tr>
+        <tr><td colspan="6" align="center"><input type="submit" class="MonBouton" name="bouton" value="Enregistrez ces données"></td></tr>
+
 	</table>
 </form>
 </center>
@@ -236,10 +247,10 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-        <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
-        <p>Les meilleurs, déjà.En plus on t'aide à te faire des thunes<br/>Ouais tu peux nous remercier ouais <br/>maintenant khalass</p>
-        <p>Tié la famille</p>
-        </div>
+    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+    <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
+    <p>Bon, du coup on te laisse, Enjoy !</p>
+    </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
             <center>

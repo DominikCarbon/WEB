@@ -27,7 +27,6 @@ else   //SI AUCUNE ERREUR
          {
              if($mdp == $mdpC)    // Si les mots de passe correspondent
              {
-                 //header('Location:home.html');
                  $query = "INSERT INTO `client`(`mail`, `mdp`, `nom`, `prenom`, `adresse1`, `adresse2`, `ville`,`pays`,`code`,`tel`,`photo`,`fond`) VALUES ('". $mail ."', '". $mdp ."', '". $nom ."', '". $prenom ."', '". $adresse1 ."', '". $adresse2 ."', '". $ville  ."', '". $pays ."' , '". $code ."' , '". $tel ."','"."','"."');";
 			
 			if ($mysqli->query($query) === TRUE) {
