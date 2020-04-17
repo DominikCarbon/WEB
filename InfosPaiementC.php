@@ -5,15 +5,15 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
-    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
+    $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
-    $infovendeur = $recherche->fetch();                                     // ON PREND SES INFOS
+    $infoclient = $recherche->fetch();                                     // ON PREND SES INFOS
 ?>
 
 
 <html>
 <head>
-    <title>Vendeur</title>
+    <title>Client</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -21,7 +21,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
-    <!--<link rel="stylesheet" type="text/css" href="vendeur2.css">-->     // J'ai enlevé le .css pour pouvoir gérer l'image de fond ici
+    <!--<link rel="stylesheet" type="text/css" href="Client2.css">-->     // J'ai enlevé le .css pour pouvoir gérer l'image de fond ici
     
     
     <style>   
@@ -67,12 +67,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     }
         
     <?php
-    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
+    if(!empty($infoclient['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
     {
     ?>
     .bg-1 
     { 
-        background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
+        background-image: url(client/fonds/<?php echo $infoclient['fond'];?>);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -87,7 +87,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     .bg-1
     { 
         background-color: cadetblue; /* Green */
-        background-image: url(vendeur/fonds/5.jpg);
+        background-image: url(client/fonds/5.jpg);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -117,13 +117,30 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:black;
     }
         
-        #paye
-        {
-            color:white;
-            background-color: darkgray;
-            border-radius: 10px 10px;
-            padding: 2px;
-        }
+    input{
+        border-radius: 7px 7px;
+        color:dimgrey;
+    }    
+        
+        .MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+    }
+        
+    input[type=number] {
+        width: 100px;
+        padding: 2px;
+    } 
+    input[type=date] {
+        width: 160px;
+        padding: 2px;
+    }   
+ 
+input[type=text] {
+  width: 200px;
+  padding: 2px;
+}    
 </style>
 
 </head>
@@ -142,20 +159,20 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Vendeur.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="Client2.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
             <?php
             }
             else
             {
             ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+            <li><a class="B" href="Logclient.html">Mon Profil</a></li>
             <?php
             }
             ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
         <?php
-        if(isset($_SESSION['id']) AND $infovendeur['id']==$_SESSION['id'])
+        if(isset($_SESSION['id']) AND $infoclient['id']==$_SESSION['id'])
         {
         ?>
             <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
@@ -163,21 +180,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-                
-            <?php
-            if(isset($_SESSION['id']))
-            {
-            ?>
-            <li><?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
-            <?php
-            }
-            ?>
+            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier</a></li>
             </ul>
         </div>
     </div>
@@ -186,10 +189,10 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
     <?php
-    if(!empty($infovendeur['photo']))  // Si photo profil 
+    if(!empty($infoclient['photo']))  // Si photo profil 
     {
     ?>
-    <img src="vendeur/photos/<?php echo $infovendeur['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
+    <img src="client/photos/<?php echo $infoclient['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
     <?php
     }
     else{      // SI AUCUNE PHOTO
@@ -198,19 +201,40 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     <?php
     }
     ?>
-    <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
-    <!--<a href="logmdp.html" alt="" id="paye"> Informations de paiement </a>-->
+    <h3> <?php echo $infoclient['prenom'] ." ". $infoclient['nom']; ?> </h3>
+    <p>Informations de paiement</p>
 </div>
     
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Mon profil</h3>
     <center>
-    <p>Profil de <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </p>
+        <br/>
+    <form>
+	<table>
+		<tr>
+			<td colspan="2" align="center">Nom sur la carte:</td>
+			<td colspan="2" align="center"><input type="text" name ="nom" placeholder="Nom du porteur"></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+			<td colspan="2" align="center">Numéro de carte :</td>
+			<td colspan="2" align="center"><input type="text" name ="num" placeholder="Numéro de carte"></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+			<td>Date d'expiration :&nbsp;</td>
+            <td><input type="date" name ="exp" placeholder="Expiration"></td>
+            <td>&nbsp;CCV : </td>
+            <td><input type="number" name ="ccv" placeholder="CCV"></td>
+		</tr>
+        <tr><td colspan="4"><hr/></td></tr>
+        <tr>
+        <td colspan="4" align="center"><input type="submit" class="MonBouton" value="Enregistrez vos données"></td>
+        </tr>
+	</table>
+</form>
         </center>
-    <p> Vous pouvez maintenant personnaliser votre profil </p>
-    <center><p>&nbsp; &nbsp; <a href="ModifV.php" title="Je veux modifier mon profil !"> Editer mon profil </a></p></center>
 </div>
 
 
@@ -225,10 +249,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
-            <center>
         <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
         <p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="insta.png" alt="" title="C'est notre instagram !" width="50px" height="50px">&nbsp; &nbsp;<img src="fb.png" alt="" title=" C'est notre Facebook !" width="50px" height="50px">&nbsp; &nbsp;<img src="twitter.png" alt="" title=" C'est notre Twitter !" width="48px" height="48px"></p>
-                </center>
         </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">

@@ -117,13 +117,30 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:black;
     }
         
-        #paye
-        {
-            color:white;
-            background-color: darkgray;
-            border-radius: 10px 10px;
-            padding: 2px;
-        }
+    input{
+        border-radius: 7px 7px;
+        color:dimgrey;
+    }    
+        
+        .MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+    }
+        
+    input[type=number] {
+        width: 100px;
+        padding: 2px;
+    } 
+    input[type=date] {
+        width: 160px;
+        padding: 2px;
+    }   
+ 
+input[type=text] {
+  width: 200px;
+  padding: 2px;
+}    
 </style>
 
 </head>
@@ -163,21 +180,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-                
-            <?php
-            if(isset($_SESSION['id']))
-            {
-            ?>
-            <li><?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
-            <?php
-            }
-            ?>
+            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Mes items en vente </a></li>
             </ul>
         </div>
     </div>
@@ -199,18 +202,39 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     }
     ?>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
-    <!--<a href="logmdp.html" alt="" id="paye"> Informations de paiement </a>-->
+    <p>Informations de paiement</p>
 </div>
     
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Mon profil</h3>
     <center>
-    <p>Profil de <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </p>
+        <br/>
+    <form>
+	<table>
+		<tr>
+			<td colspan="2" align="center">Nom sur la carte:</td>
+			<td colspan="2" align="center"><input type="text" name ="nom" placeholder="Nom du porteur"></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+			<td colspan="2" align="center">Numéro de carte :</td>
+			<td colspan="2" align="center"><input type="text" name ="num" placeholder="Numéro de carte"></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+			<td>Date d'expiration :&nbsp;</td>
+            <td><input type="date" name ="exp" placeholder="Expiration"></td>
+            <td>&nbsp;CCV : </td>
+            <td><input type="number" name ="ccv" placeholder="CCV"></td>
+		</tr>
+        <tr><td colspan="4"><hr/></td></tr>
+        <tr>
+        <td colspan="4" align="center"><input type="submit" class="MonBouton" value="Enregistrez vos données"></td>
+        </tr>
+	</table>
+</form>
         </center>
-    <p> Vous pouvez maintenant personnaliser votre profil </p>
-    <center><p>&nbsp; &nbsp; <a href="ModifV.php" title="Je veux modifier mon profil !"> Editer mon profil </a></p></center>
 </div>
 
 
@@ -225,10 +249,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
-            <center>
         <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
         <p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="insta.png" alt="" title="C'est notre instagram !" width="50px" height="50px">&nbsp; &nbsp;<img src="fb.png" alt="" title=" C'est notre Facebook !" width="50px" height="50px">&nbsp; &nbsp;<img src="twitter.png" alt="" title=" C'est notre Twitter !" width="48px" height="48px"></p>
-                </center>
         </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">

@@ -116,6 +116,14 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     {
         color:black;
     }
+        
+    #paye
+    {
+        color:white;
+        background-color: darkgray;
+        border-radius: 10px 10px;
+        padding: 2px;
+    }    
 </style>
 
 </head>
@@ -151,11 +159,11 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         if(isset($_SESSION['id']) AND $infoclient['id']==$_SESSION['id'])
         {
         ?>
-            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
         <?php
         }
         ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
+            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
             <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
             </ul>
         </div>
@@ -178,6 +186,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     }
     ?>
     <h3> <?php echo $infoclient['prenom'] ." ". $infoclient['nom']; ?> </h3>
+    <a href="logmdpC.html" alt="" id="paye"> Informations de paiement </a>
 </div>
     
 
@@ -201,8 +210,10 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
+            <center>
         <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
         <p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="insta.png" alt="" title="C'est notre instagram !" width="50px" height="50px">&nbsp; &nbsp;<img src="fb.png" alt="" title=" C'est notre Facebook !" width="50px" height="50px">&nbsp; &nbsp;<img src="twitter.png" alt="" title=" C'est notre Twitter !" width="48px" height="48px"></p>
+                </center>
         </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">

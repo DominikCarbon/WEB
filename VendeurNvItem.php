@@ -66,36 +66,14 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         margin-bottom: 45px;
     }
         
-    <?php
-    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
-    {
-    ?>
     .bg-1 
     { 
         background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:200px;
+        padding-top:150px;
     }
-        
-    <?php 
-    }
-    else                // SI AUCUN FOND ON MET LE FOND DE BASE
-    {
-    ?>      
-    .bg-1
-    { 
-        background-color: cadetblue; /* Green */
-        background-image: url(vendeur/fonds/5.jpg);
-        background-size: cover;
-        color: #ffffff;
-        padding-bottom: 20px;
-        padding-top:100px;
-    }   
-    <?php
-    }
-    ?>
     
     .bg-2 
     { 
@@ -117,13 +95,35 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:black;
     }
         
-        #paye
-        {
-            color:white;
-            background-color: darkgray;
-            border-radius: 10px 10px;
-            padding: 2px;
-        }
+    input{
+        border-radius: 7px 7px 7px 7px;
+        color:dimgrey;
+    }    
+        
+        .MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+        padding:4px;
+    }
+        textarea {
+        padding: 2px;
+            border-radius:10px 10px;
+    } 
+        
+    input[type=number] {
+        width: 100px;
+        padding: 2px;
+    } 
+    input[type=date] {
+        width: 160px;
+        padding: 2px;
+    }   
+ 
+    input[type=text] {
+        width: 200px;
+        padding: 2px;
+    }  
 </style>
 
 </head>
@@ -163,21 +163,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-                
-            <?php
-            if(isset($_SESSION['id']))
-            {
-            ?>
-            <li><?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
-            <?php
-            }
-            ?>
             </ul>
         </div>
     </div>
@@ -185,32 +170,64 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <?php
-    if(!empty($infovendeur['photo']))  // Si photo profil 
-    {
-    ?>
-    <img src="vendeur/photos/<?php echo $infovendeur['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
-    <?php
-    }
-    else{      // SI AUCUNE PHOTO
-    ?>
-    <img src="Vendeur.png" class="img-responsive img-circle margin" style="display:inline" alt="Votre photo de profil !" width="350" height="350">
-    <?php
-    }
-    ?>
+    <h1> Items mis à la vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
-    <!--<a href="logmdp.html" alt="" id="paye"> Informations de paiement </a>-->
 </div>
     
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Mon profil</h3>
+    <h3 class="margin">Ajouter un item destiné à la vente</h3>
     <center>
-    <p>Profil de <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </p>
-        </center>
-    <p> Vous pouvez maintenant personnaliser votre profil </p>
-    <center><p>&nbsp; &nbsp; <a href="ModifV.php" title="Je veux modifier mon profil !"> Editer mon profil </a></p></center>
+        <hr/>
+    <form>
+	<table>
+		<tr>
+			<td colspan="3" align="left"><b>Nom de l'item:</b></td>
+			<td colspan="3" align="left"><input type="text" name ="nom" placeholder="Entrez le nom"></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+			<td colspan="3" align="left"><b>Description(état):</b></td>
+            <td colspan="3" align="left"><textarea name="desc" placeholder="Etat de l'item"></textarea></td>
+		</tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+            <td colspan="6" align="center"><b>Quelle est sa catégorie? :</b>&nbsp;</td>
+		</tr>
+        <tr>
+            <td colspan="2" align="left"><input type="radio" "f">&nbsp;Feraille ou trésor</td>
+            <td colspan="2" align="center"><input type="radio" "mu">&nbsp;Bon pour le musée</td>
+            <td colspan="2" align="right"><input type="radio" "v">&nbsp;Accessoire VIP</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+		<tr>
+            <td colspan="6" align="center"><b>Comment comptez vous le vendre? :</b>&nbsp;</td>
+		</tr>
+        <tr>
+            <td colspan="2" align="left"><input type="radio" "e">&nbsp;Enchère</td>
+            <td colspan="2" align="center"><input type="radio" "a">&nbsp;Achat immédiat</td>
+            <td colspan="2" align="right"><input type="radio" "m">&nbsp;Meilleure offre</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+        
+        <td colspan="2" align="left"><b>Choisir une photo</b></td>
+        <td colspan="8" align="right"><input type="file" accept="image/*" name="photo"></td>
+        
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td colspan="3" align="center"><b>Le prix:</b></td>
+            <td colspan="3"><input type="number" name ="prix" placeholder="Prix"></td></tr>
+        <tr>
+            <tr><td>&nbsp;</td></tr>
+        <td colspan="6" align="center"><input type="submit" class="MonBouton" value="Enregistrez ces données"></td>
+        </tr>
+	</table>
+</form>
+</center>
+
 </div>
 
 

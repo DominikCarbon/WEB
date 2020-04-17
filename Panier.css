@@ -14,9 +14,6 @@
     {color: white;
 
     }
-    #containeur
-    {margin-right:20px; 
-     margin-left: 20px;}
 
      #trash
      {color: black;
@@ -72,51 +69,7 @@
  margin: 0;
  }
 }
-#myCarousel
-{
-    height:600px;
-}
 
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      max-height:600px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-    }
-  }
- 
-#F
-{   
-    background-image: url(F.jfif);
-}
-#M
-{
-    background-image: url(M.jpg);
-}
-#V
-{
-    background-image: url(Petit_exclusive.png);
-}
-
-#F, #M, #V
-{
-}
-
-#Fer,#Mus,#Vip
-{
-    color:white;
-    font-size: 20px;
-    filter:blur(0);
-}
-#Fer:hover,#Mus:hover,#Vip:hover{
-    color:black;
-    font-style:italic;
-}
 #Logo
 {
     margin-right:10px;
@@ -124,6 +77,7 @@
     width:42px;
 height:53px;}
 
+<<<<<<< Updated upstream
 .dropdown-toggle, .B
 {
     width:120px;
@@ -189,3 +143,5 @@ width: 50px
 
 
  }
+=======
+>>>>>>> Stashed changes

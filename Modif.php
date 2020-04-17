@@ -260,8 +260,10 @@ if (isset($_SESSION['id']))
     <p>Tié la famille</p>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12">
+        <center>
     <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
     <p>&nbsp; &nbsp;<img src="insta.png" alt="" title="C'est notre instagram !" width="50px" height="50px">&nbsp; &nbsp;<img src="fb.png" alt="" title=" C'est notre Facebook !" width="50px" height="50px">&nbsp; &nbsp;<img src="twitter.png" alt="" title=" C'est notre Twitter !" width="48px" height="48px"></p>
+            </center>
     </div>
     
     <div class="col-lg-4 col-md-4 col-sm-12">

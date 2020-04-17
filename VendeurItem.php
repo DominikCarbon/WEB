@@ -37,6 +37,9 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     {   background-image: url(PETIT_LogoEEBlanc.png);
         align-items: center;
     }
+        
+    .container
+        {margin-top:50px;}
 
     .page-footer 
     {
@@ -54,7 +57,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     {
         font: 20px Montserrat, sans-serif;
         line-height: 1.8;
-        color: #f5f6f7;
+        color: black;
     }
     p
     {
@@ -66,36 +69,14 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         margin-bottom: 45px;
     }
         
-    <?php
-    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
-    {
-    ?>
     .bg-1 
     { 
         background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:200px;
+        padding-top:150px;
     }
-        
-    <?php 
-    }
-    else                // SI AUCUN FOND ON MET LE FOND DE BASE
-    {
-    ?>      
-    .bg-1
-    { 
-        background-color: cadetblue; /* Green */
-        background-image: url(vendeur/fonds/5.jpg);
-        background-size: cover;
-        color: #ffffff;
-        padding-bottom: 20px;
-        padding-top:100px;
-    }   
-    <?php
-    }
-    ?>
     
     .bg-2 
     { 
@@ -117,13 +98,44 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:black;
     }
         
-        #paye
-        {
-            color:white;
-            background-color: darkgray;
-            border-radius: 10px 10px;
-            padding: 2px;
-        }
+    input{
+        border-radius: 7px 7px 7px 7px;
+        color:dimgrey;
+    }    
+        
+    #MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+        padding:4px;
+    }
+        
+    #MonBouton:hover
+    {
+        color:whitesmoke; 
+        border-radius: 15px 15px 15px 15px;
+        padding:4px;
+        background-color: darkgray;
+    }
+        
+        textarea {
+        padding: 2px;
+            border-radius:10px 10px;
+    } 
+        
+    input[type=number] {
+        width: 100px;
+        padding: 2px;
+    } 
+    input[type=date] {
+        width: 160px;
+        padding: 2px;
+    }   
+ 
+    input[type=text] {
+        width: 200px;
+        padding: 2px;
+    }  
 </style>
 
 </head>
@@ -163,21 +175,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-                
-            <?php
-            if(isset($_SESSION['id']))
-            {
-            ?>
-            <li><?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
-            <?php
-            }
-            ?>
             </ul>
         </div>
     </div>
@@ -185,34 +182,52 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <?php
-    if(!empty($infovendeur['photo']))  // Si photo profil 
-    {
-    ?>
-    <img src="vendeur/photos/<?php echo $infovendeur['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
-    <?php
-    }
-    else{      // SI AUCUNE PHOTO
-    ?>
-    <img src="Vendeur.png" class="img-responsive img-circle margin" style="display:inline" alt="Votre photo de profil !" width="350" height="350">
-    <?php
-    }
-    ?>
+    <h1> Items mis à la vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
-    <!--<a href="logmdp.html" alt="" id="paye"> Informations de paiement </a>-->
 </div>
     
 
-<!-- Infos et édition profil -->
-<div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Mon profil</h3>
-    <center>
-    <p>Profil de <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </p>
-        </center>
-    <p> Vous pouvez maintenant personnaliser votre profil </p>
-    <center><p>&nbsp; &nbsp; <a href="ModifV.php" title="Je veux modifier mon profil !"> Editer mon profil </a></p></center>
+<!-- Infos sur les items en vente -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-2"><b>Article</b></div>
+        <div class="col-sm-4"><b>Descritpion</b></div>
+		<div class="col-sm-2"><b>Prix</b></div>
+		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
+        <hr class="hr"></hr>
+	</div>
+
+	<div class="row" id="rang1">
+
+		<div class="col-sm-2"><img src="euro.jpg" height="100" width="100"></div>
+		<div class="col-sm-4"><p id="descritption">Ceci est une piece d'une valeur de 200€<br/> elle date de 2012 et est comme neuve</p></div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2" align="center"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
+    </div>
+		
+	
+
+	<div class="row" id="rang2">
+		<hr/>	
+		<div class="col-sm-2"><img src="coin.png" height="100" width="100"></div>
+		<div class="col-sm-4"><p id="descritption">Descritption...</p></div>
+        <div class="col-sm-2"></div>
+		<div class="col-sm-2" align="center"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div> 
+    </div>
+
+		
+
+	<div class="row">
+        
+		<div align="center">
+		<?php echo '<a href="VendeurNvItem.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
+		</div>
+    </div>
 </div>
 
+<br/>
+<br/>
 
 <!-- Footer -->
 <footer class="page-footer">
