@@ -52,6 +52,7 @@
         </div>
     </div>
 </nav>
+
 	<div class="jumbotron" >
   <div class="container text-center" >
     <h1 id="Titre"><b>Votre Panier</b></h1>     
@@ -65,7 +66,6 @@
 	<h1><b>Categorie Achat Immediat</b></h1>
 	<br>
 
-<div class="container" >
 
 	<div class="row">
 		<div class="col-sm-6">
@@ -80,6 +80,7 @@
 		<div class="col-sm-2"><b>Quantité</b></div>
 		<div class="col-sm-2"><b>Suppr.</b></div>
         <hr class="hr"></hr>
+		</div>
 	</div>
 
 	<div class="row" id="rang1">
@@ -113,7 +114,7 @@
 		</div> 
 		
 		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
-        </div>
+        
         <div class="row">
 		
 			
@@ -121,8 +122,10 @@
 		<p >Sous total : 100 <span class="subtotal" ></span><span ></span>€</p>
 		<button id="total-immediat"   class="sumbmit" onclick="totalimmediat()">Passer la commande </button>
 		</div>
+		</div>
 	</div>
     </div>
+
 	
 		
 	
@@ -146,6 +149,7 @@
 		<div class="col-sm-2"><b>Suppr.</b></div>
         <hr class="hr"></hr>
 	</div>
+
 
 	<div class="row" id="rang1">
         <div class="col-sm-6" id="descriptif">
@@ -179,27 +183,7 @@
 		
 		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
         </div>
-        <div class="row">
-		
-		<div class="input-group" >
-			<div class="input-group-btn">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Qt<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">6</a></li>
-			<li><a href="#">7</a></li>
-			<li><a href="#">8</a></li>
-			<li><a href="#">9</a></li>
-			</ul>
-			</div>
-            <div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
-	<div class="row">
-			<input size="20" type="number" class="form-control"  min="1" id="QTT2">
-			
+       	
 		<div align="right">
 		<p >Sous total : 300<span class="subtotal" ></span><span ></span>€</p>
 		<button id="total-moffre"  class="sumbmit" onclick="totalmoffre()"> Negocier </button>
@@ -208,6 +192,7 @@
 		
 	</div>
 	</div>
+</div>
 
 	<div class="container" id="Enchere">
 	<h1><b>Categorie Enchere</b></h1>
@@ -260,23 +245,19 @@
 		<div class="col-sm-2"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
         </div>
         <div class="row">
-    </div>
-
-		
+			<input size="20" type="number" class="form-control"  min="1" id="QTT2">
 			
 		<div align="right">
-            <p>Sous total : 800 <span class="subtotal" ></span>€</p>
-		<button id="total-enchere"   class="sumbmit" onclick="totalenchere()">Encherir </button>
+		<p >Sous total : 300<span class="subtotal" ></span><span ></span>€</p>
+		<button id="total-enchere"  class="sumbmit" onclick="totalenchere()"> Encherir </button>
+		</div>
+		</div>
+		
 		</div>
 	</div>
-	
-	</div>
-    
-
-		
-	</div>
-    </div>
 </div>
+</div>
+</body>
 	
 
 
