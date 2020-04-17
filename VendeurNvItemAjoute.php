@@ -1,13 +1,72 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N'AI PAS  REUSSI AVEC MYSQLI
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
-    $infovendeur = $recherche->fetch();                                     // ON PREND SES INFOS
+    $infovendeur = $recherche->fetch();        // ON PREND SES INFOS
+    
+    if(isset($_POST['bouton']))
+    {
+    
+        $nom = htmlspecialchars($_POST['Nom']);
+        $desc = htmlspecialchars($_POST['Desc']);
+        $cate = htmlspecialchars($_POST['Cate']);
+        $achat = htmlspecialchars($_POST['Achat']);
+        $prix = htmlspecialchars($_POST['Prix']);
+    
+        $mysqli = new mysqli("localhost","root","","piscine");
+        mysqli_set_charset($mysqli, "utf8");
+        if ($mysqli -> connect_errno) 
+        {
+            echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+        }		//ERREUR DE CONNEXION 
+        else   //SI AUCUNE ERREUR
+        {
+            $query = "INSERT INTO `item`(`idV`, `nom`, `description`, `categorie`,`achat`,`prix`,`photo`) VALUES ('".$_SESSION['id']."', '". $nom ."', '". $desc ."', '". $cate ."', '". $achat ."','". $prix ."','"."');";
+
+            if ($mysqli->query($query) === TRUE)
+            {
+                echo "Added successfully";
+            }
+            $rechercheitem = $bdd->prepare('SELECT * FROM item WHERE idV = ? AND  nom= ?');
+            $rechercheitem->execute(array($_SESSION['id'],$nom));
+            $itemexiste = $rechercheitem->rowCount();
+            if($itemexiste==1)
+            {
+                $infoitem = $rechercheitem->fetch();
+                
+                
+                if(isset($_FILES['Photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
+                {
+                    $Max = 216758;
+                    if($_FILES['Photo']['size'] <= $Max)
+                    {
+                        $extensionitem = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));  // ON MET L'EXTENSION AU FORMAT
+                        $cheminitem= "vendeur/items/".$_SESSION['id']."/".$infoitem['id'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
+                        $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
+                        if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
+                        {
+                            $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
+                            $updatephoto->execute(array('photo' => $infoitem['id'].".".$extensionitem, 'id' => $infoitem['id'] ));
+                        }
+                    }
+                    else echo"";
+                }
+            }
+            else
+            {
+                echo "Problème avec l'item";
+            }    
+        }
+        //$ajout = "INSERT INTO `item`(`idV`, `nom`, `description`, `categorie`, `achat`, `prix`, `photo`) VALUES('". $_SESSION['id'] ."', '". $nom."', '". $desc."','".$cate ."', '". $achat. "', '". $prix ."', '"."')";
+        //$ajout->execute(array($_SESSION['id'],$nom,$desc,$cate,$achat,$prix));
+    }
+        
+    
 ?>
 
 
@@ -91,7 +150,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:100px;
+        padding-top:230px;
     }   
     <?php
     }
@@ -117,13 +176,35 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:black;
     }
         
-        #paye
-        {
-            color:white;
-            background-color: darkgray;
-            border-radius: 10px 10px;
-            padding: 2px;
-        }
+    input{
+        border-radius: 7px 7px 7px 7px;
+        color:dimgrey;
+    }    
+        
+        .MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+        padding:4px;
+    }
+        textarea {
+        padding: 2px;
+            border-radius:10px 10px;
+    } 
+        
+    input[type=number] {
+        width: 100px;
+        padding: 2px;
+    } 
+    input[type=date] {
+        width: 160px;
+        padding: 2px;
+    }   
+ 
+    input[type=text] {
+        width: 200px;
+        padding: 2px;
+    }  
 </style>
 
 </head>
@@ -163,21 +244,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-                
-            <?php
-            if(isset($_SESSION['id']))
-            {
-            ?>
-            <li><?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
-            <?php
-            }
-            ?>
             </ul>
         </div>
     </div>
@@ -185,32 +251,21 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <?php
-    if(!empty($infovendeur['photo']))  // Si photo profil 
-    {
-    ?>
-    <img src="vendeur/photos/<?php echo $infovendeur['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
-    <?php
-    }
-    else{      // SI AUCUNE PHOTO
-    ?>
-    <img src="Vendeur.png" class="img-responsive img-circle margin" style="display:inline" alt="Votre photo de profil !" width="350" height="350">
-    <?php
-    }
-    ?>
+    <h1> Items à mettre en vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
-    <!--<a href="logmdp.html" alt="" id="paye"> Informations de paiement </a>-->
 </div>
     
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Mon profil</h3>
+    <h3 class="margin">Vous avez fait le plus dur !</h3>
     <center>
-    <p>Profil de <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </p>
-        </center>
-    <p> Vous pouvez maintenant personnaliser votre profil </p>
-    <center><p>&nbsp; &nbsp; <a href="ModifV.php" title="Je veux modifier mon profil !"> Editer mon profil </a></p></center>
+        <p>l'item est mis en vente</p>
+        <form method="post" <?php echo 'action="VendeurItem.php?id='.$_SESSION['id'].';' ?> enctype="multipart/form-data">
+        <input type="submit" name="bt" value="Retourner voir mes items"/>
+        </form>
+</center>
+
 </div>
 
 

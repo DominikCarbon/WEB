@@ -1,25 +1,14 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N'AI PAS  REUSSI AVEC MYSQLI
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
-{
+{   
+    
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
-    $infovendeur = $recherche->fetch();                                     // ON PREND SES INFOS
-    
-    if(isset($_POST['bouton']))      // SI JE VALIDE LES INFOS DE L'ITEM
-    {
-        $nom = htmlspecialchars($_POST['Nom']);
-        $desc = htmlspecialchars($_POST['Desc']);
-        $cate = htmlspecialchars($_POST['Cate']);
-        $achat = htmlspecialchars($_POST['Achat']);
-        $prix = htmlspecialchars($_POST['Prix']);
-        
-        $ajout = $bdd->prepare('INSERT INTO item(nom, description, categorie, achat, prix) VALUES5(?,?,?,?,?)');
-        $ajout->execute(array($nom,$desc,$cate,$achat,$prix));
-        header('Location:VendeurNvItemAjoute.php?id='.$_SESSION['id']);
+    $infovendeur = $recherche->fetch();
 ?>
 
 
@@ -78,15 +67,36 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         margin-bottom: 45px;
     }
         
+    <?php
+    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
+    {
+    ?>
     .bg-1 
     { 
         background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:150px;
+        padding-top:200px;
     }
-    
+        
+    <?php 
+    }
+    else                // SI AUCUN FOND ON MET LE FOND DE BASE
+    {
+    ?>      
+    .bg-1
+    { 
+        background-color: cadetblue; /* Green */
+        background-image: url(vendeur/fonds/fond.jpg);
+        background-size: cover;
+        color: #ffffff;
+        padding-bottom: 20px;
+        padding-top:230px;
+    }   
+    <?php
+    }
+    ?>
     .bg-2 
     { 
         background-color: #474e5d; /* Dark Blue */
@@ -193,7 +203,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     <center>
         <hr/>
         
-    <form method="post" <?php echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?> enctype="multipart/form-data">
+    <form method="post" <?php echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?> enctype="multipart/form-data"><!--< echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?>-->
 	<table>
 		<tr>
 			<td colspan="3" align="left"><b>Nom de l'item:</b></td>
@@ -237,6 +247,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 	</table>
 </form>
+<?php
+    if(isset($erreur))
+    {
+        echo '<font color="red">'.$erreur."</font>";
+    }
+?>
 </center>
 
 </div>

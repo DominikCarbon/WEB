@@ -23,7 +23,7 @@ if (isset($_SESSION['id']))
       }
       else
       {
-        echo "erreur deplacement";
+        $erreur="erreur déplacement d'image";
       }
     }
     if(isset($_FILES['fond']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
@@ -40,7 +40,7 @@ if (isset($_SESSION['id']))
       }
       else
       {
-        echo "erreur deplacement";
+        $erreur="erreur déplacement d'image";
       }
     }
 ?>
@@ -119,7 +119,7 @@ if (isset($_SESSION['id']))
     .bg-1
     { 
         background-color: cadetblue; /* Green */
-        background-image: url(vendeur/fonds/5.jpg);
+        background-image: url(vendeur/fonds/fond.jpg);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -247,6 +247,12 @@ if (isset($_SESSION['id']))
         <input type="submit" class="MonBouton" name ="fond" value="envoyer">
         </center>      
     </form>
+<?php
+    if(isset($erreur))
+    {
+        echo '<font color="red">'.$erreur."</font>";
+    }
+?>
 </div>
 
 
