@@ -19,7 +19,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         $message="L'item est bien suprimé.";
     }
     else
-        {$message="echec de la suppresion du contact";}
+        {$message="echec de la suppresion de l'item";}
 
 
 ?>

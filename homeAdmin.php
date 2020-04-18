@@ -25,20 +25,7 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Catégorie<span class="icon-bar"></span></a>
-            <ul class="dropdown-menu">
-                <li id="F"><a href="categorieAdmin.html" id="Fer"><strong>Feraille ou Trésor</strong></a></li>
-                <li id="M"><a href="categorieAdmin.html" id="Mus"><strong>Bon pour le Musée</strong></a></li>
-                <li id="V"><a href="categorieAdmin.html" id="Vip"><strong>Accessoire VIP</strong></a></li> 
-            </ul>
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achatAdmin.php">Achat<span class="icon-bar"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="achatAdmin.html">Encheres</a></li>
-                <li><a href="achatAdmin.html">Achetez-le Maintenant</a></li>
-                <li><a href="achatAdmin.html">Meilleure offre</a></li> 
-            </ul>
-            </li>
+            <li><a class="B" href="itemadmin.php">Items</a></li>
             <li><a class="B" href="AdminItem.php">Mes items</a></li>
             <li><a class="B" href="AdminVendeurs.html">Vendeurs</a></li>
       </ul>
