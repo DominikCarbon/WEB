@@ -8,6 +8,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
     $infovendeur = $recherche->fetch();                                     // ON PREND SES INFOS
+    
 ?>
 
 
@@ -181,7 +182,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 </nav>
 
 <!-- Photo de fond et profil -->
-<div class="container-fluid bg-1 text-center">
+<div class="container-fluid" >
     <h1> Items mis à la vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
 </div>
@@ -234,10 +235,10 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
-    <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
-    <p>Bon, du coup on te laisse, Enjoy !</p>
-    </div>
+        <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+        <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
+        <p>Bon, du coup on te laisse, Enjoy !</p>
+        </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
             <center>

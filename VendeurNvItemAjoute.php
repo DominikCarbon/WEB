@@ -31,42 +31,58 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if (($mysqli->query($requetesql)) !== FALSE)
             {
                 /*$bonnenouvelle= "Added successfully";*/
-                
+                if(isset($_FILES['Photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
+                {
+                                    
                 $rechercheitem = $bdd->prepare('SELECT * FROM item WHERE idV = ? AND  nom= ? AND prix= ?');
                 $rechercheitem->execute(array($_SESSION['id'],$nom,$prix));
-                    $infoitem = $rechercheitem->fetch();
-
-
-                    if(isset($_FILES['Photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
-                    {
-                        $Max = 216758;
-                        if($_FILES['Photo']['size'] <= $Max)
-                        {
-                            $extensionitem = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));  // ON MET L'EXTENSION AU FORMAT
-                            $cheminitem= "vendeur/items/".$_SESSION['id']."/".$infoitem['id'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
-                            $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
-                            if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
-                            {
-                                $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:idi');   // REQUETE EN SQL POUR INSERER LA PHOTO
-                                $updatephoto->execute(array('photo' => $infoitem['id'].".".$extensionitem, 'idi' => $infoitem['id'] ));
-                                //header('Location:VendeurItem.php?id='.$_SESSION['id'] );
-                                $bonnenouvelle="Votre requête a été prise en compte";
-                            }
-                            else
-                            {
-                                $erreur="Erreur déplacement";
-                            }
-                        }
-                        else
-                        {
-                            $erreur="Image trop volumineuse";
-                        }
-                    } 
+                $itemexiste = $rechercheitem->rowCount();
+                if($itemexiste==1)
+                {   
+                    $infoitem= $rechercheitem->fetch();
+                    $_SESSION['iditem']=$infoitem['id'];
+                }
+	                $Max = 300000;
+	                if($_FILES['Photo']['size'] <= $Max)
+	                {
+	                    $extensionitem = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));  // ON MET L'EXTENSION AU FORMAT
+	                    $cheminitem= "articles/".$infoitem['id'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
+                        
+	                    $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
+                        
+	                    if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
+	                    {
+                            /*$extensionitem2 = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));
+                            $ch2="articles/".$infoitem['id'].".".$extensionitem2;
+                            deplacement2=move_uploaded_file($_FILES['Photo']['tmpname'])*/
+                            
+	                        $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:idi');   // REQUETE EN SQL POUR INSERER LA PHOTO
+	                        $updatephoto->execute(array('photo' => $infoitem['id'].".".$extensionitem, 'idi' => $infoitem['id'] ));
+	                        //header('Location:VendeurItem.php?id='.$_SESSION['id'] );
+	                        $bonnenouvelle="Votre requête a été prise en compte";   
+	                    }
+	                    else
+	                    {
+	                        $erreur="Erreur déplacement";
+                            $pb=$_FILES['Photo']['error'];
+	                    }
+	                }
+	                else
+	                {
+	                    $erreur="Image trop volumineuse";
+                         $pb="";
+	                }
+                }
+                else
+                {
+                	$erreur="Aucun fichier sélectionné";
+                    $pb="";
+                } 
             } 
-        
             else
             {
                 $erreur="query != TRUE";
+                $pb="";
             }
 
         }
@@ -97,8 +113,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar 
     {
-      margin-bottom: 0px;
-      border-radius: 0;
+    	margin-bottom: 0px;
+      	border-radius: 0;
     }
     .navbar-brand
     {   background-image: url(PETIT_LogoEEBlanc.png);
@@ -107,14 +123,14 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
     .page-footer 
     {
-         background-color: #222;
-         color: #ccc;
-         padding: 30px 0 10px;
+        background-color: #222;
+        color: #ccc;
+        padding: 30px 0 10px;
     }
     .footer-copyright 
     {
-         color: #666;
-         padding: 40px 0;
+        color: #666;
+        padding: 40px 0;
     }
 
     body 
@@ -184,7 +200,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:black;
     }
         
-    input{
+    input
+    {
         border-radius: 7px 7px 7px 7px;
         color:dimgrey;
     }    
@@ -195,10 +212,10 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         border-radius: 15px 15px 15px 15px;
         padding:4px;
     }
-        textarea {
+    textarea {
         padding: 2px;
-            border-radius:10px 10px;
-            color:dimgray;
+        border-radius:10px 10px;
+        color:dimgray;
     } 
         
     input[type=number] {
@@ -267,9 +284,9 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
-        <h3 class="margin">Ajouter un item destiné à la vente</h3>
+    <h3 class="margin">Ajouter un item destiné à la vente</h3>
     <center>
-        <hr/>
+    <hr/>
         
     <form method="post" action="" enctype="multipart/form-data"><!--< echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?>-->
 	<table>
@@ -316,21 +333,28 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 	</table>
 </form>
 <?php
-    if(isset($erreur))
+    if(isset($erreur))    // Une erreur s'est produite on l'affiche
     {
         echo '<font color="red">'.$erreur."</font>";
+        if($pb==1)
+        {
+            echo 'La taille du fichier téléchargé excède la valeur de upload_max_filesize, configurée dans le php.ini.';
+        }
     }
-    if(isset($bonnenouvelle))
+    if(isset($bonnenouvelle))    // Tout s'est bien passé, on le fait savoir a l'utilisateur
     {
-        echo '<font color="blue">'.$bonnenouvelle."</font>";
-    }
+        echo '<font color="grey">'.$bonnenouvelle."</font>";
 ?>
-    
-    <h3 class="margin">Vous avez fait le plus dur !</h3>
+            <h3 class="margin">Vous avez fait le plus dur !</h3>
     <center>
         <p>l'item est mis en vente</p>
         <?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><input type="submit" name="bt" value="Retourner voir mes items"/></a>'; ?>
 </center>
+<?php
+    }
+?>
+    
+
 
 </div>
 

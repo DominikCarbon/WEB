@@ -30,14 +30,14 @@ else   //SI AUCUNE ERREUR
                 
                  //si le BDD existe, faire le traitement
                 
-                 $sql = "SELECT * FROM `vendeur`";
+                 /*$sql = "SELECT * FROM `vendeur`";
                 $result = $mysqli -> query($sql);
                  while ($data = mysqli_fetch_assoc($result)) 
                  {
                     $id=$data['id'];
-                     mkdir('vendeur/items/'.$id,0700,true);
+                     mkdir('vendeur/items/'.$id,0700,true);*/
                      header('Location:LogVendeur.html');
-                 }//end while
+                // }//end while
             }//end if 
              else 
              {
