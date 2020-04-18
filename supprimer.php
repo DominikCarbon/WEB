@@ -1,14 +1,27 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
-{   
-    
-    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
+{
+    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id =? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
-    $infovendeur = $recherche->fetch();
+    $infovendeur = $recherche->fetch();  
+    
+    $pdoStat = $bdd->prepare("DELETE FROM item WHERE idV=".$_SESSION['id']." LIMIT 1");
+
+    //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
+
+    $deleteIsOk= $pdoStat->execute();
+
+    if ($deleteIsOk) {
+        $message="L'item est bien suprimé.";
+    }
+    else
+        {$message="echec de la suppresion du contact";}
+
+
 ?>
 
 
@@ -38,6 +51,9 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     {   background-image: url(PETIT_LogoEEBlanc.png);
         align-items: center;
     }
+        
+    .container
+        {margin-top:50px;}
 
     .page-footer 
     {
@@ -55,7 +71,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     {
         font: 20px Montserrat, sans-serif;
         line-height: 1.8;
-        color: #f5f6f7;
+        color: black;
     }
     p
     {
@@ -67,7 +83,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         margin-bottom: 45px;
     }
         
-    <?php
+   <?php
     if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
     {
     ?>
@@ -92,11 +108,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:230px;
+        padding-top:100px;
     }   
     <?php
     }
     ?>
+    
     .bg-2 
     { 
         background-color: #474e5d; /* Dark Blue */
@@ -122,12 +139,21 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:dimgrey;
     }    
         
-        .MonBouton
+    #MonBouton
     {
         color:black; 
         border-radius: 15px 15px 15px 15px;
         padding:4px;
     }
+        
+    #MonBouton:hover
+    {
+        color:whitesmoke; 
+        border-radius: 15px 15px 15px 15px;
+        padding:4px;
+        background-color: darkgray;
+    }
+        
         textarea {
         padding: 2px;
             border-radius:10px 10px;
@@ -192,71 +218,30 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <h1> Items à mettre en vente </h1>
+    <h1> Items mis à la vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
 </div>
+
     
 
-<!-- Infos et édition profil -->
-<div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Ajouter un item destiné à la vente</h3>
-    <center>
-        <hr/>
-        
-    <form method="post" <?php echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?> enctype="multipart/form-data"><!--< echo 'action="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"'; ?>-->
-	<table>
-		<tr>
-			<td colspan="3" align="left"><b>Nom de l'item:</b></td>
-			<td colspan="3" align="left"><input type="text" name ="Nom" placeholder="Entrez le nom" required></td>
-		</tr>
-        <tr><td>&nbsp;</td></tr>
-		<tr>
-			<td colspan="3" align="left"><b>Description(état):</b></td>
-            <td colspan="3" align="left"><textarea name="Desc" placeholder="Etat de l'item" required></textarea></td>
-		</tr>
-        <tr><td>&nbsp;</td></tr>
-		<tr>
-            <td colspan="6" align="center"><b>Quelle est sa catégorie? :</b>&nbsp;</td>
-		</tr>
-        <tr>
-            <td colspan="2" align="left"><input type="radio" name="Cate" value="Feraille ou tresor" required>&nbsp;Feraille ou trésor</td>
-            <td colspan="2" align="center"><input type="radio" name="Cate" value="Bon pour le musee">&nbsp;Bon pour le musée</td>
-            <td colspan="2" align="right"><input type="radio" name="Cate" value="Accessoire VIP">&nbsp;Accessoire VIP</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-		<tr>
-            <td colspan="6" align="center"><b>Comment comptez vous le vendre? :</b>&nbsp;</td>
-		</tr>
-        <tr>
-            <td colspan="2" align="left"><input type="radio" name="Achat" value="Enchere" required>&nbsp;Enchère</td>
-            <td colspan="2" align="center"><input type="radio" name="Achat" value="Achat immediat">&nbsp;Achat immédiat</td>
-            <td colspan="2" align="right"><input type="radio" name="Achat" value="Meilleure offre">&nbsp;Meilleure offre</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
-        <td colspan="2" align="left"><b>Choisir une photo</b></td>
-        <td colspan="8" align="right"><input type="file" accept="image/*" name="Photo" required></td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
-            <td colspan="3" align="center"><b>Le prix:</b></td>
-            <td colspan="3"><input type="number" name ="Prix" placeholder="Prix" required></td>
-        </tr>
-            <tr><td>&nbsp;</td></tr>
-        <tr><td colspan="6" align="center"><input type="submit" class="MonBouton" name="bouton" value="Enregistrez ces données"></td></tr>
-
-	</table>
-</form>
-<?php
-    if(isset($erreur))
-    {
-        echo '<font color="red">'.$erreur."</font>";
-    }
-?>
-</center>
-
+<!-- Infos sur les items en vente -->
+ 
+<div class="container">
+	<?=$message;  ?>
+	
 </div>
 
+
+
+<div class="row">
+        
+        <div align="center">
+        <?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; ?>
+        </div>
+    </div>
+
+<br/>
+<br/>
 
 <!-- Footer -->
 <footer class="page-footer">
