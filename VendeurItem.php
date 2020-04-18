@@ -222,8 +222,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <div class="container" id="item">
 	<div class="row">
 		<div class="col-sm-2"><b>Article</b></div>
-        <div class="col-sm-3"><b>Descritpion</b></div>
-		<div class="col-sm-1"><b>Prix</b></div>
+        <div class="col-sm-2"><b>Descritpion</b></div>
+		<div class="col-sm-2"><b>Prix</b></div>
         <div class="col-sm-2"><b>Categorie</b></div>
         <div class="col-sm-2"><b>Achat</b></div>
 		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
@@ -232,17 +232,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 	<div class="row" id="rang1">
 
 		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-		<div class="col-sm-3"><p id="descritption"><?= $item['description'] ?></p></div>
-=======
-		<div class="col-sm-3"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
->>>>>>> tests
-		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
-=======
+
 		<div class="col-sm-2"><p id="descritption"><?= $item['description'] ?></p></div>
+
+		<div class="col-sm-2"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
+
 		<div class="col-sm-2"><?= $item['prix'] ?> €</div>
->>>>>>> Stashed changes
         <div class="col-sm-2"><?= $item['categorie']?></div>
         <div class="col-sm-2"><?= $item['achat']?></div>
 		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>

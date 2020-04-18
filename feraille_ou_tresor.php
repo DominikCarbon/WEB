@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'Meilleure offre'");
+$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'Enchere'");
 
 $executeIsOk = $pdoStat->execute();
 
@@ -37,12 +37,12 @@ $items = $pdoStat->fetchAll();
                 <li id="F"><?php echo '<a href="feraille_ou_tresor.php" id="Fer"><strong>Feraille ou Trésor</strong></a>';?></li>
                 <li id="M"><?php echo '<a href="Bon_pour-le-musee" id="Mus"><strong>Bon pour le Musée</strong></a>';?>
                 </li>
-                <li id="V"><?php echo '<a href="Accessoire_VIP.php" id="Vip"><strong>Accessoire VIP</strong></a>';?></li> 
+                <li id="V"><?php echo '<a href="Accessoire_VIP.php" id="Vip"><strong>Accessoire VIP</strong></a>';?></li>
             </ul>
             </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
-                <li><?php echo '<a href="enchere.php">Encheres</a>';?></li>
+              <li><?php echo '<a href="enchere.php">Encheres</a>';?></li>
                 <li><?php echo '<a href="achatimmediat.php">Achetez-le Maintenant</a>';?></li>
                 <li><?php echo '<a href="meilleureoffre.php">Meilleure offre</a>';?></li> 
             </ul>
@@ -68,7 +68,7 @@ $items = $pdoStat->fetchAll();
 
 
 <div class="container">  
-    <center><h1>Achat Immediat</h1><input type="text" placeholder="rechercher un item.." name="search"/>&nbsp;<span class="glyphicon glyphicon-search"></span></center>
+    <center><h1>Feraille ou Trésor</h1><input type="text" placeholder="rechercher un item.." name="search"/>&nbsp;<span class="glyphicon glyphicon-search"></span></center>
   <div class="row">
    
 
@@ -142,7 +142,7 @@ $items = $pdoStat->fetchAll();
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'Achat immediat'");
+$pdoStat = $bdd->prepare("SELECT * FROM item WHERE categorie= 'Feraille ou tresor'");
 
 $executeIsOk = $pdoStat->execute();
 

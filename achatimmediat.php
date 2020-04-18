@@ -34,16 +34,17 @@ $items = $pdoStat->fetchAll();
         <ul class="nav navbar-nav">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Catégorie<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
-                <li id="F"><a href="categorie.html" id="Fer"><strong>Feraille ou Trésor</strong></a></li>
-                <li id="M"><a href="categorie.html" id="Mus"><strong>Bon pour le Musée</strong></a></li>
-                <li id="V"><a href="categorie.html" id="Vip"><strong>Accessoire VIP</strong></a></li> 
+                <li id="F"><?php echo '<a href="feraille_ou_tresor.php" id="Fer"><strong>Feraille ou Trésor</strong></a>';?></li>
+                <li id="M"><?php echo '<a href="Bon_pour-le-musee" id="Mus"><strong>Bon pour le Musée</strong></a>';?>
+                </li>
+                <li id="V"><?php echo '<a href="Accessoire_VIP.php" id="Vip"><strong>Accessoire VIP</strong></a>';?></li> 
             </ul>
             </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="enchere.php">Encheres</a></li>
-                <li><a href="achatimmediat.php">Achetez-le Maintenant</a></li>
-                <li><a href="meilleureoffre.php">Meilleure offre</a></li> 
+                <li><?php echo '<a href="enchere.php">Encheres</a>';?></li>
+                <li><?php echo '<a href="achatimmediat.php">Achetez-le Maintenant</a>';?></li>
+                <li><?php echo '<a href="meilleureoffre.php">Meilleure offre</a>';?></li> 
             </ul>
             </li>
             <li><a class="B" href="LogVendeur.html">Vendre</a></li>
