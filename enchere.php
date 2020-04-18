@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'enchere'");
+$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'Enchere'");
 
 $executeIsOk = $pdoStat->execute();
 

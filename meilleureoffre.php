@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'meilleureoffre'");
+$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'Meilleure offre'");
 
 $executeIsOk = $pdoStat->execute();
 
@@ -87,10 +87,6 @@ $items = $pdoStat->fetchAll();
   	  <?php endforeach ?>
      
 </div>
-</div>
-
-
-
 <br/>
 <div class="container" align="center">
   <ul class="pagination">
@@ -102,6 +98,12 @@ $items = $pdoStat->fetchAll();
   </ul>
   
 </div>
+
+</div>
+
+
+
+
 
 
 

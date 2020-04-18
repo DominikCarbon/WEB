@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'achatimmediat'");
+$pdoStat = $bdd->prepare("SELECT * FROM item WHERE achat= 'Achat immediat'");
 
 $executeIsOk = $pdoStat->execute();
 
@@ -67,7 +67,7 @@ $items = $pdoStat->fetchAll();
 
 
 <div class="container">  
-    <center><h1>Achat Immédiat</h1><input type="text" placeholder="rechercher un item.." name="search"/>&nbsp;<span class="glyphicon glyphicon-search"></span></center>
+    <center><h1>Achat Immediat</h1><input type="text" placeholder="rechercher un item.." name="search"/>&nbsp;<span class="glyphicon glyphicon-search"></span></center>
   <div class="row">
    
 
