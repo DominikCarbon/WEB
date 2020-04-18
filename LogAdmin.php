@@ -7,12 +7,12 @@ $mdp = isset($_POST["mdpA"])? $_POST["mdpA"] : "";
 
 if(isset($_POST['button']))
 {  
-    if($login=="dodo")
+    if($login=="667")
     {
-        $_SESSION['id']="dodo";
+        $_SESSION['id']="667";
         $serveur = array(
-        "dodo" => "12345",
-        "mehdi" => "6789",
+        "667" => "12345",
+        "666" => "6789",
         );
 
         $connexion = false;
@@ -33,12 +33,12 @@ if(isset($_POST['button']))
             $msg= "Identifiants erronés";
         }
     }
-    else if($login=="mehdi")
+    else if($login=="666")
     {
-        $_SESSION['id']="dodo";
+        $_SESSION['id']="666";
         $serveur = array(
-        "dodo" => "12345",
-        "mehdi" => "6789",
+        "667" => "12345",
+        "666" => "6789",
         );
 
         $connexion = false;

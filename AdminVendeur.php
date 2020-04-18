@@ -3,11 +3,23 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
 
-if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
+if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 {
-    $pdoStat = $bdd->prepare("SELECT * FROM item WHERE idV=".$_SESSION['id']."");
+    $pdoStat = $bdd->prepare("SELECT * FROM vendeur ");
     $executeIsOk = $pdoStat->execute();
-    $items = $pdoStat->fetchAll();
+    $vendeurs = $pdoStat->fetchAll();
+    
+    $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_SESSION['id']." LIMIT 1");
+
+    //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
+
+    $deleteIsOk= $pdoStat->execute();
+
+    if ($deleteIsOk) {
+        $message="L'item est bien suprimé.";
+    }
+    else
+        {$message="echec de la suppresion du contact";}
 
     
 ?>
@@ -152,6 +164,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         width: 200px;
         padding: 2px;
     }  
+        
+    #rang1
+        {
+            padding-top:30px;
+            padding-bottom: 30px;
+        }
 </style>
 
 </head>
@@ -166,7 +184,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><?php echo '<a href="AdminVendeur.php?id='.$_SESSION['id'].'">Gérer les vendeurs</a>'; ?></li>
+                <li><?php echo '<a href="AdminItem.php?id='.$_SESSION['id'].'">Gérer mes items</a>'; ?></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
@@ -179,33 +197,31 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <div class="container-fluid bg-1 text-center" >
     <center>
-    <h1> Items mis à la vente </h1>
+    <h1> vendeurs inscrits sur la plateforme </h1>
     <h3> <?php echo $_SESSION['id'];?> </h3>
     </center>
 </div>
 
     
 
-<!-- Infos sur les items en vente -->
- <?php  foreach ($items as $item):?>
-<div class="container" id="item">
+<!-- Infos sur les vendeurs de la plateforme -->
+ <?php  foreach ($vendeurs as $vendeur):?>
+<div class="container" id="vendeur">
 	<div class="row">
-		<div class="col-sm-2"><b>Article</b></div>
-        <div class="col-sm-3"><b>Descritpion</b></div>
-		<div class="col-sm-1"><b>Prix</b></div>
-        <div class="col-sm-2"><b>Categorie</b></div>
-        <div class="col-sm-2"><b>Achat</b></div>
-		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
+		<div class="col-sm-2"><b>ID</b></div>
+        <div class="col-sm-4"><b>Mail</b></div>
+		<div class="col-sm-2"><b>Nom</b></div>
+        <div class="col-sm-2"><b>Prénom</b></div>
+        <div class="col-sm-2"><b>Supprimer</b></div>
 	</div>
     
 	<div class="row" id="rang1">
 
-		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
-		<div class="col-sm-3"><p id="descritption"><?= $item['nom'] ?><p id="descritption"><?= $item['description'] ?></p></div>
-		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
-        <div class="col-sm-2"><?= $item['categorie']?></div>
-        <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2">N°<?= $vendeur['id'] ?> </div>
+        <div class="col-sm-4"><?= $vendeur['mail']?></div>
+        <div class="col-sm-2"><?= $vendeur['nom']?></div>
+        <div class="col-sm-2"><?= $vendeur['prenom']?></div>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
 
     </div>
@@ -217,7 +233,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <div class="row">
         
         <div align="center">
-        <?php echo '<a href="AdminNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
+        <?php echo '<a href="AdminNvVendeurAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Vendeur"></a>'; ?>
         </div>
     </div>
 
