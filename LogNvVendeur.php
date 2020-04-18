@@ -57,3 +57,121 @@ else   //SI AUCUNE ERREUR
 
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page de création de compte Vendeur</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="LogNvClient.css"/>
+
+<style>
+    body{
+        background-color : white;}
+    input
+    {
+        margin-bottom: 7px;
+        border-radius: 10px 10px; 
+    }
+    
+    input:hover{
+        color:white;
+        background-color: darkgray;
+    }
+    
+    input[type=number] {
+  width: 200px;
+  padding: 2px;
+}     
+
+input[type=password] {
+  width: 200px;
+  padding: 2px;
+}     
+
+input[type=email] {
+  width: 200px;
+  padding: 2px;
+} 
+    
+input[type=text] {
+  width: 200px;
+  padding: 2px;
+}  
+    
+    #informations
+    {
+        background-color: whitesmoke;
+        border:  1px groove grey;
+        border-radius: 10px;
+        margin-left: 100px;
+        margin-right: 100px;
+        padding-top: 0px;
+        padding-bottom: 20px;
+    }
+    h1{
+        margin-bottom: 50px;
+    }
+    em
+    {
+        color: red;
+    }
+    .container-fluid
+    {
+
+        padding-top:50px;
+        background-color:lightgrey;
+    }
+    
+    #logo
+    {
+        background-color:lightgrey;
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+    }
+</style>
+    
+</head>
+<body>
+    <div id="logo">
+    <center>
+    <img src="LogoEE.png" alt="Logo Ebay ECE" title="Vous aimez notre Logo ?<br/> Cliquez pour le voir en grand !" width="200px" height="200px">
+    <h1>Complétez vos informations personnelles</h1>
+    </center>
+    </div>
+    <center>
+    <form action="" method="post" enctype="multipart/form-data">
+        <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
+        
+        <fieldset>
+        <legend>Coordonnées</legend>
+        <label>Nom <em>*</em></label>
+        <input type="text" name="Nom" placeholder="Entrez votre Nom" required><br/>
+        <label><b>Prénom</b><em>*</em></label>
+        <input type="text" name="Prenom" placeholder="Entrez votre Prénom" required><br/>
+        <label><b>Mail</b><em>*</em></label>
+        <input type="email" name="mail" placeholder="Entrez votre Mail" required><br/>
+        <label><b>Pseudo</b><em>*</em></label>
+        <input type="text" name="mdp" placeholder="Entrez un Pseudo" required="">
+        <br/>
+        <hr/>
+        <p><input type="submit" name="button" value="Valider"></p>
+        </fieldset>
+    </form>
+    </center>
+        
+<hr/>
+<footer class="container-fluid text-center">
+  <p><small>
+		Conçu par: Dominik Carbon & Wachani Mehdi<br>
+		Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> dominik.carbon@edu.ece.fr</a><br/>
+      Contact :<a href="mailto:dominik.carbon@edu.ece.fr"> mehdi.wachani@edu.ece.fr</a><br/>
+		Copyright &copy; 2020
+	</small></p>
+</footer>
+
+</body>
+</html>

@@ -3,15 +3,23 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
 
-if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
+if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 {
-    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id =? ');      // ON PREND SES INFOS
-    $recherche->execute(array($_GET['id']));         
-
-    $infovendeur = $recherche->fetch();  
-    $pdoStat = $bdd->prepare("SELECT * FROM item WHERE idV=".$_SESSION['id']."");
+    $pdoStat = $bdd->prepare("SELECT * FROM vendeur ");
     $executeIsOk = $pdoStat->execute();
-    $items = $pdoStat->fetchAll();
+    $vendeurs = $pdoStat->fetchAll();
+    
+    $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_SESSION['id']." LIMIT 1");
+
+    //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
+
+    $deleteIsOk= $pdoStat->execute();
+
+    if ($deleteIsOk) {
+        $message="L'item est bien suprimé.";
+    }
+    else
+        {$message="echec de la suppresion du contact";}
 
     
 ?>
@@ -19,7 +27,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <html>
 <head>
-    <title>Vendeur</title>
+    <title>Admin SuperVendeur</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -34,13 +42,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         
     /*-- BARRE DE NAVIGATION --*/   
     /* Remove the navbar's default margin-bottom and rounded borders */ 
-        
-    #item
-    {
-        border: 2px;
-        border-color: darkgrey;
-        border-radius: 10px 10px;
-    }
+    
     .navbar 
     {
       margin-bottom: 0px;
@@ -162,6 +164,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         width: 200px;
         padding: 2px;
     }  
+        
+    #rang1
+        {
+            padding-top:30px;
+            padding-bottom: 30px;
+        }
 </style>
 
 </head>
@@ -172,35 +180,14 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="homeAdmin.php"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-            <?php
-            if(isset($_SESSION['id']))
-            {
-            ?>
-                <li><?php echo '<a href="Vendeur.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
-            <?php
-            }
-            ?>
+                <li><?php echo '<a href="AdminItem.php?id='.$_SESSION['id'].'">Gérer mes items</a>'; ?></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-        <?php
-        if(isset($_SESSION['id']) AND $infovendeur['id']==$_SESSION['id'])
-        {
-        ?>
             <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
-        <?php
-        }
-        ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
             </ul>
         </div>
     </div>
@@ -210,42 +197,31 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <div class="container-fluid bg-1 text-center" >
     <center>
-    <h1> Items mis à la vente </h1>
-    <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
+    <h1> vendeurs inscrits sur la plateforme </h1>
+    <h3> <?php echo $_SESSION['id'];?> </h3>
     </center>
 </div>
 
     
 
-<!-- Infos sur les items en vente -->
- <?php  foreach ($items as $item):?>
-<div class="container" id="item">
+<!-- Infos sur les vendeurs de la plateforme -->
+ <?php  foreach ($vendeurs as $vendeur):?>
+<div class="container" id="vendeur">
 	<div class="row">
-		<div class="col-sm-2"><b>Article</b></div>
-        <div class="col-sm-3"><b>Descritpion</b></div>
-		<div class="col-sm-1"><b>Prix</b></div>
-        <div class="col-sm-2"><b>Categorie</b></div>
-        <div class="col-sm-2"><b>Achat</b></div>
-		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
+		<div class="col-sm-2"><b>ID</b></div>
+        <div class="col-sm-4"><b>Mail</b></div>
+		<div class="col-sm-2"><b>Nom</b></div>
+        <div class="col-sm-2"><b>Prénom</b></div>
+        <div class="col-sm-2"><b>Supprimer</b></div>
 	</div>
     
 	<div class="row" id="rang1">
 
-		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-		<div class="col-sm-3"><p id="descritption"><?= $item['description'] ?></p></div>
-=======
-		<div class="col-sm-3"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
->>>>>>> tests
-		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
-=======
-		<div class="col-sm-2"><p id="descritption"><?= $item['description'] ?></p></div>
-		<div class="col-sm-2"><?= $item['prix'] ?> €</div>
->>>>>>> Stashed changes
-        <div class="col-sm-2"><?= $item['categorie']?></div>
-        <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2">N°<?= $vendeur['id'] ?> </div>
+        <div class="col-sm-4"><?= $vendeur['mail']?></div>
+        <div class="col-sm-2"><?= $vendeur['nom']?></div>
+        <div class="col-sm-2"><?= $vendeur['prenom']?></div>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
 
     </div>
@@ -257,7 +233,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <div class="row">
         
         <div align="center">
-        <?php echo '<a href="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
+        <?php echo '<a href="AdminNvVendeurAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Vendeur"></a>'; ?>
         </div>
     </div>
 
