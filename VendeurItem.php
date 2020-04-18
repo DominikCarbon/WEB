@@ -34,6 +34,13 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         
     /*-- BARRE DE NAVIGATION --*/   
     /* Remove the navbar's default margin-bottom and rounded borders */ 
+        
+    #item
+    {
+        border: 2px;
+        border-color: darkgrey;
+        border-radius: 10px 10px;
+    }
     .navbar 
     {
       margin-bottom: 0px;
@@ -149,15 +156,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         textarea {
         padding: 2px;
             border-radius:10px 10px;
-    } 
-        
-    input[type=number] {
-        width: 100px;
-        padding: 2px;
-    } 
-    input[type=date] {
-        width: 160px;
-        padding: 2px;
     }   
  
     input[type=text] {
@@ -209,20 +207,23 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 </nav>
 
 <!-- Photo de fond et profil -->
-<div class="container-fluid" >
+
+<div class="container-fluid bg-1 text-center" >
+    <center>
     <h1> Items mis à la vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
+    </center>
 </div>
 
     
 
 <!-- Infos sur les items en vente -->
  <?php  foreach ($items as $item):?>
-<div class="container">
+<div class="container" id="item">
 	<div class="row">
 		<div class="col-sm-2"><b>Article</b></div>
-        <div class="col-sm-2"><b>Descritpion</b></div>
-		<div class="col-sm-2"><b>Prix</b></div>
+        <div class="col-sm-3"><b>Descritpion</b></div>
+		<div class="col-sm-1"><b>Prix</b></div>
         <div class="col-sm-2"><b>Categorie</b></div>
         <div class="col-sm-2"><b>Achat</b></div>
 		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
@@ -230,9 +231,9 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     
 	<div class="row" id="rang1">
 
-		<div class="col-sm-2"><?php echo'<img src="articles/"'.$item['photo'].'/>;'?></div>
-		<div class="col-sm-2"><p id="descritption"><?= $item['description'] ?></p></div>
-		<div class="col-sm-2"><?= $item['prix'] ?> €</div>
+		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
+		<div class="col-sm-3"><p id="descritption"><?= $item['description'] ?></p></div>
+		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['categorie']?></div>
         <div class="col-sm-2"><?= $item['achat']?></div>
 		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>

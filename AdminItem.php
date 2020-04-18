@@ -1,10 +1,19 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N'AI PAS  REUSSI AVEC MYSQLI
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
 
-if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
+if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
+    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id =? ');      // ON PREND SES INFOS
+    $recherche->execute(array($_GET['id']));         
+
+    $infovendeur = $recherche->fetch();  
+    $pdoStat = $bdd->prepare("SELECT * FROM item WHERE idV=".$_SESSION['id']."");
+    $executeIsOk = $pdoStat->execute();
+    $items = $pdoStat->fetchAll();
+
+    
 ?>
 
 
@@ -25,6 +34,13 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         
     /*-- BARRE DE NAVIGATION --*/   
     /* Remove the navbar's default margin-bottom and rounded borders */ 
+        
+    #item
+    {
+        border: 2px;
+        border-color: darkgrey;
+        border-radius: 10px 10px;
+    }
     .navbar 
     {
       margin-bottom: 0px;
@@ -66,14 +82,36 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         margin-bottom: 45px;
     }
         
+   <?php
+    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
+    {
+    ?>
     .bg-1 
     { 
         background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:150px;
+        padding-top:200px;
     }
+        
+    <?php 
+    }
+    else                // SI AUCUN FOND ON MET LE FOND DE BASE
+    {
+    ?>      
+    .bg-1
+    { 
+        background-color: cadetblue; /* Green */
+        background-image: url(vendeur/fonds/fond.jpg);
+        background-size: cover;
+        color: #ffffff;
+        padding-bottom: 20px;
+        padding-top:100px;
+    }   
+    <?php
+    }
+    ?>
     
     .bg-2 
     { 
@@ -118,15 +156,6 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         textarea {
         padding: 2px;
             border-radius:10px 10px;
-    } 
-        
-    input[type=number] {
-        width: 100px;
-        padding: 2px;
-    } 
-    input[type=date] {
-        width: 160px;
-        padding: 2px;
     }   
  
     input[type=text] {
@@ -178,50 +207,50 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 </nav>
 
 <!-- Photo de fond et profil -->
-<div class="container-fluid bg-1 text-center">
+
+<div class="container-fluid bg-1 text-center" >
+    <center>
     <h1> Items mis à la vente </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
+    </center>
 </div>
+
     
 
 <!-- Infos sur les items en vente -->
-
-<div class="container">
+ <?php  foreach ($items as $item):?>
+<div class="container" id="item">
 	<div class="row">
 		<div class="col-sm-2"><b>Article</b></div>
-        <div class="col-sm-4"><b>Descritpion</b></div>
-		<div class="col-sm-2"><b>Prix</b></div>
+        <div class="col-sm-3"><b>Descritpion</b></div>
+		<div class="col-sm-1"><b>Prix</b></div>
+        <div class="col-sm-2"><b>Categorie</b></div>
+        <div class="col-sm-2"><b>Achat</b></div>
 		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
-        <hr class="hr"></hr>
 	</div>
-
+    
 	<div class="row" id="rang1">
 
-		<div class="col-sm-2"><img src="euro.jpg" height="100" width="100"></div>
-		<div class="col-sm-4"><p id="descritption">Ceci est une piece d'une valeur de 200€<br/> elle date de 2012 et est comme neuve</p></div>
-		<div class="col-sm-2"></div>
-		<div class="col-sm-2" align="center"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div>
+		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
+		<div class="col-sm-3"><p id="descritption"><?= $item['description'] ?></p></div>
+		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
+        <div class="col-sm-2"><?= $item['categorie']?></div>
+        <div class="col-sm-2"><?= $item['achat']?></div>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+        </p></div>
+
     </div>
-		
 	
-
-	<div class="row" id="rang2">
-		<hr/>	
-		<div class="col-sm-2"><img src="coin.png" height="100" width="100"></div>
-		<div class="col-sm-4"><p id="descritption">Descritption...</p></div>
-        <div class="col-sm-2"></div>
-		<div class="col-sm-2" align="center"><p ><a href="#"><span class="glyphicon glyphicon-trash" id="trash"></span></a></p></div> 
-    </div>
-
-		
-
-	<div class="row">
-        
-		<div align="center">
-		<?php echo '<a href="VendeurNvItem.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
-		</div>
-    </div>
 </div>
+<?php endforeach ?>
+
+
+<div class="row">
+        
+        <div align="center">
+        <?php echo '<a href="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
+        </div>
+    </div>
 
 <br/>
 <br/>
@@ -231,10 +260,10 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
-    <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
-    <p>Bon, du coup on te laisse, Enjoy !</p>
-    </div>
+        <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+        <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
+        <p>Bon, du coup on te laisse, Enjoy !</p>
+        </div>
         
         <div class="col-lg-4 col-md-4 col-sm-12">
             <center>

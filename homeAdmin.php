@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
+{
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +32,7 @@
                 <li id="V"><a href="categorieAdmin.html" id="Vip"><strong>Accessoire VIP</strong></a></li> 
             </ul>
             </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achatAdmin.php">Achat<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="achatAdmin.html">Encheres</a></li>
                 <li><a href="achatAdmin.html">Achetez-le Maintenant</a></li>
@@ -39,7 +44,7 @@
       </ul>
             
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter </a></li>
+            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter </a></li>
         </ul>
         </div>
     </div>
@@ -144,10 +149,17 @@
      +33 6 47 28 02 76
     </p>
     </div>
-    </div>
-    <div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE<br/>
-    <img src="PETIT_LogoEBAYECE.png" alt="Notre logo !"/></div>
+</div>
+<div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE<br/>
+    <img src="PETIT_LogoEBAYECE.png" alt="Notre logo !"/>
 </div>
 </footer>
 </body>
 </html>
+<?php
+}
+else
+{
+    header('Location:home.html');
+}
+?>

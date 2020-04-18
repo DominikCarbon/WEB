@@ -77,7 +77,7 @@ $items = $pdoStat->fetchAll();
      
       <div class="panel panel-danger">
         <div class="panel-heading"><?= $item['categorie'] ?></div>
-        <div class="panel-body"><?php echo'</center><img src="articles/"'.$item['photo'].' height="150px" width="230px"/></center>;'?></div>
+        <div class="panel-body"><center><img src="articles/<?php echo $item['photo'];"" ?>" width="250"></center></div>
         <div class="panel-footer" style="height: 100px;">&nbsp;&nbsp;<b>Description</b> :<br/><?= $item['description'] ?><br/>&nbsp;&nbsp;<b>Prix</b> :<br/> <?= $item['prix'] ?> €
         <br/>&nbsp;&nbsp;<b>Etat</b> :<br/>Neuf<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
       </div>
@@ -109,10 +109,10 @@ $items = $pdoStat->fetchAll();
 <div class="container">
     <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12">
-    <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
-    <p>Les meilleurs, déjà. En plus on t'aide à te faire des thunes<br/>Ouais tu peux nous remercier ouais <br/>maintenant khalass</p>
-    <p>Tié la famille</p>
-    </div>
+        <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
+        <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
+        <p>Bon, du coup on te laisse, Enjoy !</p>
+        </div>
     <div class="col-lg-4 col-md-4 col-sm-12">
         <center>
     <h5 class="text-uppercase font-weight-bold">Suivez-nous sur les réseaux !</h5><br/>
