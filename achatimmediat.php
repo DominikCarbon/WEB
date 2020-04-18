@@ -77,7 +77,7 @@ $items = $pdoStat->fetchAll();
      
       <div class="panel panel-danger">
         <div class="panel-heading"><?= $item['categorie'] ?></div>
-        <div class="panel-body"><?php echo'<img src=".$item['photo']./>';</div>
+        <div class="panel-body"><?php echo'</center><img src="articles/"'.$item['photo'].' height="150px" width="230px"/></center>;'?></div>
         <div class="panel-footer" style="height: 100px;">&nbsp;&nbsp;<b>Description</b> :<br/><?= $item['description'] ?><br/>&nbsp;&nbsp;<b>Prix</b> :<br/> <?= $item['prix'] ?> €
         <br/>&nbsp;&nbsp;<b>Etat</b> :<br/>Neuf<h1 align="right"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span></a></h1></div>
       </div>
