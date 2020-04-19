@@ -52,6 +52,7 @@ height:53px;}
 {
     height:400px;
     color:white;
+    margin-bottom: 0px;
     padding-top:150px;
     background-image: url(client/fonds/fond.jpg);
     background-size: cover;
@@ -90,14 +91,16 @@ h2
     height:50px;
 }
 
-.glyphicon-remove-circle
+.glyphicon
 {
-    color:red;
+    color:grey;
 }
-.glyphicon-remove-circle:hover
+.glyphicon:hover
 {
-    color:darkred;
+    color:blue;
 }
+#panier
+    {font-size: 40px;}
 
     
 /*-- Footer --*/
@@ -120,24 +123,25 @@ h2
  }
 
  .features {
- margin: 0;
+ margin: 0px;
  }
-        #items
-        {
-            background-color:gainsboro;
-            margin-top:0px;
-            padding-top:30px;
-        }
-        #item
-        {
-            background-color:white;
-            border: 2px solid grey;
-            border-radius: 10px 10px;
-        }
+#items
+{
+    background-color:gainsboro;
+    margin-top:0px;
+    padding-top:30px;
+}
+    #item
+    {
+        background-color:white;
+        border: 2px solid grey;
+        border-radius: 10px 10px;
+    }
         
     #rang1
     {
         padding-top:30px;
         padding-bottom: 30px;
+        font-size: 20px;
     }
-
+    

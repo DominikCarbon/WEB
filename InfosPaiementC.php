@@ -234,9 +234,9 @@ input[type=text] {
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td colspan="2" align="left"><input type="radio" name="Carte" value="MasterCard" required>&nbsp;MasterCard</td>
-            <td colspan="2" align="center"><input type="radio" name="Carte" value="Visa">&nbsp;Visa</td>
-            <td colspan="2" align="right"><input type="radio" name="Carte" value="American Express">&nbsp;American Express</td>
+            <td colspan="2" align="left"><input type="radio" name="Carte" value="MasterCard" required>&nbsp;<img src="mastercard.png" width="70px" height="40px"></td>
+            <td colspan="2" align="center"><input type="radio" name="Carte" value="Visa">&nbsp;<img src="visa.png" width="70px" height="70px"></td>
+            <td colspan="2" align="right"><input type="radio" name="Carte" value="American Express">&nbsp;<img src="americanexpress.png" width="70px" height="40px"></td>
         </tr>
         <tr><td colspan="6"><hr/></td></tr>
         <tr>
