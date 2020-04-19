@@ -8,30 +8,6 @@ $pdoStat = $bdd->prepare("SELECT * FROM item WHERE categorie= 'Bon pour le musee
 $executeIsOk = $pdoStat->execute();
 
 $items = $pdoStat->fetchAll();
-    if(isset($_POST['bouton']))
-    {
-            $mysqli = new mysqli("localhost","root","","piscine");
-    mysqli_set_charset($mysqli, "utf8");
-    if ($mysqli -> connect_errno) 
-    {
-        $erreur= "Failed to connect to MySQL: " . $mysqli -> connect_error;
-    }
-                        //ERREUR DE CONNEXION 
-    else   //SI AUCUNE ERREUR
-    {
-            $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $_SESSION['iditem'] ."','". $_SESSION['categorie'] ."', '". $_SESSION['achat'] ."','". $_SESSION['prix'] ."', '". $_SESSION['description'] ."','". $_SESSION['photoitem'] ."','". $_SESSION['nom']."');";
-
-                if ($mysqli->query($query) === TRUE)
-                {   
-                    $erreur="c'est good";
-                }//end if 
-                else 
-                {
-                    $erreur= "Error: " . $query . "<br>";
-                }
-                $mysqli -> close();
-    }
-    }
 
  ?>
  <!DOCTYPE html>
@@ -137,8 +113,23 @@ $items = $pdoStat->fetchAll();
 		<div class="col-sm-4"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['achat']?></div>
- 
-        <div class="col-sm-2" align="center"> <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?> </div>
+        
+        
+        
+        <?php
+                if(isset($_SESSION['id']))
+                {
+        ?>
+                    <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?>
+        
+        <?php
+                }
+                else
+                {
+                    echo '<a href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+                }
+        ?>
+        
     </div>
 	
 </div>

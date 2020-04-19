@@ -1,7 +1,7 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  
-if(isset($_GET['idI']))
+if(isset($_SESSION['id']))
 {
     $rechercheitem = $bdd->prepare('SELECT * FROM item WHERE id = ? ');      // ON PREND SES INFOS
     $rechercheitem->execute(array($_GET['idI']));         
@@ -41,7 +41,7 @@ if(isset($_GET['idI']))
     $total->execute(array($_SESSION['id']));
     $afficher = $total->fetch();
     
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -358,3 +358,7 @@ if(isset($_GET['idI']))
 </footer>
 </body>
 </html>
+
+<?php
+}
+?>

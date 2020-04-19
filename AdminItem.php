@@ -152,7 +152,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><?php echo '<a href="AdminVendeur.php?id='.$_SESSION['id'].'">Gérer les vendeurs</a>'; ?></li>
+                <li><?php echo '<a href="AdminVendeur.php">Gérer les vendeurs</a>'; ?></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
@@ -191,7 +191,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['categorie']?></div>
         <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
 
     </div>
