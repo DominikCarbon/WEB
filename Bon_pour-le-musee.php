@@ -2,15 +2,38 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
+
 $pdoStat = $bdd->prepare("SELECT * FROM item WHERE categorie= 'Bon pour le musee'");
 
 $executeIsOk = $pdoStat->execute();
 
 $items = $pdoStat->fetchAll();
+    if(isset($_POST['bouton']))
+    {
+            $mysqli = new mysqli("localhost","root","","piscine");
+    mysqli_set_charset($mysqli, "utf8");
+    if ($mysqli -> connect_errno) 
+    {
+        $erreur= "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    }
+                        //ERREUR DE CONNEXION 
+    else   //SI AUCUNE ERREUR
+    {
+            $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $_SESSION['iditem'] ."','". $_SESSION['categorie'] ."', '". $_SESSION['achat'] ."','". $_SESSION['prix'] ."', '". $_SESSION['description'] ."','". $_SESSION['photoitem'] ."','". $_SESSION['nom']."');";
 
+                if ($mysqli->query($query) === TRUE)
+                {   
+                    $erreur="c'est good";
+                }//end if 
+                else 
+                {
+                    $erreur= "Error: " . $query . "<br>";
+                }
+                $mysqli -> close();
+    }
+    }
 
  ?>
-
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,17 +48,18 @@ $items = $pdoStat->fetchAll();
 </head>
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <?php echo '<a class="navbar-brand" id="Logo" href="home.php"></a>'; ?>
+            
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégorie<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
                 <li id="F"><?php echo '<a href="feraille_ou_tresor.php" id="Fer"><strong>Feraille ou Trésor</strong></a>';?></li>
-                <li id="M"><?php echo '<a href="Bon_pour-le-musee" id="Mus"><strong>Bon pour le Musée</strong></a>';?>
+                <li id="M"><?php echo '<a href="Bon_pour-le-musee.php" id="Mus"><strong>Bon pour le Musée</strong></a>';?>
                 </li>
                 <li id="V"><?php echo '<a href="Accessoire_VIP.php" id="Vip"><strong>Accessoire VIP</strong></a>';?></li>
             </ul>
@@ -48,12 +72,32 @@ $items = $pdoStat->fetchAll();
             </ul>
             </li>
             <li><a class="B" href="LogVendeur.php">Vendre</a></li>
-            <li><a class="B" href="LogClient.php">Votre Compte</a></li>
+            <li><?php
+                if(isset($_SESSION['id']))
+                {
+                    echo '<a class="B" href="Client2.php">Votre Compte</a>';
+                }
+                else
+                {
+                    echo '<a class="B" href="LogClient.php">Votre compte</a>';
+                }
+            ?></li>
+            
+            
       </ul>
             
         <ul class="nav navbar-nav navbar-right">
             <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+            <li><?php
+                if(isset($_SESSION['id']))
+                {
+                    echo '<a class="B" href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                }
+                else
+                {
+                    echo '<a class="B" href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                }
+            ?></li>
         </ul>
         </div>
     </div>
@@ -93,8 +137,8 @@ $items = $pdoStat->fetchAll();
 		<div class="col-sm-4"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['achat']?></div>
-        <div class="col-sm-2" align="center"><p ><span class="glyphicon glyphicon-shopping-cart"></span>
-        </p></div>
+ 
+        <div class="col-sm-2" align="center"> <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?> </div>
     </div>
 	
 </div>

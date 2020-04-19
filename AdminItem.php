@@ -131,6 +131,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             padding-top: 100px;
             background-color: gainsboro;
         }
+            #item
+    {
+        border: 2px;
+        border-color: darkgrey;
+        border-radius: 10px 10px;
+    }
     
 </style>
 
@@ -168,7 +174,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Infos sur les items en vente -->
  <?php  foreach ($items as $item):?>
-<div class="container">
+<div class="container" id="item">
 	<div class="row">
 		<div class="col-sm-2"><b>Article</b></div>
         <div class="col-sm-3"><b>Descritpion</b></div>
@@ -185,7 +191,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['categorie']?></div>
         <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
 
     </div>

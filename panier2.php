@@ -1,35 +1,8 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  
-if(isset($_GET['idI']))
-{
-    $rechercheitem = $bdd->prepare('SELECT * FROM item WHERE id = ? ');      // ON PREND SES INFOS
-    $rechercheitem->execute(array($_GET['idI']));         
-    $infoitem = $rechercheitem->fetch();  
-    
-    $mysqli = new mysqli("localhost","root","","piscine");
-    mysqli_set_charset($mysqli, "utf8");
-    if ($mysqli -> connect_errno) 
-    {
-        $erreur= "Failed to connect to MySQL: " . $mysqli -> connect_error;
-    }
-                        //ERREUR DE CONNEXION 
-    else   //SI AUCUNE ERREUR
-    {
-            $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $infoitem['id'] ."','". $infoitem['categorie'] ."', '". $infoitem['achat'] ."','". $infoitem['prix'] ."', '". $infoitem['description'] ."','". $infoitem['photo'] ."','". $infoitem['nom']."');";
-
-                if ($mysqli->query($query) === TRUE)
-                {   
-                    $erreur="c'est good";
-                }//end if 
-                else 
-                {
-                    $erreur= "Error: " . $query . "<br>";
-                }
-                $mysqli -> close();
-    }
-
-    
+if(isset($_SESSION['id']))
+{    
     $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_SESSION['id']));         
     $infoclient = $recherche->fetch();                                     // ON PREND SES INFOS
@@ -41,7 +14,7 @@ if(isset($_GET['idI']))
     $total->execute(array($_SESSION['id']));
     $afficher = $total->fetch();
     
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -358,3 +331,7 @@ if(isset($_GET['idI']))
 </footer>
 </body>
 </html>
+
+<?php
+}
+?>

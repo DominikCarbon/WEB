@@ -8,6 +8,38 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');      // ON PREND SES INFOS
     $recherche->execute(array($_GET['id']));         
     $infoclient = $recherche->fetch();                                     // ON PREND SES INFOS
+    
+    $mysqli = new mysqli("localhost","root","","piscine");
+    mysqli_set_charset($mysqli, "utf8");
+    if ($mysqli -> connect_errno) 
+    {
+        $erreur= "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    }
+                        //ERREUR DE CONNEXION 
+    else   //SI AUCUNE ERREUR
+    {
+    
+        if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
+        {
+            $num = htmlspecialchars($_POST['num']);
+            $nom = htmlspecialchars($_POST['nom']);
+            $carte = htmlspecialchars($_POST['carte']);
+            $ccv=htmlspecialchars($_POST['ccv']);
+
+            $queryp = "INSERT INTO `code`(`idC`, `nom`, `numero`, `ccv`, `type`) VALUES ('". $_SESSION['id'] ."', '". $nom ."', '". $num ."','". $ccv ."', '". $carte ."');";
+
+                if ($mysqli->query($queryp) === TRUE)
+                {   
+                    header('Location:Client2.php?id='.$_SESSION['id']);
+                }//end if 
+                else 
+                {
+                    $erreur= "Error: " . $queryp . "<br>";
+                }
+                $mysqli -> close();
+
+        }
+    }
 ?>
 
 
@@ -87,7 +119,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     .bg-1
     { 
         background-color: cadetblue; /* Green */
-        background-image: url(client/fonds/5.jpg);
+        background-image: url(client/fonds/fond.jpg);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -165,7 +197,7 @@ input[type=text] {
             else
             {
             ?>
-            <li><a class="B" href="Logclient.html">Mon Profil</a></li>
+            <li><a class="B" href="Logclient.php">Mon Profil</a></li>
             <?php
             }
             ?>
@@ -179,7 +211,7 @@ input[type=text] {
         <?php
         }
         ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier</a></li>
             </ul>
         </div>
@@ -210,7 +242,7 @@ input[type=text] {
 <div class="container-fluid bg-2 text-center">
     <center>
         <br/>
-    <form>
+    <form method="post" action="">
 	<table>
 		<tr>
 			<td colspan="3" align="center">Nom sur la carte:</td>
@@ -223,10 +255,8 @@ input[type=text] {
 		</tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
-			<td colspan="2">Date d'expiration :&nbsp;</td>
-            <td><input type="date" name ="exp" placeholder="Expiration"></td>
-            <td colspan="2" align="right">&nbsp;CCV : </td>
-            <td align="right"><input type="number" name ="ccv" placeholder="CCV"></td>
+            <td colspan="3" align="center">&nbsp;CCV : </td>
+            <td colspan="3" align="center"><input type="number" name ="ccv" placeholder="CCV"></td>
 		</tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
@@ -234,16 +264,22 @@ input[type=text] {
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td colspan="2" align="left"><input type="radio" name="Carte" value="MasterCard" required>&nbsp;<img src="mastercard.png" width="70px" height="40px"></td>
-            <td colspan="2" align="center"><input type="radio" name="Carte" value="Visa">&nbsp;<img src="visa.png" width="70px" height="70px"></td>
-            <td colspan="2" align="right"><input type="radio" name="Carte" value="American Express">&nbsp;<img src="americanexpress.png" width="70px" height="40px"></td>
+            <td colspan="2" align="left"><input type="radio" name="carte" value="MasterCard" required>&nbsp;<img src="mastercard.png" width="70px" height="40px"></td>
+            <td colspan="2" align="center"><input type="radio" name="carte" value="Visa">&nbsp;<img src="visa.png" width="70px" height="70px"></td>
+            <td colspan="2" align="right"><input type="radio" name="carte" value="American Express">&nbsp;<img src="americanexpress.png" width="70px" height="40px"></td>
         </tr>
         <tr><td colspan="6"><hr/></td></tr>
         <tr>
-        <td colspan="6" align="center"><input type="submit" class="MonBouton" value="Enregistrez vos données"></td>
+        <td colspan="6" align="center"><input type="submit" name="button" class="MonBouton" value="Enregistrez vos données"></td>
         </tr>
 	</table>
 </form>
+        <?php
+            if(isset($erreur))
+            {
+                echo '<br/><font color="red">'.$erreur.'</font>';
+            }
+        ?>
         </center>
 </div>
 

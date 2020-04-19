@@ -5,7 +5,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {    
-    $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_SESSION['idV']." LIMIT 1");
+    $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_GET['idV']." LIMIT 1");
 
     $deleteIsOk= $pdoStat->execute();
 

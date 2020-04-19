@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+if(isset($_SESSION['id']) && isset($_SESSION['iditem']))
+{
+    $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');      // ON PREND SES INFOS
+    $recherche->execute(array($_GET['id']));         
+    $infoclient = $recherche->fetch();                                     // ON PREND SES INFOS
+    
+    $mysqli = new mysqli("localhost","root","","piscine");
+    mysqli_set_charset($mysqli, "utf8");
+    if ($mysqli -> connect_errno) 
+    {
+        $erreur= "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    }
+                        //ERREUR DE CONNEXION 
+    else   //SI AUCUNE ERREUR
+    {
+
+            $query = "INSERT INTO `panier`(`idC`, `idI`) VALUES ('". $_SESSION['id'] ."', '". $_SESSION['iditem'] ."');";
+
+                if ($mysqli->query($query) === TRUE)
+                {   
+                    $erreur="c'est good";
+                    //header('Location:.php?id='.$_SESSION['id']);
+                }//end if 
+                else 
+                {
+                    $erreur= "Error: " . $query . "<br>";
+                }
+                $mysqli -> close();
+    }
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -289,3 +323,7 @@
 </footer>
 </body>
 </html>
+
+<?php
+}
+?>

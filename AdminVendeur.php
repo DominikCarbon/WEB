@@ -10,8 +10,6 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
     $vendeurs = $pdoStat->fetchAll();
     
 ?>
-
-
 <html>
 <head>
     <title>Admin SuperVendeur</title>
@@ -183,7 +181,7 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><?php echo '<a href="AdminItem.php?id='.$_SESSION['id'].'">Gérer mes items</a>'; ?></li>
+                <li><?php echo '<a href="AdminItem.php">Gérer mes items</a>'; ?></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
@@ -217,11 +215,11 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 	</div>
     
 	<div class="row" id="rang1">
-		<div class="col-sm-2">N°<?= $vendeur['id'] ?> </div><?php $_SESSION['idV']=$vendeur['id'];?>
+		<div class="col-sm-2">N°<?= $vendeur['id'] ?> </div>
         <div class="col-sm-4"><?= $vendeur['mail']?></div>
         <div class="col-sm-2"><?= $vendeur['nom']?></div>
         <div class="col-sm-2"><?= $vendeur['prenom']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'&idV='.$vendeur['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
     </div>
 </div>

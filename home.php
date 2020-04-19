@@ -1,7 +1,5 @@
-<?php
+<?php 
 session_start();
-if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
-{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,14 +23,39 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <?php echo'<li><a class="B" href="itemadmin.php">Gérer items</a></li>';?>
-            <?php echo'<li><a class="B" href="AdminVendeur.php">Vendeurs</a></li>';?>
-            <?php echo'<li><a class="B" href="AdminItem.php">Mes items</a></li>';?>
-            
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégorie<span class="icon-bar"></span></a>
+            <ul class="dropdown-menu">
+                <li id="F"><a href="feraille_ou_tresor.php" id="Fer"><strong>Feraille ou Trésor</strong></a></li>
+                <li id="M"><a href="Bon_pour-le-musee.php" id="Mus"><strong>Bon pour le Musée</strong></a></li>
+                
+                <?php echo '<li id="V"><a href="Accessoire_VIP.php" id="Vip"><strong>Accessoire VIP</strong></a></li>'; ?>
+            </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Achat<span class="icon-bar"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="enchere.php">Encheres</a></li>
+                <li><a href="achatimmediat.php">Achetez-le Maintenant</a></li>
+                <li><a href="meilleureoffre.php">Meilleure offre</a></li> 
+            </ul>
+            </li>
+            <li><a class="B" href="LogVendeur.php">Vendre</a></li>
+            <li><a class="B" href="LogClient.php">Votre Compte</a></li>
       </ul>
             
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter </a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
+            <li><?php
+                if(isset($_SESSION['id']))
+                {
+                     echo '<a class="B" href="panier2.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                }
+                else
+                {
+                    echo '<a class="B" href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                }
+            ?>
+                 ?></li>
         </ul>
         </div>
     </div>
@@ -89,6 +112,7 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
     </a>
+
 </div>
   
 <div class="container text-center">    
@@ -119,6 +143,7 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 
 <footer class="page-footer">
 <div class="container">
+    <div class="row">
     <div class="col-lg-5 col-md-5 col-sm-12">
     <h5 class="text-uppercase font-weight-bold">Qui sommes-nous?</h5><br/>
     <p>On est une société indépendante. <br/> Ce qu'on te propose c'est de trouver des articles inédits le plus simplement possible, et au meilleur prix. <br/> Tu peux aussi te faire de l'argent en vendant tes propres objets</p>
@@ -137,17 +162,10 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
      +33 6 47 28 02 76
     </p>
     </div>
-</div>
-<div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE<br/>
-    <img src="PETIT_LogoEBAYECE.png" alt="Notre logo !"/>
+    </div>
+    <div class="footer-copyright text-center">&copy; 2020 Copyright | Droit d'auteur: Ebay ECE<br/>
+    <img src="PETIT_LogoEBAYECE.png" alt="Notre logo !"/></div>
 </div>
 </footer>
 </body>
 </html>
-<?php
-}
-else
-{
-    header('Location:home.html');
-}
-?>

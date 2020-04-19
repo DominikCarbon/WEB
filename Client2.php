@@ -87,7 +87,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     .bg-1
     { 
         background-color: cadetblue; /* Green */
-        background-image: url(client/fonds/5.jpg);
+        background-image: url(client/fonds/fond.jpg);
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
@@ -134,7 +134,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <?php echo '<a class="navbar-brand" id="Logo" href="home.php?id='.$_SESSION['id'].'"></a>'; ?>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -164,7 +164,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+            <li><?php echo '<a class="B" href="panier.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>'; ?></li>
             </ul>
         </div>
     </div>
