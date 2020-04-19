@@ -7,8 +7,6 @@ $pdoStat = $bdd->prepare("SELECT * FROM item WHERE categorie= 'Accessoire VIP'")
 $executeIsOk = $pdoStat->execute();
 
 $items = $pdoStat->fetchAll();
-
-
  ?>
 
  <!DOCTYPE html>
@@ -113,7 +111,19 @@ $items = $pdoStat->fetchAll();
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['achat']?></div>
         <div class="col-sm-2" align="center">
-             <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?>       
+             <?php
+                if(isset($_SESSION['id']))
+                {
+        ?>
+                    <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?>
+        
+        <?php
+                }
+                else
+                {
+                    echo '<a href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+                }
+        ?>      
              
 
         </div>
