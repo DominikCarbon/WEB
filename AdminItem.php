@@ -40,7 +40,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     {   background-image: url(PETIT_LogoEEBlanc.png);
         align-items: center;
     }
-        
+    
+    /* UN PEU PLUS DESPACE */    
     .container
         {margin-top:50px;}
 
@@ -72,24 +73,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         margin-bottom: 45px;
     }
         
-   <?php
-    if(!empty($infovendeur['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
-    {
-    ?>
-    .bg-1 
-    { 
-        background-image: url(vendeur/fonds/<?php echo $infovendeur['fond'];?>);
-        background-size: cover;
-        color: #ffffff;
-        padding-bottom: 20px;
-        padding-top:200px;
-    }
-        
-    <?php 
-    }
-    else                // SI AUCUN FOND ON MET LE FOND DE BASE
-    {
-    ?>      
+     
     .bg-1
     { 
         background-color: cadetblue; /* Green */
@@ -99,17 +83,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         padding-bottom: 20px;
         padding-top:100px;
     }   
-    <?php
-    }
-    ?>
     
-    .bg-2 
-    { 
-        background-color: #474e5d; /* Dark Blue */
-        color: #ffffff;
-        padding-bottom: 30px;  
-    }
-
     #Logo
     {
         margin-right:10px;
@@ -151,7 +125,13 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     input[type=text] {
         width: 200px;
         padding: 2px;
-    }  
+    } 
+    #Ajout
+        {
+            padding-top: 100px;
+            background-color: gainsboro;
+        }
+    
 </style>
 
 </head>
@@ -188,7 +168,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Infos sur les items en vente -->
  <?php  foreach ($items as $item):?>
-<div class="container" id="item">
+<div class="container">
 	<div class="row">
 		<div class="col-sm-2"><b>Article</b></div>
         <div class="col-sm-3"><b>Descritpion</b></div>
@@ -198,7 +178,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
 	</div>
     
-	<div class="row" id="rang1">
+	<div class="row">
 
 		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
 		<div class="col-sm-3"><p id="descritption"><?= $item['nom'] ?><p id="descritption"><?= $item['description'] ?></p></div>
@@ -214,15 +194,15 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <?php endforeach ?>
 
 
-<div class="row">
-        
+<div class="row"  id="Ajout">   
         <div align="center">
         <?php echo '<a href="AdminNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
         </div>
+    
+<br/>
+<br/>
     </div>
 
-<br/>
-<br/>
 
 <!-- Footer -->
 <footer class="page-footer">

@@ -196,7 +196,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             else
             {
             ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+            <li><a class="B" href="Logvendeur.php">Mon Profil</a></li>
             <?php
             }
             ?>
@@ -210,7 +210,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         <?php
         }
         ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
             </ul>
         </div>
     </div>

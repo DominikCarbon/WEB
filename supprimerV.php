@@ -4,22 +4,18 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
-{
-    $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id =? ');      // ON PREND SES INFOS
-    $recherche->execute(array($_GET['id']));         
-    $infovendeur = $recherche->fetch();  
-    
-    $pdoStat = $bdd->prepare("DELETE FROM item WHERE idV=".$_SESSION['id']." LIMIT 1");
+{    
+    $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_SESSION['idV']." LIMIT 1");
 
     //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
 
     $deleteIsOk= $pdoStat->execute();
 
     if ($deleteIsOk) {
-        $message="L'item est bien suprimé.";
+        $message="Vendeur bien supprimé.";
     }
     else
-        {$message="echec de la suppresion du contact";}
+        {$message="echec de la suppression du vendeur";}
 
 
 ?>
@@ -27,7 +23,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <html>
 <head>
-    <title>Vendeur</title>
+    <title>Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -114,12 +110,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     }
     ?>
     
-    .bg-2 
-    { 
-        background-color: #474e5d; /* Dark Blue */
-        color: #ffffff;
-        padding-bottom: 30px;  
-    }
 
     #Logo
     {
@@ -171,7 +161,13 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     input[type=text] {
         width: 200px;
         padding: 2px;
-    }  
+    } 
+        #Ajout
+        {
+            padding-top: 100px;
+            background-color: gainsboro;
+        }
+    
 </style>
 
 </head>
@@ -190,58 +186,50 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Vendeur.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
-            <?php
-            }
-            else
-            {
-            ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+                <li><?php echo '<a href="homeAdmin.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
             <?php
             }
             ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
         <?php
-        if(isset($_SESSION['id']) AND $infovendeur['id']==$_SESSION['id'])
+        if(isset($_SESSION['id']))
         {
         ?>
             <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
         <?php
         }
         ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Photo de fond et profil -->
+<!-- Photo de fond -->
 <div class="container-fluid bg-1 text-center">
-    <h1> Items mis à la vente </h1>
-    <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
+    <h1> Supprimer un vendeur </h1>
+    <h3> <?php echo "Admin ".$_SESSION['id']; ?> </h3>
 </div>
-
-    
-
-<!-- Infos sur les items en vente -->
  
-<div class="container">
-	<?=$message;  ?>
-	
-</div>
 
 
 
-<div class="row">
-        
+
+<div class="row" id="Ajout">
         <div align="center">
-        <?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; ?>
+            <?=$message;  ?>
+            <br/>
+            <br/>
         </div>
+        <div align="center">
+        <?php echo '<a href="AdminVendeur.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; ?>
+        </div>
+    <br/>
+<br/>
     </div>
 
-<br/>
-<br/>
+
 
 <!-- Footer -->
 <footer class="page-footer">

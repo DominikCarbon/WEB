@@ -26,36 +26,20 @@ else   //SI AUCUNE ERREUR
 			
 			if ($mysqli->query($query) === TRUE)
             {
-					$erreur= "Ajouté avec succès";
-                
-                 //si le BDD existe, faire le traitement
-                
-                 /*$sql = "SELECT * FROM `vendeur`";
-                $result = $mysqli -> query($sql);
-                 while ($data = mysqli_fetch_assoc($result)) 
-                 {
-                    $id=$data['id'];
-                     mkdir('vendeur/items/'.$id,0700,true);*/
-                     header('Location:LogVendeur.html');
-                // }//end while
+                     header('Location:LogVendeur.php');
             }//end if 
-             else 
-             {
-                 $erreur= "Error: " . $query . "<br>";
-             }
+            else 
+            {
+                $erreur= "Error: " . $query . "<br>";
+            }
 			$mysqli -> close();
-         }
+        }
         else    // Si elle est trop grande
         {
              $erreur="pseudo trop long";
         }
-        }
+    }
 }
-		
-		echo "<hr>";
-		
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -161,6 +145,12 @@ input[type=text] {
         <p><input type="submit" name="button" value="Valider"></p>
         </fieldset>
     </form>
+        <?php
+            if(isset($erreur))
+            {
+                echo '<br/><font color="red">'.$erreur.'</font>';
+            }
+        ?>
     </center>
         
 <hr/>

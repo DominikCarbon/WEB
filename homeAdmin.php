@@ -25,9 +25,10 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a class="B" href="itemadmin.php">Items</a></li>
+            <li><a class="B" href="itemadmin.php">Gérér Items</a></li>
+            <li><a class="B" href="AdminVendeur.php">Vendeurs</a></li>
             <li><a class="B" href="AdminItem.php">Mes items</a></li>
-            <li><a class="B" href="AdminVendeurs.html">Vendeurs</a></li>
+            
       </ul>
             
         <ul class="nav navbar-nav navbar-right">

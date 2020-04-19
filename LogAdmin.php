@@ -124,7 +124,7 @@ if(isset($_POST['button']))
     <?php
     if(isset($msg))
     {
-        echo '<font color="red">'.$msg.'</font>';
+        echo '<br/><font color="red">'.$msg.'</font>';
     }?>
 
 <footer class="container-fluid text-center">

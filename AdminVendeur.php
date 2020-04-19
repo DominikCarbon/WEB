@@ -9,19 +9,6 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
     $executeIsOk = $pdoStat->execute();
     $vendeurs = $pdoStat->fetchAll();
     
-    $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_SESSION['id']." LIMIT 1");
-
-    //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
-
-    $deleteIsOk= $pdoStat->execute();
-
-    if ($deleteIsOk) {
-        $message="L'item est bien suprimé.";
-    }
-    else
-        {$message="echec de la suppresion du contact";}
-
-    
 ?>
 
 
@@ -155,21 +142,33 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         background-color: darkgray;
     }
         
-        textarea {
+    textarea {
         padding: 2px;
-            border-radius:10px 10px;
+        border-radius:10px 10px;
     }   
  
     input[type=text] {
         width: 200px;
         padding: 2px;
-    }  
+    }
+        #vendeurs
+        {
+            background-color:gainsboro;
+            margin-top:0px;
+            padding-top:30px;
+        }
+        #vendeur
+        {
+            background-color:white;
+            border: 2px solid grey;
+            border-radius: 10px 10px;
+        }
         
     #rang1
-        {
-            padding-top:30px;
-            padding-bottom: 30px;
-        }
+    {
+        padding-top:30px;
+        padding-bottom: 30px;
+    }
 </style>
 
 </head>
@@ -193,7 +192,7 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
     </div>
 </nav>
 
-<!-- Photo de fond et profil -->
+<!-- Photo de fond -->
 
 <div class="container-fluid bg-1 text-center" >
     <center>
@@ -206,7 +205,9 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 
 <!-- Infos sur les vendeurs de la plateforme -->
  <?php  foreach ($vendeurs as $vendeur):?>
+<div id="vendeurs">
 <div class="container" id="vendeur">
+     <hr/>
 	<div class="row">
 		<div class="col-sm-2"><b>ID</b></div>
         <div class="col-sm-4"><b>Mail</b></div>
@@ -216,29 +217,28 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
 	</div>
     
 	<div class="row" id="rang1">
-
-		<div class="col-sm-2">N°<?= $vendeur['id'] ?> </div>
+		<div class="col-sm-2">N°<?= $vendeur['id'] ?> </div><?php $_SESSION['idV']=$vendeur['id'];?>
         <div class="col-sm-4"><?= $vendeur['mail']?></div>
         <div class="col-sm-2"><?= $vendeur['nom']?></div>
         <div class="col-sm-2"><?= $vendeur['prenom']?></div>
 		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerV.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
-
     </div>
-	
 </div>
 <?php endforeach ?>
 
 
 <div class="row">
         
-        <div align="center">
-        <?php echo '<a href="AdminNvVendeurAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Vendeur"></a>'; ?>
-        </div>
+    <div align="center">
+    <br/>
+    <?php echo '<a href="AdminNvVendeurAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Vendeur"></a>'; ?>
+    </div> 
+    <br/>
+    <br/>
+</div>
     </div>
 
-<br/>
-<br/>
 
 <!-- Footer -->
 <footer class="page-footer">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N4AI PAS  REUSSI AVEC MYSQLI
+$bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE UN PDO CAR JE N'AI PAS  REUSSI AVEC MYSQLI
 
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
@@ -11,9 +11,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     $infovendeur = $recherche->fetch();  
     $pdoStat = $bdd->prepare("SELECT * FROM item WHERE idV=".$_SESSION['id']."");
     $executeIsOk = $pdoStat->execute();
-    $items = $pdoStat->fetchAll();
-
-    
+    $items = $pdoStat->fetchAll(); 
 ?>
 
 
@@ -161,7 +159,12 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     input[type=text] {
         width: 200px;
         padding: 2px;
-    }  
+    }
+    #item
+    {
+        padding-top:100px; 
+        background-color: gainsboro;
+    }
 </style>
 
 </head>
@@ -200,7 +203,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         <?php
         }
         ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
             </ul>
         </div>
     </div>
@@ -249,15 +252,15 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <?php endforeach ?>
 
 
-<div class="row">
+<div class="row" id="item">
         
-        <div align="center">
-        <?php echo '<a href="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
-        </div>
+    <div align="center">
+    <?php echo '<a href="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
     </div>
+    <br/>
+    <br/>
+</div>
 
-<br/>
-<br/>
 
 <!-- Footer -->
 <footer class="page-footer">
