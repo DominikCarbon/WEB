@@ -188,7 +188,7 @@ if (isset($_SESSION['id']))
             else
             {
             ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+            <li><a class="B" href="Logvendeur.php">Mon Profil</a></li>
             <?php
             }
             ?>
@@ -202,7 +202,7 @@ if (isset($_SESSION['id']))
     <?php
     }
         ?>
-        <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
+        <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
         <li><a href="#"> Mes items en vente </a></li>
       </ul>
     </div>

@@ -7,8 +7,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {    
     $pdoStat = $bdd->prepare("DELETE FROM vendeur WHERE id=".$_SESSION['idV']." LIMIT 1");
 
-    //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
-
     $deleteIsOk= $pdoStat->execute();
 
     if ($deleteIsOk) {
@@ -226,8 +224,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         <?php echo '<a href="AdminVendeur.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; ?>
         </div>
     <br/>
-<br/>
-    </div>
+    <br/>
+</div>
 
 
 

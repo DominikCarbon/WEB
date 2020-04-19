@@ -213,24 +213,34 @@ input[type=text] {
     <form>
 	<table>
 		<tr>
-			<td colspan="2" align="center">Nom sur la carte:</td>
-			<td colspan="2" align="center"><input type="text" name ="nom" placeholder="Nom du porteur"></td>
+			<td colspan="3" align="center">Nom sur la carte:</td>
+			<td colspan="3" align="center"><input type="text" name ="nom" placeholder="Nom du porteur"></td>
 		</tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
-			<td colspan="2" align="center">Numéro de carte :</td>
-			<td colspan="2" align="center"><input type="text" name ="num" placeholder="Numéro de carte"></td>
+			<td colspan="3" align="center">Numéro de carte :</td>
+			<td colspan="3" align="center"><input type="text" name ="num" placeholder="Numéro de carte"></td>
 		</tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
-			<td>Date d'expiration :&nbsp;</td>
+			<td colspan="2">Date d'expiration :&nbsp;</td>
             <td><input type="date" name ="exp" placeholder="Expiration"></td>
-            <td>&nbsp;CCV : </td>
-            <td><input type="number" name ="ccv" placeholder="CCV"></td>
+            <td colspan="2" align="right">&nbsp;CCV : </td>
+            <td align="right"><input type="number" name ="ccv" placeholder="CCV"></td>
 		</tr>
-        <tr><td colspan="4"><hr/></td></tr>
+        <tr><td>&nbsp;</td></tr>
         <tr>
-        <td colspan="4" align="center"><input type="submit" class="MonBouton" value="Enregistrez vos données"></td>
+            <td colspan="6" align="center">Type de carte</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td colspan="2" align="left"><input type="radio" name="Carte" value="MasterCard" required>&nbsp;MasterCard</td>
+            <td colspan="2" align="center"><input type="radio" name="Carte" value="Visa">&nbsp;Visa</td>
+            <td colspan="2" align="right"><input type="radio" name="Carte" value="American Express">&nbsp;American Express</td>
+        </tr>
+        <tr><td colspan="6"><hr/></td></tr>
+        <tr>
+        <td colspan="6" align="center"><input type="submit" class="MonBouton" value="Enregistrez vos données"></td>
         </tr>
 	</table>
 </form>

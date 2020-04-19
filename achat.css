@@ -122,5 +122,22 @@ h2
  .features {
  margin: 0;
  }
-}
+        #items
+        {
+            background-color:gainsboro;
+            margin-top:0px;
+            padding-top:30px;
+        }
+        #item
+        {
+            background-color:white;
+            border: 2px solid grey;
+            border-radius: 10px 10px;
+        }
+        
+    #rang1
+    {
+        padding-top:30px;
+        padding-bottom: 30px;
+    }
 

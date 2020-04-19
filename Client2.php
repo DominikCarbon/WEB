@@ -148,7 +148,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             else
             {
             ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+            <li><a class="B" href="LogVendeur.php">Mon Profil</a></li>
             <?php
             }
             ?>
@@ -163,8 +163,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         <?php
         }
         ?>
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
             </ul>
         </div>
     </div>
@@ -186,7 +186,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     }
     ?>
     <h3> <?php echo $infoclient['prenom'] ." ". $infoclient['nom']; ?> </h3>
-    <a href="logmdpC.html" alt="" id="paye"> Informations de paiement </a>
+    <a href="logmdpC.php" alt="" id="paye"> Informations de paiement </a>
 </div>
     
 

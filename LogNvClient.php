@@ -112,7 +112,6 @@ em {
 }
 
 input:hover{
-    color:white;
     background-color: darkgray;
 }
  
