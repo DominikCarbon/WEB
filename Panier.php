@@ -16,13 +16,11 @@ if(isset($_SESSION['id']))
                         //ERREUR DE CONNEXION 
     else   //SI AUCUNE ERREUR
     {
-        $recherchepanier = $bdd->prepare('SELECT * FROM panier WHERE id = ? ');      // ON PREND SES INFOS
-        $recherchepanier->execute(array($_GET['idI']));         
-        $infopanier = $recherchepanier->rowCount();
-         if($infopanier==1)
-         {
-            
-                        $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $infoitem['id'] ."','". $infoitem['categorie'] ."', '". $infoitem['achat'] ."','". $infoitem['prix'] ."', '". $infoitem['description'] ."','". $infoitem['photo'] ."','". $infoitem['nom']."');";
+        $recherchepanier = $bdd->prepare('SELECT COUNT(*) FROM panier WHERE idI=:iditem AND idC=:idClient');      // ON PREND SES INFOS
+        $recherchepanier->execute(array('iditem'=>$_GET['idI'] , 'idClient'=>$_SESSION['id']));         
+         if($recherchepanier->fetchColumn()==0)
+         {        
+                $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $infoitem['id'] ."','". $infoitem['categorie'] ."', '". $infoitem['achat'] ."','". $infoitem['prix'] ."', '". $infoitem['description'] ."','". $infoitem['photo'] ."','". $infoitem['nom']."');";
 
                 if ($mysqli->query($query) === TRUE)
                 {   
@@ -32,7 +30,8 @@ if(isset($_SESSION['id']))
                 {
                     $erreur= "Error: " . $query . "<br>";
                 }
-                $mysqli -> close();         
+                $mysqli -> close(); 
+             
          }
          else
          {
@@ -233,7 +232,7 @@ if(isset($_SESSION['id']))
 	<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="home.php"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav"> 
