@@ -212,7 +212,7 @@ input[type=text] {
         }
         ?>
             <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier</a></li>
+            <li><a href="panier2.php"><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier</a></li>
             </ul>
         </div>
     </div>

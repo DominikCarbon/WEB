@@ -31,7 +31,6 @@ if(isset($_SESSION['id']))
                     $erreur= "Error: " . $query . "<br>";
                 }
                 $mysqli -> close(); 
-             
          }
          else
          {
@@ -329,9 +328,9 @@ if(isset($_SESSION['id']))
                     Prix total : <b>
                     <?php echo $afficher['Somme']; ?> €</b></h2>    
             
-       <form action="paiment.php" method="post">
+       <a href="paiment.php">
            <input type="button" name="button" id="MonBouton" value="Procéder au Paiement">
-        </form>
+        </a>
         </div>
     
         <?php

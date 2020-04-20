@@ -3,9 +3,11 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
+if(isset($_SESSION['id']))  //ON VALIDE TOUTES SES INFOS
 {
-
+        $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');
+    $recherche->execute(array($_SESSION['id']));
+    $infoclient = $recherche->fetch();
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +18,111 @@ if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="paiment.css">
+<style>
+        .navbar 
+    {
+      margin-bottom: 0px;
+      border-radius: 0;
+    }
+    .navbar-brand
+    {   background-image: url(PETIT_LogoEEBlanc.png);
+        align-items: center;
+    }
+
+    .page-footer 
+    {
+         background-color: #222;
+         color: #ccc;
+         padding: 30px 0 10px;
+    }
+    .footer-copyright 
+    {
+         color: #666;
+         padding: 40px 0;
+    }
+
+    body 
+    {
+        line-height: 1.8;
+        color: #f5f6f7;
+    }
+    p
+    {
+        /*font-size: 16px;*/
+    }
+      
+    .margin 
+    {
+        margin-bottom: 45px;
+    }
+        
+    <?php
+    if(!empty($infoclient['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
+    {
+    ?>
+    .bg-1 
+    { 
+        background-image: url(client/fonds/<?php echo $infoclient['fond'];?>);
+        background-size: cover;
+        color: #ffffff;
+        padding-bottom: 20px;
+        padding-top:200px;
+    }
+        
+    <?php 
+    }
+    else                // SI AUCUN FOND ON MET LE FOND DE BASE
+    {
+    ?>      
+    .bg-1
+    { 
+        background-color: cadetblue; /* Green */
+        background-image: url(client/fonds/fond.jpg);
+        background-size: cover;
+        color: #ffffff;
+        padding-bottom: 20px;
+        padding-top:100px;
+    }   
+    <?php
+    }
+    ?>
+    
+    .bg-2 
+    { 
+        background-color: #474e5d; /* Dark Blue */
+        color: #ffffff;
+        padding-bottom: 30px;  
+    }
+
+    #Logo
+    {
+        margin-right:10px;
+        margin-left:10px;
+        width:42px;
+        height:53px;
+        }
+
+    #fond
+    {
+        color:black;
+    }
+            
+    .MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+    }
+            
+    #profil
+    {
+        border: 1px solid black;
+        width:300px;
+        padding-left:0px;
+        border-radius: 5px 5px 5px 5px;
+        background-color: darkgrey;
+        text-align: center;
+    }
+    </style>
 	
 </head>
 <body>
@@ -64,22 +170,33 @@ if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
         </div>
     </div>
 </nav>
+    
+    <div class="container-fluid bg-1 text-center">
+   <?php
+    if(!empty($infoclient['photo']))  // Si photo profil et fond
+    {
+    ?>
+    <img src="client/photos/<?php echo $infoclient['photo'];?>" class="img-responsive img-circle" style="display:inline" alt="Votre photo de profil !" width="100" height="100">
+    <?php
+    }
+    else{      // SI AUCUNE PHOTO
+    ?>
+    <img src="Vendeur.png" class="img-responsive img-circle margin" style="display:inline" alt="Votre photo de profil !" width="350" height="350">
+    <?php
+    }
+    ?>
+    <h2>Paiement de <?php echo $infoclient['prenom']; ?> </h2>
+</div>
 
 <?php
 
-         $recherche = $bdd->prepare("SELECT * FROM code WHERE idC = ?");
-         $recherche->execute(array($_SESSION['id']));
-         $code = $recherche->rowCount();
-         if($code==1)
-         {
-             $code = $recherche->fetch();
-            echo '<p>Votre carte est déjà enregistrée</p>';
-                     
-         }
-         else
-         {
-?>  
-<div class="container-fluid bg-2 text-center">
+         
+ $recherche = $bdd->prepare('SELECT COUNT(*) FROM code WHERE idC=:idClient');      // ON PREND SES INFOS
+        $recherche->execute(array('idClient'=>$_SESSION['id']));         
+         if($recherche->fetchColumn()==0)
+         { ?>  
+            
+             <div class="container-fluid bg-2 text-center">
     <center>
         <h1>Veuillez entrer vos informations bancaires</h1>
         <br/>
@@ -114,20 +231,25 @@ if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
         <td colspan="6" align="center"><input type="submit" name="button" class="MonBouton" value="Confirmer la commande"></td>
         </tr>
 	</table>
-</form>
+</form>  
         <?php
-            if(isset($erreur))
-            {
-                echo '<br/><font color="red">'.$erreur.'</font>';
-            }
-        ?>
+         }
+         else
+         {
+             $erreur ='Votre carte est déjà enregistrée';
+?>          
         </center>
 </div>
 <?php
-         }		
-		echo "<hr>";
-?>
+         }	
+ if(isset($erreur))
+            {
+                echo '<center><br/><font color="grey">'.$erreur.'</font><br/>
+                <input type="submit" name="button" class="MonBouton" value="Confirmer la commande"></center>';
+            }
+        ?>
 
+<br/><br/>
 
 <footer class="page-footer">
 <div class="container">
@@ -164,4 +286,5 @@ if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
 else
 {
     echo 'Erreur de connexion';
+}
 ?>

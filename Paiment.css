@@ -1,176 +1,104 @@
-/* Remove the navbar's default margin-bottom and rounded borders */ 
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
+    .navbar 
+    {
+      margin-bottom: 0px;
       border-radius: 0;
     }
-.navbar-brand
-{   background-image: url(PETIT_LogoEEBlanc.png);
-    align-items: center;
-}
-
-    
-/*-- Footer --*/
-.page-footer {
- background-color: #222;
- color: #ccc;
- padding: 30px 0 10px;
-}
-.footer-copyright {
- color: #666;
- padding: 40px 0;
-}
-
-@media (max-width: 575.98px) {
- .description {
- left: 0;
- padding: 0 15px;
- position: absolute;
- top: 10%;
- transform: none;
- text-align: center;
- }
-
- .description h1 {
- font-size: 2em;
- }
-
- .description p {
- font-size: 1.2rem;
- }
-
- .features {
- margin: 0;
- }
-}
-#myCarousel
-{
-    height:600px;
-}
-
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      max-height:600px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
+    .navbar-brand
+    {   background-image: url(PETIT_LogoEEBlanc.png);
+        align-items: center;
     }
-  }
- 
-#F
-{   
-    background-image: url(F.jfif);
-}
-#M
-{
-    background-image: url(M.jpg);
-}
-#V
-{
-    background-image: url(Petit_exclusive.png);
-}
 
-#F, #M, #V
-{
-}
+    .page-footer 
+    {
+         background-color: #222;
+         color: #ccc;
+         padding: 30px 0 10px;
+    }
+    .footer-copyright 
+    {
+         color: #666;
+         padding: 40px 0;
+    }
 
-#Fer,#Mus,#Vip
-{
-    color:white;
-    font-size: 20px;
-    filter:blur(0);
-}
-#Fer:hover,#Mus:hover,#Vip:hover{
-    color:black;
-    font-style:italic;
-}
-#Logo
-{
-    margin-right:10px;
-    margin-left:10px;
-    width:42px;
-height:53px;}
+    body 
+    {
+        font: 20px Montserrat, sans-serif;
+        line-height: 1.8;
+        color: #f5f6f7;
+    }
+    p
+    {
+        font-size: 16px;
+    }
+      
+    .margin 
+    {
+        margin-bottom: 45px;
+    }
+        
+    <?php
+    if(!empty($infoclient['fond']))    // SI IL Y A UN FOND ON LE MET EN IMAGE DE FOND
+    {
+    ?>
+    .bg-1 
+    { 
+        background-image: url(client/fonds/<?php echo $infoclient['fond'];?>);
+        background-size: cover;
+        color: #ffffff;
+        padding-bottom: 20px;
+        padding-top:200px;
+    }
+        
+    <?php 
+    }
+    else                // SI AUCUN FOND ON MET LE FOND DE BASE
+    {
+    ?>      
+    .bg-1
+    { 
+        background-color: cadetblue; /* Green */
+        background-image: url(client/fonds/fond.jpg);
+        background-size: cover;
+        color: #ffffff;
+        padding-bottom: 20px;
+        padding-top:100px;
+    }   
+    <?php
+    }
+    ?>
+    
+    .bg-2 
+    { 
+        background-color: #474e5d; /* Dark Blue */
+        color: #ffffff;
+        padding-bottom: 30px;  
+    }
 
-.dropdown-toggle, .B
-{
-    width:120px;
-    height: 53px;
-    text-align: center;
-}
-.paymentWrap {
-	padding: 50px;
-}
+    #Logo
+    {
+        margin-right:10px;
+        margin-left:10px;
+        width:42px;
+        height:53px;
+        }
 
-.paymentWrap .paymentBtnGroup {
-	max-width: 800px;
-	margin: auto;
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod {
-	padding: 40px;
-	box-shadow: none;
-	position: relative;
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod.active {
-	outline: none !important;
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod.active .method {
-	border-color: #4cd264;
-	outline: none !important;
-	box-shadow: 0px 3px 22px 0px #7b7b7b;
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method {
-	position: absolute;
-	right: 3px;
-	top: 3px;
-	bottom: 3px;
-	left: 3px;
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-	border: 2px solid transparent;
-	transition: all 0.5s;
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method.visa {
-	background-image: url(visa.png);
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method.master-card {
-	background-image: url(mastercard.png)}
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method.amex {
-	background-image: url(americanexpress.png)
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method.vishwa {
-	background-image: url(kadeos.jpg);
-}
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method.ez-cash {
-	background-image: url(cb.jpg);
-}
-
-
-.paymentWrap .paymentBtnGroup .paymentMethod .method:hover {
-	border-color: #4cd264;
-	outline: none !important;
-}
-/*-- Footer --*/
-.page-footer {
- background-color: #222;
- color: #ccc;
- padding: 30px 0 10px;
- margin-top: 150px;
-}
-.footer-copyright {
- color: #666;
- padding: 40px 0;
-}
+    #fond
+    {
+        color:black;
+    }
+            
+    .MonBouton
+    {
+        color:black; 
+        border-radius: 15px 15px 15px 15px;
+    }
+            
+    #profil
+    {
+        border: 1px solid black;
+        width:300px;
+        padding-left:0px;
+        border-radius: 5px 5px 5px 5px;
+        background-color: darkgrey;
+        text-align: center;
+    }
