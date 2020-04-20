@@ -3,7 +3,7 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-if(isset($_POST['bouton']))  //ON VALIDE TOUTES SES INFOS
+if(isset($_POST['button']))  //ON VALIDE TOUTES SES INFOS
 {
 
 ?>
@@ -28,31 +28,43 @@ if(isset($_POST['bouton']))  //ON VALIDE TOUTES SES INFOS
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="categorie.html">Catégorie<span class="icon-bar"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégorie<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
-                <li id="F"><a href="categorie.html" id="Fer"><strong>Feraille ou Trésor</strong></a></li>
-                <li id="M"><a href="categorie.html" id="Mus"><strong>Bon pour le Musée</strong></a></li>
-                <li id="V"><a href="categorie.html" id="Vip"><strong>Accessoire VIP</strong></a></li> 
+                <li id="F"><a href="feraille_ou_tresor.php" id="Fer"><strong>Feraille ou Trésor</strong></a></li>
+                <li id="M"><a href="Bon_pour-le-musee.php" id="Mus"><strong>Bon pour le Musée</strong></a></li>
+                
+                <?php echo '<li id="V"><a href="Accessoire_VIP.php" id="Vip"><strong>Accessoire VIP</strong></a></li>'; ?>
             </ul>
             </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="achat.html">Achat<span class="icon-bar"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Achat<span class="icon-bar"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="achat.html">Encheres</a></li>
-                <li><a href="achat.html">Achetez-le Maintenant</a></li>
-                <li><a href="achat.html">Meilleure offre</a></li> 
+                <li><a href="enchere.php">Encheres</a></li>
+                <li><a href="achatimmediat.php">Achetez-le Maintenant</a></li>
+                <li><a href="meilleureoffre.php">Meilleure offre</a></li> 
             </ul>
             </li>
-            <li><a class="B" href="LogVendeur.html">Vendre</a></li>
-            <li><a class="B" href="LogClient.html">Votre Compte</a></li>
+            <li><a class="B" href="LogVendeur.php">Vendre</a></li>
+            <li><a class="B" href="LogClient.php">Votre Compte</a></li>
       </ul>
             
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="LogAdmin.html"><span class="glyphicon glyphicon-log-in"></span> Login Administrateur</a></li>
-            <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+            <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
+            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
+            <li><?php
+                if(isset($_SESSION['id']))
+                {
+                     echo '<a class="B" href="panier2.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                }
+                else
+                {
+                    echo '<a class="B" href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                }
+                 ?></li>
         </ul>
         </div>
     </div>
 </nav>
+
 <?php
 
          $recherche = $bdd->prepare("SELECT * FROM code WHERE idC = ?");
@@ -61,7 +73,7 @@ if(isset($_POST['bouton']))  //ON VALIDE TOUTES SES INFOS
          if($code==1)
          {
              $code = $recherche->fetch();
-            echo '<p>Votre carte est déjà enregistrée</p>
+            echo '<p>Votre carte est déjà enregistrée</p>';
                      
          }
          else
@@ -117,47 +129,6 @@ if(isset($_POST['bouton']))  //ON VALIDE TOUTES SES INFOS
 ?>
 
 
-<br><br><br><br>
-<div class="container">
-	<div class="row">
-		<div class="paymentCont">
-						<div class="headingWrap">
-								<h3 class="headingTop text-center">Selectionner Votre Moyen de Paiement</h3>	
-								
-						</div>
-						<div class="paymentWrap">
-							<div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons">
-					            <label class="btn paymentMethod active">
-					            	<div class="method visa"></div>
-					                <input type="radio" name="options" checked> 
-					            </label>
-					            <label class="btn paymentMethod">
-					            	<div class="method master-card"></div>
-					                <input type="radio" name="options"> 
-					            </label>
-					            <label class="btn paymentMethod">
-				            		<div class="method amex"></div>
-					                <input type="radio" name="options">
-					            </label>
-					             <label class="btn paymentMethod">
-				             		<div class="method vishwa"></div>
-					                <input type="radio" name="options"> 
-					            </label>
-					            <label class="btn paymentMethod">
-				            		<div class="method ez-cash"></div>
-					                <input type="radio" name="options"> 
-					            </label>
-					         
-					        </div>        
-						</div>
-						<div class="footerNavWrap clearfix">
-							<div class="btn btn-success pull-left btn-fyi"><span class="glyphicon glyphicon-chevron-left"></span> RETOUR </div>
-							<div class="btn btn-success pull-right btn-fyi">VALIDER<span class="glyphicon glyphicon-chevron-right"></span></div>
-						</div>
-					</div>
-		
-	</div>
-</div>
 <footer class="page-footer">
 <div class="container">
     <div class="row">

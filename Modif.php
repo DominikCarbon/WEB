@@ -11,7 +11,7 @@ if (isset($_SESSION['id']))
 
     if(isset($_POST['boutonp']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
     {
-      $extension = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));  // ON MET L4EXTENSION AU FORMAT
+      $extension = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));  // ON MET LEXTENSION AU FORMAT
       $chemin= "client/photos/".$_SESSION['id'].".".$extension;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
       $deplacement=move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
       if($deplacement)    // SI LE DEPLACEMENT FONCTIONNE
@@ -19,7 +19,7 @@ if (isset($_SESSION['id']))
           $updatephoto=$bdd->prepare('UPDATE client SET photo =:photo WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
           $updatephoto->execute(array('photo' => $_SESSION['id'].".".$extension, 'id' => $_SESSION['id'] ));
 
-          header('Location:Client2.php?id='.$_SESSION['id']);
+          header('Location:Client2.php');
       }
       else
       {
@@ -28,7 +28,7 @@ if (isset($_SESSION['id']))
     }
     if(isset($_POST['boutonf']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
     {
-      $extension = strtolower(substr(strrchr($_FILES['fond']['name'], '.'), 1));  // ON MET L4EXTENSION AU FORMAT
+      $extension = strtolower(substr(strrchr($_FILES['fond']['name'], '.'), 1));  // ON MET LEXTENSION AU FORMAT
       $chemin= "client/fonds/".$_SESSION['id'].".".$extension;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
       $deplacement=move_uploaded_file($_FILES['fond']['tmp_name'], $chemin);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
       if($deplacement)    // SI LE DEPLACEMENT FONCTIONNE
@@ -36,7 +36,7 @@ if (isset($_SESSION['id']))
           $updatephoto=$bdd->prepare('UPDATE client SET fond =:fond WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
           $updatephoto->execute(array('fond' => $_SESSION['id'].".".$extension, 'id' => $_SESSION['id'] ));
 
-          header('Location:Client2.php?id='.$_SESSION['id']);
+          header('Location:Client2.php');
       }
       else
       {

@@ -164,7 +164,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><?php echo '<a class="B" href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>'; ?></li>
+            <li><?php echo '<a class="B" href="panier2.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>'; ?></li>
             </ul>
         </div>
     </div>

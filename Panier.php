@@ -16,7 +16,13 @@ if(isset($_SESSION['id']))
                         //ERREUR DE CONNEXION 
     else   //SI AUCUNE ERREUR
     {
-            $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $infoitem['id'] ."','". $infoitem['categorie'] ."', '". $infoitem['achat'] ."','". $infoitem['prix'] ."', '". $infoitem['description'] ."','". $infoitem['photo'] ."','". $infoitem['nom']."');";
+        $recherchepanier = $bdd->prepare('SELECT * FROM panier WHERE id = ? ');      // ON PREND SES INFOS
+        $recherchepanier->execute(array($_GET['idI']));         
+        $infopanier = $recherchepanier->rowCount();
+         if($infopanier==1)
+         {
+            
+                        $query = "INSERT INTO `panier`(`idC`, `idI`,`categorie`,`achat`,`prix`,`description`,`photo`,`nom`) VALUES ('". $_SESSION['id'] ."', '". $infoitem['id'] ."','". $infoitem['categorie'] ."', '". $infoitem['achat'] ."','". $infoitem['prix'] ."', '". $infoitem['description'] ."','". $infoitem['photo'] ."','". $infoitem['nom']."');";
 
                 if ($mysqli->query($query) === TRUE)
                 {   
@@ -26,7 +32,12 @@ if(isset($_SESSION['id']))
                 {
                     $erreur= "Error: " . $query . "<br>";
                 }
-                $mysqli -> close();
+                $mysqli -> close();         
+         }
+         else
+         {
+             $erreur="Cet item est déjà dans le panier";
+         }
     }
 
     
@@ -319,7 +330,9 @@ if(isset($_SESSION['id']))
                     Prix total : <b>
                     <?php echo $afficher['Somme']; ?> €</b></h2>    
             
-        <?php echo '<a href="Payer.php"><input type="button" name="button" id="MonBouton" value="Procéder au Paiement"></a>'; ?>
+       <form action="paiment.php" method="post">
+           <input type="button" name="button" id="MonBouton" value="Procéder au Paiement">
+        </form>
         </div>
     
         <?php

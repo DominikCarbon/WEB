@@ -292,7 +292,9 @@ if(isset($_SESSION['id']))
                     Prix total : <b>
                     <?php echo $afficher['Somme']; ?> €</b></h2>    
             
-        <?php echo '<a href="Payer.php"><input type="button" name="button" id="MonBouton" value="Procéder au Paiement"></a>'; ?>
+        <form action="paiment.php" method="post">
+           <input type="button" name="button" id="MonBouton" value="Procéder au Paiement">
+        </form>
         </div>
     
         <?php

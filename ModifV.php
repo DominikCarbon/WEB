@@ -19,7 +19,7 @@ if (isset($_SESSION['id']))
           $updatephoto=$bdd->prepare('UPDATE vendeur SET photo =:photo WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
           $updatephoto->execute(array('photo' => $_SESSION['id'].".".$extension, 'id' => $_SESSION['id'] ));
 
-          header('Location:Vendeur.php?id='.$_SESSION['id']);
+          header('Location:Vendeur.php');
       }
       else
       {
@@ -36,7 +36,7 @@ if (isset($_SESSION['id']))
           $updatephoto=$bdd->prepare('UPDATE vendeur SET fond =:fond WHERE id =:id');   // REQUETE EN SQL POUR INSERER LA PHOTO
           $updatephoto->execute(array('fond' => $_SESSION['id'].".".$extension, 'id' => $_SESSION['id'] ));
           
-          header('Location:Vendeur.php?id='.$_SESSION['id'] );
+          header('Location:Vendeur.php');
       }
       else
       {
