@@ -67,7 +67,7 @@ $items = $pdoStat->fetchAll();
             <li><?php
                 if(isset($_SESSION['id']))
                 {
-                    echo '<a class="B" href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
+                    echo '<a class="B" href="panier2.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
                 }
                 else
                 {
@@ -88,65 +88,61 @@ $items = $pdoStat->fetchAll();
 
 
 <div id="items">
-<div class="container">  
-    <center><h1>Bon pour le musée</h1><input type="text" placeholder="rechercher un item.." name="search"/>&nbsp;<span class="glyphicon glyphicon-search"></span></center>
+    <div class="container">  
+        <center><h1>Bon pour le musée</h1><input type="text" placeholder="rechercher un item.." name="search"/>&nbsp;<span class="glyphicon glyphicon-search"></span></center>
+            <div class="row">
+            <br/>
 
-    
-    
-<div class="row">
-    <br/>
+                <?php  foreach ($items as $item):?>
+                <br/>
+                <div class="container" id="item">
+                    <div class="row" id="rang1">
+                        <div class="col-sm-3" align="center"><b>Article</b></div>
+                        <div class="col-sm-4" ><b>Descritpion</b></div>
+                        <div class="col-sm-1"><b>Prix</b></div>
+                        <div class="col-sm-2"><b>Achat</b></div>
+                        <div class="col-sm-2" align="center"><b>Panier</b></div>
+                    </div>
 
-    <?php  foreach ($items as $item):?>
-    <br/>
-    <div class="container" id="item">
-    
-        <div class="row" id="rang1">
-            <div class="col-sm-3" align="center"><b>Article</b></div>
-            <div class="col-sm-4" ><b>Descritpion</b></div>
-            <div class="col-sm-1"><b>Prix</b></div>
-            <div class="col-sm-2"><b>Achat</b></div>
-            <div class="col-sm-2" align="center"><b>Panier</b></div>
-        </div>
+                    <div class="row" id="rang1">
+                        <div class="col-sm-3"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
+                        <div class="col-sm-4"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
+                        <div class="col-sm-1"><?= $item['prix'] ?> €</div>
+                        <div class="col-sm-2"><?= $item['achat']?></div>
+                        <div class="col-sm-2" align="center">      
+                            <?php
+                            if(isset($_SESSION['id']))
+                            {
+                            ?>
+                                <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?>
+                            <?php
+                            }
+                            else
+                            {
+                                echo '<a href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+   <?php endforeach ?>     
+            </div>
 
-        <div class="row" id="rang1">
-            <div class="col-sm-3"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
-            <div class="col-sm-4"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
-            <div class="col-sm-1"><?= $item['prix'] ?> €</div>
-            <div class="col-sm-2"><?= $item['achat']?></div>
-            <div class="col-sm-2" align="center">      
-                <?php
-                if(isset($_SESSION['id']))
-                {
-                ?>
-                    <?php echo '<a class="B" href="Panier.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span></a>'; ?>
-                <?php
-                }
-                else
-                {
-                    echo '<a href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-                }
-                ?>
+        <div class="row">
+            <br>
+            <br>
+            <div class="container" align="center">
+              <ul class="pagination">
+              <li class="active"><a href="#">1</a></li>
+              <li ><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              </ul>
+              <br/>
             </div>
         </div>
     </div>
-   <?php endforeach ?>     
-</div>
-
-<div class="row">
-
-<br>
-<br>
-<div class="container" align="center">
-  <ul class="pagination">
-  <li class="active"><a href="#">1</a></li>
-  <li ><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  </ul>
-  <br/>
-</div>
-
 </div>
 <!-- Footer -->
 <footer class="page-footer">

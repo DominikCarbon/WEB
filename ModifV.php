@@ -123,7 +123,7 @@ if (isset($_SESSION['id']))
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:100px;
+        padding-top:200px;
     }   
     <?php
     }
@@ -174,7 +174,7 @@ if (isset($_SESSION['id']))
   <div class="container-fluid" id="navigation">
     <div class="navbar-header">
 
-    <a class="navbar-brand" id="Logo" href="home.html"></a>
+    <a class="navbar-brand" id="Logo" href="#"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -224,7 +224,7 @@ if (isset($_SESSION['id']))
     <?php
     }
     ?>
-    <h3>Profil de <?php echo $infovendeur['nom']; ?> </h3>
+    <h3>Profil de <?php echo $infovendeur['prenom']; ?> </h3>
 </div>
 
 <!-- Second Container -->

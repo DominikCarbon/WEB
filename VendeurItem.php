@@ -160,10 +160,20 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         width: 200px;
         padding: 2px;
     }
+        #items
+    {
+    background-color:gainsboro;
+    margin-top:0px;
+
+    padding-bottom: 20px;
+    }
     #item
     {
-        padding-top:100px; 
-        background-color: gainsboro;
+        padding-top:20px; 
+        padding-bottom:20px;
+        background-color: white;
+        border: 2px solid grey;
+        border-radius: 10px 10px;
     }
 </style>
 
@@ -175,7 +185,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="#"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -221,38 +231,40 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     
 
 <!-- Infos sur les items en vente -->
- <?php  foreach ($items as $item):?>
-<div class="container" id="item">
-	<div class="row">
-		<div class="col-sm-2"><b>Article</b></div>
-        <div class="col-sm-2"><b>Descritpion</b></div>
-		<div class="col-sm-2"><b>Prix</b></div>
-        <div class="col-sm-2"><b>Categorie</b></div>
-        <div class="col-sm-2"><b>Achat</b></div>
-		<div class="col-sm-2" align="center"><b>Supprimer</b></div>
-	</div>
+<div id="items">
     
-	<div class="row" id="rang1">
+<div class="row">
+    <br/>
 
-		<div class="col-sm-2"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
+    <?php  foreach ($items as $item):?>
+    <br/>
+    <div class="container" id="item">
+    
+        <div class="row" id="rang1">
+            <div class="col-sm-3" align="center"><b>Article</b></div>
+            <div class="col-sm-4" ><b>Descritpion</b></div>
+            <div class="col-sm-1"><b>Prix</b></div>
+            <div class="col-sm-2"><b>Achat</b></div>
+            <div class="col-sm-2" align="center"><b>Supprimer</b></div>
+        </div>
 
-		<div class="col-sm-2"><p id="descritption"><?= $item['description'] ?></p></div>
-
-		<div class="col-sm-2"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
-
-		<div class="col-sm-2"><?= $item['prix'] ?> €</div>
-        <div class="col-sm-2"><?= $item['categorie']?></div>
-        <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+        <div class="row" id="rang1">
+            <div class="col-sm-3"><img src="articles/<?php echo $item['photo'];"" ?>" width="100%"></div>
+            <div class="col-sm-4"><p id="descritption"><?= $item['nom'] ?></p><p id="descritption"><?= $item['description'] ?></p></div>
+            <div class="col-sm-1"><?= $item['prix'] ?> €</div>
+            <div class="col-sm-2"><?= $item['achat']?></div>     
+            <div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'&idI='.$item['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
-
+        </div>
     </div>
-	
+    <?php endforeach; ?> 
 </div>
-<?php endforeach ?>
+    <br/>
+    <br/>
 
 
-<div class="row" id="item">
+
+<div class="row">
         
     <div align="center">
     <?php echo '<a href="VendeurNvItemAjoute.php"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
@@ -260,7 +272,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     <br/>
     <br/>
 </div>
-
+    </div>
 
 <!-- Footer -->
 <footer class="page-footer">

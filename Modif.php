@@ -174,7 +174,7 @@ if (isset($_SESSION['id']))
   <div class="container-fluid" id="navigation">
     <div class="navbar-header">
 
-    <a class="navbar-brand" id="Logo" href="home.html"></a>
+    <a class="navbar-brand" id="Logo" href="home.php"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">

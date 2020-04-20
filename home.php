@@ -44,7 +44,18 @@ session_start();
             
         <ul class="nav navbar-nav navbar-right">
             <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
+            <li><?php
+                if(isset($_SESSION['id']))
+                {
+                     echo '<a href="Deco.php"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a>';
+                }
+                else
+                {
+                    echo '';
+                }
+                 ?>
+                
+                </li>
             <li><?php
                 if(isset($_SESSION['id']))
                 {
@@ -65,6 +76,8 @@ session_start();
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
 
     <!-- Wrapper for slides -->

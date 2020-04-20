@@ -109,7 +109,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:230px;
+        padding-top:270px;
     }   
 
     
@@ -151,14 +151,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         color:dimgray;
     } 
         
-    input[type=number] {
-        width: 100px;
-        padding: 2px;
-    } 
-    input[type=date] {
-        width: 160px;
-        padding: 2px;
-    }   
  
     input[type=text] {
         width: 200px;
@@ -187,37 +179,54 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <h1> Items à mettre en vente </h1>
+    <h1> Les vendeurs </h1>
     <h3> <?php echo $_SESSION['id']; ?> </h3>
 </div>
     
 
 <!-- Infos et édition profil -->
 <div class="container-fluid bg-2 text-center">
-    <h3 class="margin">Ajouter un item destiné à la vente</h3>
+    <h3 class="margin">Ajouter un Vendeur sur la plateforme</h3>
     <center>
         
     <center>
     <form action="" method="post" enctype="multipart/form-data">
         <p><i>Les champs marqués par un </i><em>*</em><i> sont </i><em>obligatoires</em></p>
         
-        <fieldset>
-        <legend>Coordonnées</legend>
-        <label>Nom <em>*</em></label>
-        <input type="text" name="Nom" placeholder="Entrez votre Nom" required><br/>
-        <label><b>Prénom</b><em>*</em></label>
-        <input type="text" name="Prenom" placeholder="Entrez votre Prénom" required><br/>
-        <label><b>Mail</b><em>*</em></label>
-        <input type="email" name="mail" placeholder="Entrez votre Mail" required><br/>
-        <label><b>Pseudo</b><em>*</em></label>
-        <input type="text" name="mdp" placeholder="Entrez un Pseudo" required="">
-        <br/>
-        <p><input type="submit" name="button" value="Valider"></p>
-        </fieldset>
+        <table>
+            <tr>
+                <td colspan="4" align="center">Coordonnées</td>
+            </tr>
+            <tr><td colspan="4"><hr/></td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td><b>Nom </b><em>*</em></td>
+                <td><input type="text" name="Nom" placeholder="Entrez votre Nom" required></td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td><b>Prénom</b><em>*</em></td>
+                <td><input type="text" name="Prenom" placeholder="Entrez votre Prénom" required></td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td><b>Mail</b><em>*</em></td>
+                <td><input type="email" name="mail" placeholder="Entrez votre Mail" required></td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td><b>Pseudo</b><em>*</em></td>
+                <td><input type="text" name="mdp" placeholder="Entrez un Pseudo" required=""></td>
+            </tr>
+            <tr><td colspan="4"><hr/></td></tr>
+            
+            <tr>
+                <td colspan="4" align="center"><p><input type="submit" name="button" value="Valider"></p></td>
+            </tr>
+        </table>
     </form>
     </center>
         
-<hr/>
 <?php
     if(isset($erreur))    // Une erreur s'est produite on l'affiche
     {
@@ -229,7 +238,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 ?>
             <h3 class="margin">C'est bon !</h3>
     <center>
-        <p>Votre vendeur peut mainteant se connecter à la plateforme</p>
+        <p>Votre vendeur peut maintenant se connecter à la plateforme</p>
         <?php echo '<a href="AdminVendeur.php"><input type="submit" name="bt" value="Retourner voir les vendeurs"/></a>'; ?>
 </center>
 <?php

@@ -30,16 +30,16 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             {
                 /*$bonnenouvelle= "Added successfully";*/
                 if(isset($_FILES['Photo']))    // SI ON APPUIE SUR MODIFIER LA PHOTO
-                {
-                                    
-                $rechercheitem2 = $bdd->prepare('SELECT * FROM item WHERE idV = ? AND  nom= ? AND prix= ?');
-                $rechercheitem2->execute(array($_SESSION['id'],$nom,$prix));
-                $itemexiste = $rechercheitem2->rowCount();
-                if($itemexiste==1)
                 {   
-                    $infoitem= $rechercheitem2->fetch();
-                    $_SESSION['iditem']=$infoitem['id'];
-                }
+                    
+                    $rechercheitem2 = $bdd->prepare('SELECT * FROM item WHERE idV = ? AND  nom= ? AND prix= ?');
+                    $rechercheitem2->execute(array($_SESSION['id'],$nom,$prix));
+                    $itemexiste = $rechercheitem2->rowCount();
+                    if($itemexiste==1)
+                    {   
+                        $infoitem= $rechercheitem2->fetch();
+                        $_SESSION['iditem']=$infoitem['id'];
+                    }
 	                $Max = 300000;
 	                if($_FILES['Photo']['size'] <= $Max)
 	                {
@@ -49,11 +49,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 	                    $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
                         
 	                    if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
-	                    {
-                            /*$extensionitem2 = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));
-                            $ch2="articles/".$infoitem['id'].".".$extensionitem2;
-                            deplacement2=move_uploaded_file($_FILES['Photo']['tmpname'])*/
-                            
+	                    {   
 	                        $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:idi');   // REQUETE EN SQL POUR INSERER LA PHOTO
 	                        $updatephoto->execute(array('photo' => $_SESSION['iditem'].".".$extensionitem, 'idi' => $_SESSION['iditem'] ));
 	                        //header('Location:VendeurItem.php?id='.$_SESSION['id'] );
@@ -82,10 +78,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
                 $erreur="query != TRUE";
                 $pb="";
             }
-
         }
-        //$ajout = "INSERT INTO `item`(`idV`, `nom`, `description`, `categorie`, `achat`, `prix`, `photo`) VALUES('". $_SESSION['id'] ."', '". $nom."', '". $desc."','".$cate ."', '". $achat. "', '". $prix ."', '"."')";
-        //$ajout->execute(array($_SESSION['id'],$nom,$desc,$cate,$achat,$prix));
     }
         
     
@@ -94,7 +87,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <html>
 <head>
-    <title>Vendeur</title>
+    <title>SuperVendeur</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -219,7 +212,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="home.php"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
 

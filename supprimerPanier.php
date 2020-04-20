@@ -180,7 +180,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="#"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">

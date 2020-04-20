@@ -176,7 +176,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="#"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -210,9 +210,6 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     <h3> <?php echo "Admin ".$_SESSION['id']; ?> </h3>
 </div>
  
-
-
-
 
 <div class="row" id="Ajout">
         <div align="center">

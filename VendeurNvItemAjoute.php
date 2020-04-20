@@ -46,19 +46,14 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 	                if($_FILES['Photo']['size'] <= $Max)
 	                {
 	                    $extensionitem = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));  // ON MET L'EXTENSION AU FORMAT
-	                    $cheminitem= "articles/".$infoitem['id'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
+	                    $cheminitem= "articles/".$_SESSION['iditem'].".".$extensionitem;   // CHEMIN POUR LA PHOTO APPELEE "ID.EXTENSION"
                         
 	                    $deplacementphoto=move_uploaded_file($_FILES['Photo']['tmp_name'], $cheminitem);   //  ON DEPLACE LA PHOTO DANS LE DOSSIER
                         
 	                    if($deplacementphoto)    // SI LE DEPLACEMENT FONCTIONNE
-	                    {
-                            /*$extensionitem2 = strtolower(substr(strrchr($_FILES['Photo']['name'], '.'), 1));
-                            $ch2="articles/".$infoitem['id'].".".$extensionitem2;
-                            deplacement2=move_uploaded_file($_FILES['Photo']['tmpname'])*/
-                            
+	                    {   
 	                        $updatephoto=$bdd->prepare('UPDATE item SET photo =:photo WHERE id =:idi');   // REQUETE EN SQL POUR INSERER LA PHOTO
-	                        $updatephoto->execute(array('photo' => $infoitem['id'].".".$extensionitem, 'idi' => $infoitem['id'] ));
-	                        //header('Location:VendeurItem.php?id='.$_SESSION['id'] );
+	                        $updatephoto->execute(array('photo' => $_SESSION['iditem'].".".$extensionitem, 'idi' => $_SESSION['iditem'] ));
 	                        $bonnenouvelle="Votre requête a été prise en compte";   
 	                    }
 	                    else
@@ -241,7 +236,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" id="Logo" href="home.html"></a>
+            <a class="navbar-brand" id="Logo" href="#"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">

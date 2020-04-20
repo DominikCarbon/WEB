@@ -273,7 +273,7 @@ if(isset($_SESSION['id']))
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['categorie']?></div>
         <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerPanier?idI='.$item['id'].'.php"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerPanier.php?idI='.$item['idI'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
 
     </div>

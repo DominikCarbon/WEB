@@ -91,7 +91,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         background-size: cover;
         color: #ffffff;
         padding-bottom: 20px;
-        padding-top:100px;
+        padding-top:200px;
     }   
     <?php
     }
