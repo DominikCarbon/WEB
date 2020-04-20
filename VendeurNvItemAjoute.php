@@ -6,7 +6,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
-    $recherche->execute(array($_GET['id']));         
+    $recherche->execute(array($_SESSION['id']));         
     $infovendeur = $recherche->fetch();        // ON PREND SES INFOS
     
     if(isset($_POST['bouton']))
@@ -249,13 +249,13 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Vendeur.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="Vendeur.php">Mon Profil</a>'; ?></li>
             <?php
             }
             else
             {
             ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+            <li><a class="B" href="Logvendeur.php">Mon Profil</a></li>
             <?php
             }
             ?>
@@ -348,7 +348,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             <h3 class="margin">Vous avez fait le plus dur !</h3>
     <center>
         <p>l'item est mis en vente</p>
-        <?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><input type="submit" name="bt" value="Retourner voir mes items"/></a>'; ?>
+        <?php echo '<a href="VendeurItem.php"><input type="submit" name="bt" value="Retourner voir mes items"/></a>'; ?>
 </center>
 <?php
     }

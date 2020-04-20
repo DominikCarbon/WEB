@@ -25,7 +25,7 @@ if(isset($_POST['button']))
         if ($connexion) {
             if (isset($_POST['button'])) {
                 echo "login successfull !";
-                header("Location: homeAdmin.php?id=".$_SESSION['id']);
+                header("Location: homeAdmin.php");
             }
         }
         else

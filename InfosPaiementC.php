@@ -30,7 +30,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
                 if ($mysqli->query($queryp) === TRUE)
                 {   
-                    header('Location:Client2.php?id='.$_SESSION['id']);
+                    header('Location:Client2.php');
                 }//end if 
                 else 
                 {
@@ -191,7 +191,7 @@ input[type=text] {
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Client2.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="Client2.php">Mon Profil</a>'; ?></li>
             <?php
             }
             else

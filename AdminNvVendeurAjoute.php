@@ -230,13 +230,13 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             <h3 class="margin">C'est bon !</h3>
     <center>
         <p>Votre vendeur peut mainteant se connecter à la plateforme</p>
-        <?php echo '<a href="AdminVendeur.php?id='.$_SESSION['id'].'"><input type="submit" name="bt" value="Retourner voir les vendeurs"/></a>'; ?>
+        <?php echo '<a href="AdminVendeur.php"><input type="submit" name="bt" value="Retourner voir les vendeurs"/></a>'; ?>
 </center>
 <?php
     }
 ?>
     
-
+    </center>
 
 </div>
 

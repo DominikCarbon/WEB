@@ -96,7 +96,7 @@ $items = $pdoStat->fetchAll();
         <br/>
 
        <?php  foreach ($items as $item):?>
-
+        <br/>
 <div class="container" id="item">
     
 	<div class="row" id="rang1">

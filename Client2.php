@@ -6,7 +6,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
     $recherche = $bdd->prepare('SELECT * FROM client WHERE id = ? ');      // ON PREND SES INFOS
-    $recherche->execute(array($_GET['id']));         
+    $recherche->execute(array($_SESSION['id']));         
     $infoclient = $recherche->fetch();                                     // ON PREND SES INFOS
 ?>
 
@@ -134,7 +134,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="navigation">
         <div class="navbar-header">
-            <?php echo '<a class="navbar-brand" id="Logo" href="home.php?id='.$_SESSION['id'].'"></a>'; ?>
+            <?php echo '<a class="navbar-brand" id="Logo" href="home.php"></a>'; ?>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -142,7 +142,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Client2.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="Client2.php">Mon Profil</a>'; ?></li>
             <?php
             }
             else
@@ -164,7 +164,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         }
         ?>
             <li><a href="LogAdmin.php"><span class="glyphicon glyphicon-user"></span> Login Administrateur</a></li>
-            <li><?php echo '<a class="B" href="panier.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>'; ?></li>
+            <li><?php echo '<a class="B" href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>'; ?></li>
             </ul>
         </div>
     </div>

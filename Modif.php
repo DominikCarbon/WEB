@@ -182,7 +182,7 @@ if (isset($_SESSION['id']))
         if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Client2.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="Client2.php">Mon Profil</a>'; ?></li>
             <?php
             }
             else

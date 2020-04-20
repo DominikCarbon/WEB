@@ -9,9 +9,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
     $recherche->execute(array($_SESSION['id']));         
     $infovendeur = $recherche->fetch();  
     
-    $pdoStat = $bdd->prepare("DELETE FROM item WHERE idV=".$_SESSION['id']." LIMIT 1");
-
-    //$pdoStat=binvalue($_GET['id']),PDO::PARAM_INT);
+    $pdoStat = $bdd->prepare("DELETE FROM panier WHERE idC=".$_SESSION['id']." AND idI=".$_GET['idI']." LIMIT 1");
 
     $deleteIsOk= $pdoStat->execute();
 
@@ -218,7 +216,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 
 <!-- Photo de fond et profil -->
 <div class="container-fluid bg-1 text-center">
-    <h1> Supprimer un item </h1>
+    <h1> Votre Panier </h1>
     <h3> <?php echo $infovendeur['prenom'] ." ". $infovendeur['nom']; ?> </h3>
 </div>
 
@@ -237,14 +235,8 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
         
         <div align="center">
         <?php 
-        if($_SESSION['id']==667 || $_SESSION['id']==667)
-        {
-            echo '<a href="AdminItem.php"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; 
-        }
-        else
-        {
-            echo '<a href="VendeurItem.php"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; 
-        }
+
+            echo '<a href="Panier2.php"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; 
 
         ?>
         </div>

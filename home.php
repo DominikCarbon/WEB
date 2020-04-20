@@ -54,7 +54,6 @@ session_start();
                 {
                     echo '<a class="B" href="LogClient.php"><span class="glyphicon glyphicon-shopping-cart"></span>   Panier</a>';
                 }
-            ?>
                  ?></li>
         </ul>
         </div>

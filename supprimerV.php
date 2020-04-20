@@ -184,7 +184,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="homeAdmin.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="homeAdmin.php">Mon Profil</a>'; ?></li>
             <?php
             }
             ?>
@@ -221,7 +221,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             <br/>
         </div>
         <div align="center">
-        <?php echo '<a href="AdminVendeur.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; ?>
+        <?php echo '<a href="AdminVendeur.php"><input type="button" name="button" id="MonBouton" value="Retour"></a>'; ?>
         </div>
     <br/>
     <br/>

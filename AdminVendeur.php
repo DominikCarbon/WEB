@@ -230,7 +230,7 @@ if (isset($_SESSION['id']))      // SI L'ADMIN EST CONNECTE
         
     <div align="center">
     <br/>
-    <?php echo '<a href="AdminNvVendeurAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Vendeur"></a>'; ?>
+    <?php echo '<a href="AdminNvVendeurAjoute.php"><input type="button" name="button" id="MonBouton" value="Ajouter un Vendeur"></a>'; ?>
     </div> 
     <br/>
     <br/>

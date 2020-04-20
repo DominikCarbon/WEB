@@ -25,7 +25,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
                     $_SESSION['prenom']=$infoclient['prenom'];
                     $_SESSION['ville']=$infoclient['ville'];
                      
-                    header('Location:Client2.php?id='.$_SESSION['id']); // On redirige le client vers la page, mais dans sa propre session
+                    header('Location:Client2.php'); // On redirige le client vers la page, mais dans sa propre session
                 }
                 else
                 {

@@ -231,7 +231,7 @@ if(isset($_SESSION['id']))
             if(isset($_SESSION['id']))
             {
         ?>
-                <a class="B" href="Client2.php?id="<?php echo $_SESSION['id'];?> >Votre Compte</a>
+                <a class="B" href="Client2.php">Votre Compte</a>
          <?php
             }
             else
@@ -300,7 +300,7 @@ if(isset($_SESSION['id']))
 		<div class="col-sm-1"><?= $item['prix'] ?> €</div>
         <div class="col-sm-2"><?= $item['categorie']?></div>
         <div class="col-sm-2"><?= $item['achat']?></div>
-		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimer.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
+		<div class="col-sm-2" align="center"><p ><?php echo '<a href="supprimerPanier?idI='.$item['id'].'.php"><span class="glyphicon glyphicon-trash" id="trash"></span></a>';?>
         </p></div>
 
     </div>
@@ -319,7 +319,7 @@ if(isset($_SESSION['id']))
                     Prix total : <b>
                     <?php echo $afficher['Somme']; ?> €</b></h2>    
             
-        <?php echo '<a href="Payer.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Procéder au Paiement"></a>'; ?>
+        <?php echo '<a href="Payer.php"><input type="button" name="button" id="MonBouton" value="Procéder au Paiement"></a>'; ?>
         </div>
     
         <?php

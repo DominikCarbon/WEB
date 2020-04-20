@@ -6,7 +6,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id =? ');      // ON PREND SES INFOS
-    $recherche->execute(array($_GET['id']));         
+    $recherche->execute(array($_SESSION['id']));         
 
     $infovendeur = $recherche->fetch();  
     $pdoStat = $bdd->prepare("SELECT * FROM item WHERE idV=".$_SESSION['id']."");
@@ -189,7 +189,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             else
             {
             ?>
-            <li><a class="B" href="Logvendeur.html">Mon Profil</a></li>
+            <li><a class="B" href="LogVendeur.php">Mon Profil</a></li>
             <?php
             }
             ?>
@@ -255,7 +255,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 <div class="row" id="item">
         
     <div align="center">
-    <?php echo '<a href="VendeurNvItemAjoute.php?id='.$_SESSION['id'].'"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
+    <?php echo '<a href="VendeurNvItemAjoute.php"><input type="button" name="button" id="MonBouton" value="Ajouter un Item"></a>'; ?>
     </div>
     <br/>
     <br/>

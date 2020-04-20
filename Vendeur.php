@@ -6,7 +6,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');  // J'UTILISE
 if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
 {
     $recherche = $bdd->prepare('SELECT * FROM vendeur WHERE id = ? ');      // ON PREND SES INFOS
-    $recherche->execute(array($_GET['id']));         
+    $recherche->execute(array($_SESSION['id']));         
     $infovendeur = $recherche->fetch();                                     // ON PREND SES INFOS
 ?>
 
@@ -142,7 +142,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-                <li><?php echo '<a href="Vendeur.php?id='.$_SESSION['id'].'">Mon Profil</a>'; ?></li>
+                <li><?php echo '<a href="Vendeur.php?id=">Mon Profil</a>'; ?></li>
             <?php
             }
             else
@@ -168,7 +168,7 @@ if (isset($_SESSION['id']))      // SI L'USER EST CONNECTE
             if(isset($_SESSION['id']))
             {
             ?>
-            <li><?php echo '<a href="VendeurItem.php?id='.$_SESSION['id'].'"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
+            <li><?php echo '<a href="VendeurItem.php"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Mes items en vente</a>'; ?></li>
             <?php
             }
             else
